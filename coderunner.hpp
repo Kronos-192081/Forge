@@ -23,26 +23,6 @@ namespace py = pybind11;
 
 std::mutex py_mutex, stdout_mutex;
 
-std::string trim(const std::string& str) {
-    const auto start = str.find_first_not_of(" \t");
-    const auto end = str.find_last_not_of(" \t");
-    if (start == std::string::npos) return ""; // all spaces/tabs
-    return str.substr(start, end - start + 1);
-}
-
-std::string trim_lines(const std::string& input) {
-    std::istringstream iss(input);
-    std::ostringstream oss;
-    std::string line;
-    bool first = true;
-    while (std::getline(iss, line)) {
-        if (!first) oss << "\n";
-        oss << trim(line);
-        first = false;
-    }
-    return oss.str();
-}
-
 int get_exit_code(const std::string& file_path) {
     std::ifstream file(file_path);
     if (!file.is_open()) {
