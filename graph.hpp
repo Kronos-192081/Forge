@@ -151,32 +151,3 @@ void Graph<T>::generateDotFile(const std::string& filename) {
     file << "}\n";
     file.close();
 }
-
-// int main() {
-//     Graph<Node> graph;
-//     Node node1{"A"};
-//     Node node2{"B"};
-//     Node node3{"C"};
-//     graph.addNode(node1);
-//     graph.addNode(node2);
-//     graph.addNode(node3);
-//     graph.addEdge(node1, node2);
-//     graph.addEdge(node2, node3);
-//     graph.addEdge(node1, node3);
-
-//     std::cout << "Has cycle: " << graph.hasCycle() << std::endl;
-
-//     auto topoSort = graph.topologicalSort();
-//     std::cout << "Topological Sort: ";
-//     for (const auto& node : topoSort) {
-//         std::cout << node.name << " ";
-//     }
-//     std::cout << std::endl;
-
-//     std::cout << "In-degree of B: " << graph.inDegree(node2) << std::endl;
-//     std::cout << "Out-degree of B: " << graph.outDegree(node2) << std::endl;
-
-//     graph.visualize("graph.dot");
-
-//     return 0;
-// }

@@ -10,12 +10,38 @@
 #include <regex>
 #include <pybind11/embed.h> 
 #include <chrono>
+#include <iomanip>
 #include <cctype>
-#include <boost/process.hpp>
+#include <algorithm>
+#include <future>
+#include <thread>
+#include <mutex>
 
 namespace timer = std::chrono;
 
 namespace py = pybind11;
+
+std::mutex py_mutex, stdout_mutex;
+
+std::string trim(const std::string& str) {
+    const auto start = str.find_first_not_of(" \t");
+    const auto end = str.find_last_not_of(" \t");
+    if (start == std::string::npos) return ""; // all spaces/tabs
+    return str.substr(start, end - start + 1);
+}
+
+std::string trim_lines(const std::string& input) {
+    std::istringstream iss(input);
+    std::ostringstream oss;
+    std::string line;
+    bool first = true;
+    while (std::getline(iss, line)) {
+        if (!first) oss << "\n";
+        oss << trim(line);
+        first = false;
+    }
+    return oss.str();
+}
 
 int get_exit_code(const std::string& file_path) {
     std::ifstream file(file_path);
@@ -36,11 +62,13 @@ int get_exit_code(const std::string& file_path) {
     if (std::regex_search(last_line, match, exit_code_regex) && match.size() > 1) {
         return std::stoi(match.str(1));
     } else {
+        std::cout << file_path << std::endl;
         throw std::runtime_error("Exit code not found in the last line");
     }
 }
 
 std::string ansi_to_html(const std::string& ansi_text) {
+    std::lock_guard<std::mutex> lock(py_mutex);
     py::scoped_interpreter guard{};
 
     try {
@@ -106,178 +134,237 @@ std::string create_html(const std::string& output, std::string& commands) {
     std::string html = R"(<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title></title>
-<style type="text/css">
-.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
-.body_foreground { color: #f5f3f3; }
-.body_background { background-color: #ffffff; } /* Set background to white */
-.inv_foreground { color: #000000; }
-.inv_background { background-color: #faf9f9; }
-.ansi1 { font-weight: bold; color: #0b0b0b; }
-.ansi2 { font-weight: bold; color: #f7f7f7; }
-.ansi32 { color: #00aa00; }
-.ansi35 { color: #E850A8; }
-.command-box {
-   border: 2px solid #0332b2;
-   background-color:  #0332b2;
-   padding: 5px;
-   display: inline-block;
-   border-top-left-radius: 8px;
-   border-top-right-radius: 8px;
-   margin-bottom: 0; /* Remove bottom margin to touch the error box */
-}
-.forge-box {
-    border: 2px solid #0e0e0e;
-    padding: 5px;
-    background-color:  #f6f6f7;
-    margin-bottom: 0; /* Remove bottom margin to touch the error box */
-    display: block;
-    border-radius: 8px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 400px;
-}
-.error-box {
-    border: 2px solid #0332b2;
-    padding: 10px;
-    background-color: #fafafa;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-    color: #0b0a0a;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Forge Build Timeline</title>
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    overflow: hidden;
-}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-td, th {
-    padding: 5px;
-    vertical-align: middle;
-    /* border: 1px solid #000; Inner borders - Black */
-}
+  <style type="text/css">
+    .ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+    .body_foreground { color: #f5f3f3; }
+    .body_background { background-color: #ffffff; }
+    .inv_foreground { color: #000000; }
+    .inv_background { background-color: #faf9f9; }
+    .ansi1 { font-weight: bold; color: #0b0b0b; }
+    .ansi2 { font-weight: bold; color: #f7f7f7; }
+    .ansi32 { color: #00aa00; }
+    .ansi35 { color: #E850A8; }
 
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-align: left;
-    color: #000; /* Ensures text is black */
-}
+    .command-box {
+      border: 2px solid #0332b2;
+      background-color:  #0332b2;
+      padding: 5px;
+      display: inline-block;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-bottom: 0;
+    }
 
-td:first-child {
-    width: 20%; /* Adjust as needed */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    .forge-box {
+      border: 2px solid #0e0e0e;
+      padding: 5px;
+      color: black;
+      background-color:  #f6f6f7;
+      margin-bottom: 0;
+      display: block;
+      border-radius: 8px;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 400px;
+    }
 
-td:nth-child(2) {
-    width: 80%;
-}
+    .error-box {
+      border: 2px solid #0332b2;
+      padding: 10px;
+      background-color: #fafafa;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      border-top-right-radius: 8px;
+      color: #0b0a0a;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternating row colors for better readability */
-}
+    .gantt-header {
+      display: flex;
+      font-weight: bold;
+      background-color: #600780;
+      color: white;
+      padding: 8px 12px;
+    }
 
-tr:hover {
-    background-color: #f1f1f1; /* Light hover effect */
-}
+    .gantt-header .command-col {
+      width: 25%;
+      min-width: 120px;
+    }
 
-.timer-table { width: 100%; border-collapse: collapse; }
-.timer-table th, .timer-table td { border: 1px solid#0d0d0e; overflow: hidden; padding: 8px; color: black}
-.timer-table th { background-color: #600780; text-align: left; color: white}
-.timer-table td { vertical-align: middle; }
-.timer-bar { display: inline-block; height: 20px; background-color: #4CAF50; position: relative; }
-.timer-bar:hover::after { content: attr(data-time) " ms"; position: absolute; background-color: #fff; border: 1px solid #ddd; padding: 2px 5px; }
-.command-cell { width: 150px; } /* Set a fixed width for the command column */
-</style>
+    .gantt-header .time-col {
+      flex: 1;
+    }
+
+    #chart_div {
+      width: 100%;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 1rem;
+    }
+  </style>
 </head>
-<body class="body_foreground body_background" style="font-size: normal;" >
-<h1 style = "text-align:center; color: black" class = "forge-box"><a href = "https://github.com/Kronos-192081/forge">forge</a> build results</h1>
-<h2 style = color:black;> Build Summary: </h2>
-<table class="timer-table">
-    <thead>
-    <tr>
-    <th style = "text-align: center;">Command</th>
-    <th style = "text-align: center;">Time</th>
-    </tr>
-    </thead>
-    <tbody id="timer-body">
-    <!-- Rows will be generated dynamically -->
-    </tbody>
-</table>
 
-<br>
+<body class="body_foreground body_background">
 
-<h2 style = color:black;> Compilation Details: </h2>)";
+  <h1 class="forge-box">
+    <a href="https://github.com/Kronos-192081/forge">forge</a> build results
+  </h1>
+
+  <h2 style="color: black;">Build Summary:</h2>
+  <div class="gantt-header">
+    <div class="command-col">Command</div>
+    <div class="time-col">Timeline</div>
+  </div>
+  <div id="chart_div"></div>
+
+  <br>
+
+  <h2 style="color: black;">Compilation Details:</h2>)";
 
 html += output;
  
 html += R"(<script>
-    const commands = [)";
+    google.charts.load('current', { packages: ['gantt'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      const container = document.getElementById('chart_div');
+      const width = container.getBoundingClientRect().width;
+      const rowHeight = 30;
+
+      const data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Command');
+      data.addColumn('string', 'Resource');
+      data.addColumn('date', 'Start');
+      data.addColumn('date', 'End');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      const rows = [)";
 
 html += commands;
 
 html += R"(];
-    
-    let sum = 0;
-    commands.forEach(element => {
-        sum = sum + element.time;
-    });
-    const tableBody = document.getElementById('timer-body');
 
-    let accumulatedTime = 0;
-    
-    commands.forEach((command, index) => {
-        const row = document.createElement('tr');
-        const commandCell = document.createElement('td');
-        const timeCell = document.createElement('td');
-        const bar = document.createElement('div');
-    
-        const link = document.createElement('a');
-        link.href = `#cmd${index + 1}`;
-        link.textContent = command.name;
-        link.style.display = 'block';
-        link.style.textAlign = 'center';    
-        commandCell.appendChild(link);
+      data.addRows(rows);
 
-        bar.className = 'timer-bar';
-        bar.style.width = `${(command.time / sum) * 100}%`;
-        bar.style.marginLeft = `${accumulatedTime / sum * 100}%`;
-        bar.style.backgroundColor = command.color;
-        bar.setAttribute('data-time', command.time);
-    
-        timeCell.appendChild(bar);
-        row.appendChild(commandCell);
-        row.appendChild(timeCell);
-        tableBody.appendChild(row);
-    
-        accumulatedTime += command.time;
-    }, 0);
-    </script>
+      const colorMap = {
+        'green': '#4CAF50',
+        'red': '#F44336',
+        'yellow': '#FFC107'
+      };
+
+    const palt = [];
+    const colorSet = new Set();
+    for (const row of rows) {
+      const color = colorMap[row[2]];
+      if (!colorSet.has(color)) {
+        obj = {
+        color: color,
+        dark: color,
+        light: color
+        };
+        palt.push(obj);
+        colorSet.add(color);
+      }
+    }
+
+      console.log(palt);
+
+      const options = {
+        height: rows.length * rowHeight + 50,
+        width: width,
+        gantt: {
+          trackHeight: rowHeight,
+          palette: palt,
+        }
+      };
+
+      const chart = new google.visualization.Gantt(container);
+      chart.draw(data, options);
+
+      // Clickable bars
+      const commandLinks = {};
+        rows.forEach((row, index) => {
+        const command = row[1];
+        commandLinks[command] = `#cmd${index + 1}`;
+     });
+
+      google.visualization.events.addListener(chart, 'select', function () {
+        const selection = chart.getSelection();
+        if (selection.length > 0) {
+          const row = selection[0].row;
+          const command = data.getValue(row, 1);
+          const link = commandLinks[command];
+          if (link) {
+            location.href = link;
+          }
+        }
+      });
+    }
+
+    window.addEventListener('resize', drawChart);
+  </script>
 </body>
 </html>)";
 
     return html;
 }
 
-std::string run_command(const std::vector<std::string>& commands) {
+auto base = std::chrono::system_clock::from_time_t(0);
+
+std::string formatDateTime(const std::chrono::system_clock::time_point& tp) {
+    using namespace std::chrono;
+
+    auto duration = tp - base;
+    auto millis = duration_cast<milliseconds>(duration).count();
+
+    auto hours = millis / (1000 * 60 * 60);
+    millis %= (1000 * 60 * 60);
+    auto minutes = millis / (1000 * 60);
+    millis %= (1000 * 60);
+    auto seconds = millis / 1000;
+    auto milliseconds_part = millis % 1000;
+
+    std::ostringstream oss;
+    oss << "new Date(1970, 0, 1, "
+        << hours << ", "
+        << minutes << ", "
+        << seconds << ", "
+        << milliseconds_part << ")";
+
+    return oss.str();
+}
+
+
+int counter = 0;
+
+std::tuple<std::string, std::string, bool> run_command(const std::vector<std::string>& commands) {
 
     timer::time_point<std::chrono::system_clock> start, end;
 
     std::string time;
     std::array<char, 128> buffer;
     std::string final_result;
+    bool err = false;
     int index = 0;
     for (const auto& command : commands) {
-        std::cout << command << "\n";
+        counter++;
         std::string result;
-        std::string full_command = "script -q -c \"" + command + "\" 2>&1";
+        std::string full_command = "script -q -c \"" + command + "\"" + " 2>&1";
+
+        std::cout << command << std::endl; 
 
         start = timer::system_clock::now();
         std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(full_command.c_str(), "r"), pclose);
@@ -285,21 +372,14 @@ std::string run_command(const std::vector<std::string>& commands) {
             throw std::runtime_error("popen() failed!");
         }
 
-        end = timer::system_clock::now();
-        auto elapsed_seconds = end - start;
-
-        double ms = timer::duration<double, std::milli>(elapsed_seconds).count();
-
         while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
             result += buffer.data();
         }
-
-        std::cout << result << "\n";
+        
+        std::cout << result << std::endl;
 
         std::string html_output = ansi_to_html(result);
         std::string pre_content = extract_pre_content(html_output);
-
-
 
         std::string start_tags = std::format(R"(<div class="command-box">
             <span class="ansi2" id = "cmd{}"> {} </span>
@@ -310,27 +390,182 @@ std::string run_command(const std::vector<std::string>& commands) {
             pre_content = start_tags + pre_content + "</div><br><br>";
 
         final_result += pre_content;
-
         bool is_err = false, is_warn = false;
-
         is_err = get_exit_code("typescript") != 0;
+        if (is_err) err = true;
 
         if (result.find("warning") != std::string::npos || result.find("Warning") != std::string::npos || result.find("WARNING") != std::string::npos) {
             is_warn = true;
         }
 
-        std::string color = is_err ? "#FF5733" : (is_warn ? "#FFC300" : "#4CAF50");
+        end = timer::system_clock::now();
 
+        std::string color = is_err ? "red" : (is_warn ? "yellow" : "green");
         std::ostringstream ostr;
-
-        ostr << "{ name: \'" << command  << "\', time: " << ms << ", color: \'" << color << "\' },";
-
+        ostr << "[" << "\'" << counter << "\' , " <<  "\'" << command <<  "\' , " << "\'" << color << "\' , " << formatDateTime(start) << " , " << formatDateTime(end) << ", null , " << (is_err ? 0 : 100) << " , null ],";
         time += ostr.str();
 
         if(is_err) break;
+
+        std::remove("typescript");
     }
 
     std::remove("typescript");
 
+    return {final_result, time, err};
+}
+
+std::string run_commands(const std::vector<std::string>& commands){
+    std::string time;
+    std::string final_result;
+    bool is_err = false;
+
+    using timer = std::chrono::system_clock;
+    timer::time_point start, end;
+
+    start = timer::now();
+    for (const auto& command : commands) {
+        auto [result, command_time, err] = run_command({command});
+        final_result += result;
+        time += command_time;
+        if (err) { is_err = true; break; }
+    }
+    end = timer::now();
+    auto elapsed_seconds = std::chrono::duration<double>(end - start).count();
+
+    if (!is_err){
+        std::cout << "\033[34m" << "Compilation process completed in: " << elapsed_seconds << " seconds" << "\033[0m" << std::endl;
+    } else {
+        std::cout << "\033[31m" << "Compilation process completed in: " << elapsed_seconds << " seconds" << "\033[0m" << std::endl;
+    }
+
     return create_html(final_result, time);
+}
+
+std::tuple<std::string, std::string, bool> run_command_par(const std::vector<std::string>& commands) {
+
+    timer::time_point<std::chrono::system_clock> start, end;
+
+    std::string time;
+    std::array<char, 128> buffer;
+    std::string final_result;
+    bool err = false;
+    int index = 0;
+    for (const auto& command : commands) {
+        std::string result;
+        std::string full_command = command +" 2>&1";
+
+        start = timer::system_clock::now();
+        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(full_command.c_str(), "r"), pclose);
+        if (!pipe) {
+            throw std::runtime_error("popen() failed!");
+        }
+
+        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+            result += buffer.data();
+        }
+
+        {
+            std::lock_guard<std::mutex> lock(stdout_mutex);
+            std::cout << command << std::endl;
+            std::cout << result << std::endl;
+        }
+
+        std::string html_output = ansi_to_html(result);
+        std::string pre_content = extract_pre_content(html_output);
+        bool is_err = false, is_warn = false;
+
+        auto pip = pipe.release();
+        is_err = pclose(pip) != 0;
+
+        if (is_err) err = true;
+
+        if (result.find("warning") != std::string::npos || result.find("Warning") != std::string::npos || result.find("WARNING") != std::string::npos) {
+            is_warn = true;
+        }
+
+        end = timer::system_clock::now();
+
+        std::string color = is_err ? "red" : (is_warn ? "yellow" : "green");
+        std::ostringstream ostr;
+        {
+            std::lock_guard<std::mutex> lock(stdout_mutex);
+            counter++;
+            ostr << "[" << "\'" << counter << "\' , " <<  "\'" << command <<  "\' , " << "\'" << color << "\' , " << formatDateTime(start) << " , " << formatDateTime(end) << ", null , " << (is_err ? 0 : 100) << " , null ],";
+            time += ostr.str();
+            std::string start_tags = std::format(R"(<div class="command-box">
+            <span class="ansi2" id = "cmd{}"> {} </span>
+            </div>
+            <div class="error-box">)", counter, command);
+        
+            if (pre_content.length() > 0)
+                pre_content = start_tags + pre_content + "</div><br><br>";
+
+            final_result += pre_content;
+        }
+
+        if(is_err) break;
+    }
+
+    return {final_result, time, err};
+}
+
+std::string run_commands_parallel(const std::vector<std::vector<std::vector<std::string>>>& command_batches, size_t num_threads) {
+    std::string final_result, total_time;
+    std::mutex result_mutex;
+    std::vector<std::thread> threads;
+    std::atomic<bool> is_err(false);
+
+    using clock = std::chrono::system_clock;
+    auto start = clock::now();
+
+    for (const auto& batch : command_batches) {
+        std::vector<std::future<void>> futures;
+        is_err.store(false);
+
+        for (const auto& command : batch) {
+            futures.emplace_back(std::async(std::launch::async, [&command, &final_result, &total_time, &result_mutex, &is_err]() {
+                if (is_err.load()) {
+                    return;
+                }
+
+                auto [result, command_time, err] = run_command_par(command);
+
+                {
+                    std::lock_guard<std::mutex> lock(result_mutex);
+                    final_result += result;
+                    total_time += command_time;
+                }
+
+                if (err) {
+                    is_err.store(true);
+                    return;
+                }
+            }));
+
+            if (futures.size() >= num_threads) {
+                for (auto& future : futures) {
+                    future.get();
+                }
+                futures.clear();
+            }
+        }
+
+        for (auto& future : futures) {
+            future.get();
+        }
+
+        if (is_err.load()) {
+            break;
+        }
+    }
+
+    auto end = clock::now();
+    double elapsed = std::chrono::duration<double>(end - start).count();
+
+    std::cout << (is_err.load() ? "\033[31m" : "\033[34m")
+            << "Compilation process completed in: " << elapsed << " seconds"
+            << "\033[0m" << std::endl;
+
+    return create_html(final_result, total_time);
 }

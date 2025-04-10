@@ -177,6 +177,11 @@ int main(int argc, char ** argv) {
       .default_value(false)
       .implicit_value(true);
 
+    program.add_argument("-j", "--jobs")
+        .default_value(1)
+        .help("Specify the number of jobs to run in parallel. Default is 1")
+        .scan<'i', int>();
+
     try {
       program.parse_args(argc, argv);
     } catch (const std::exception &err) {
@@ -188,6 +193,9 @@ int main(int argc, char ** argv) {
     std::string loglevel = program.get<std::string>("--log-level"); 
     std::string filename = program.get<std::string>("file");
     std::string target = program.get<std::string>("target");
+
+    int njobs = program.get<int>("--jobs");
+    bool is_par = njobs > 1;
 
     if(target.length() == 0){
       Parser parser(filename);
@@ -256,6 +264,8 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
+    targ_graph.visualize("graph.dot");
+
     auto topoSort = targ_graph.topologicalSort();
 
     std::vector<std::string> commands;
@@ -265,13 +275,55 @@ int main(int argc, char ** argv) {
         }
     }
 
-    std::string output = run_command(commands);
+    if (is_par) {
+        std::vector<std::vector<std::string>> parallelizable_labels;
+        while (!topoSort.empty()) {
+            std::vector<std::string> labels;
+            std::vector<Node> nodesToRemove;
+            for (const auto& node : topoSort) {
+                if (targ_graph.inDegree(node) == 0) {
+                    labels.push_back(node.name);
+                    nodesToRemove.push_back(node);
+                }
+            }
+            parallelizable_labels.push_back(labels);
+            for (const auto& node : nodesToRemove) {
+                targ_graph.removeNode(node);
+            }
+            topoSort = targ_graph.topologicalSort();
+        }
 
-    std::ofstream out("output2.html");
-    out << output;
-    out.close();
-    
-    targ_graph.visualize("graph.dot");
+        std::vector<std::vector<std::vector<std::string>>> parallelizable_commands;
+        for (const auto& labels : parallelizable_labels) {
+            std::vector<std::vector<std::string>> commands_for_labels;
+            for (const auto& label : labels) {
+                commands_for_labels.push_back(master_targ_tab[label].commands);
+            }
+            parallelizable_commands.push_back(commands_for_labels);
+        }
+
+        std::string output = run_commands_parallel(parallelizable_commands, njobs);
+        std::ofstream out("output3.html");
+        out << output;
+        out.close();
+    } else {
+        std::string output = run_commands(commands);
+        std::ofstream out("output2.html");
+        out << output;
+        out.close();
+    }
+
+    // for (auto val : parallelizable_commands) {
+    //     std::cout << "[ ";
+    //     for (auto d: val) {
+    //         std::cout << "{ ";
+    //         for (auto i : d) {
+    //             std::cout << i << " ";
+    //         }
+    //         std::cout << "} ";
+    //     } 
+    //     std::cout << "]" << "\n";   
+    // }
 
     return 0;
 }

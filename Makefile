@@ -1,7 +1,7 @@
 C++ = g++ -std=c++20
 
 all: parser.o main.o
-	$(C++) main.o parser.o -lpython3.10 -o forge
+	$(C++) main.o parser.o -lpython3.10 -pthread -o forge
 
 main.o: main.cpp parser.o graph.hpp coderunner.hpp
 	$(C++) -c main.cpp -I/usr/include/python3.10

@@ -96,15 +96,15 @@
   <br>
 
   <h2 style="color: black;">Compilation Details:</h2><div class="command-box">
-            <span class="ansi2" id = "cmd1"> gcc -o run_array sample.c </span>
+            <span class="ansi2" id = "cmd3"> gcc -o run_array sample.c </span>
             </div>
             <div class="error-box"><pre class="ansi2html-content">
-<span class="ansi1">sample.c:</span> In function ‘<span class="ansi1">main</span>’:
-<span class="ansi1">sample.c:11:9:</span> <span class="ansi1 ansi35">warning: </span>implicit declaration of function ‘<span class="ansi1">scafffnf</span>’; did you mean ‘<span class="ansi1">scanf</span>’? [<span class="ansi1 ansi35"><a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-function-declaration">-Wimplicit-function-declaration</a></span>]
-   11 |         <span class="ansi1 ansi35">scafffnf</span>("%d", &amp;arr[i]);
-      |         <span class="ansi1 ansi35">^~~~~~~~</span>
-      |         <span class="ansi32">scanf</span>
-/usr/bin/ld: /tmp/cc07Hzi7.o: in function `main':
+sample.c: In function ‘main’:
+sample.c:11:9: warning: implicit declaration of function ‘scafffnf’; did you mean ‘scanf’? [-Wimplicit-function-declaration]
+   11 |         scafffnf("%d", &amp;arr[i]);
+      |         ^~~~~~~~
+      |         scanf
+/usr/bin/ld: /tmp/ccA7IiS4.o: in function `main':
 sample.c:(.text+0x5e): undefined reference to `scafffnf'
 collect2: error: ld returned 1 exit status
 
@@ -127,7 +127,7 @@ collect2: error: ld returned 1 exit status
       data.addColumn('number', 'Percent Complete');
       data.addColumn('string', 'Dependencies');
 
-      const rows = [['1' , 'gcc -o array_gen sample_dep.c' , 'green' , new Date(1970, 0, 1, 484519, 34, 53, 55) , new Date(1970, 0, 1, 484519, 34, 53, 186), null , 100 , null ],['2' , './array_gen 1000 > array.txt' , 'green' , new Date(1970, 0, 1, 484519, 34, 53, 186) , new Date(1970, 0, 1, 484519, 34, 53, 275), null , 100 , null ],['3' , 'gcc -o run_array sample.c' , 'red' , new Date(1970, 0, 1, 484519, 34, 53, 275) , new Date(1970, 0, 1, 484519, 34, 53, 404), null , 0 , null ],];
+      const rows = [['1' , 'gcc -o array_gen sample_dep.c' , 'green' , new Date(1970, 0, 1, 484519, 34, 7, 923) , new Date(1970, 0, 1, 484519, 34, 8, 38), null , 100 , null ],['2' , './array_gen 1000 > array.txt' , 'green' , new Date(1970, 0, 1, 484519, 34, 8, 38) , new Date(1970, 0, 1, 484519, 34, 8, 102), null , 100 , null ],['3' , 'gcc -o run_array sample.c' , 'red' , new Date(1970, 0, 1, 484519, 34, 8, 103) , new Date(1970, 0, 1, 484519, 34, 8, 197), null , 0 , null ],];
 
       data.addRows(rows);
 
