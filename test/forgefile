@@ -1,13 +1,13 @@
 CC = gcc
 
-run_array: run_array_gen sample.c 
+run: array.txt sample.c 
 	$(CC) -o run_array sample.c
 	./run_array < array.txt
 
-run_array_gen: compile_array_gen
+array.txt: array_gen
 	./array_gen 1000 > array.txt
 
-compile_array_gen: sample_dep.c
+array_gen: sample_dep.c
 	$(CC) -o array_gen sample_dep.c
 
 clean:

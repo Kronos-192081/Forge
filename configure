@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Update package lists
+echo "Updating package lists..."
+sudo apt update
+
+# Install essential libraries for make, C++, and Python3
+echo "Installing essential libraries..."
+sudo apt install -y build-essential g++ python3 python3-dev libpython3-dev
+
+# Install SQLite3 and its development libraries
+echo "Installing SQLite3 and development libraries..."
+sudo apt install -y sqlite3 libsqlite3-dev
+
+# Install pip and required Python packages
+echo "Installing pip and Python packages..."
+sudo apt install -y python3-pip
+pip3 install ansi2html pybind11
+
+# Install OpenSSL
+echo "Installing OpenSSL..."
+sudo apt install -y openssl libssl-dev
+
+# Verify installations
+echo "Verifying installations..."
+echo "C++ Compiler: $(g++ --version | head -n 1)"
+echo "Python3: $(python3 --version)"
+echo "Pip3: $(pip3 --version)"
+echo "SQLite3: $(sqlite3 --version)"
+echo "OpenSSL: $(openssl version)"
+
+echo "Configuration complete!"

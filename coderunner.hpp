@@ -1,3 +1,6 @@
+#ifndef CODERUNNER_HPP
+#define CODERUNNER_HPP
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -364,7 +367,7 @@ std::tuple<std::string, std::string, bool> run_command(const std::vector<std::st
         std::string start_tags = std::format(R"(<div class="command-box">
             <span class="ansi2" id = "cmd{}"> {} </span>
             </div>
-            <div class="error-box">)", ++index, command);
+            <div class="error-box">)", counter, command);
         
         if (pre_content.length() > 0)
             pre_content = start_tags + pre_content + "</div><br><br>";
@@ -549,3 +552,5 @@ std::string run_commands_parallel(const std::vector<std::vector<std::vector<std:
 
     return create_html(final_result, total_time);
 }
+
+#endif // CODERUNNER_HPP

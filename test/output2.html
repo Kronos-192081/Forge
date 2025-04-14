@@ -104,7 +104,7 @@
    11 |         <span class="ansi1 ansi35">scafffnf</span>("%d", &amp;arr[i]);
       |         <span class="ansi1 ansi35">^~~~~~~~</span>
       |         <span class="ansi32">scanf</span>
-/usr/bin/ld: /tmp/cc07Hzi7.o: in function `main':
+/usr/bin/ld: /tmp/ccXRPyBd.o: in function `main':
 sample.c:(.text+0x5e): undefined reference to `scafffnf'
 collect2: error: ld returned 1 exit status
 
@@ -127,7 +127,7 @@ collect2: error: ld returned 1 exit status
       data.addColumn('number', 'Percent Complete');
       data.addColumn('string', 'Dependencies');
 
-      const rows = [['1' , 'gcc -o array_gen sample_dep.c' , 'green' , new Date(1970, 0, 1, 484519, 34, 53, 55) , new Date(1970, 0, 1, 484519, 34, 53, 186), null , 100 , null ],['2' , './array_gen 1000 > array.txt' , 'green' , new Date(1970, 0, 1, 484519, 34, 53, 186) , new Date(1970, 0, 1, 484519, 34, 53, 275), null , 100 , null ],['3' , 'gcc -o run_array sample.c' , 'red' , new Date(1970, 0, 1, 484519, 34, 53, 275) , new Date(1970, 0, 1, 484519, 34, 53, 404), null , 0 , null ],];
+      const rows = [['1' , 'gcc -o run_array sample.c' , 'red' , new Date(1970, 0, 1, 484618, 50, 41, 617) , new Date(1970, 0, 1, 484618, 50, 41, 753), null , 0 , null ],];
 
       data.addRows(rows);
 

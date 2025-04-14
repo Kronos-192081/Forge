@@ -1,11 +1,14 @@
 #include <iostream>
 #include <unordered_set>
+#include <filesystem>
 #include <unordered_map>
 #include "parser.hpp"
 #include "argparse.hpp"
 #include "graph.hpp"
 #include "tabulate.hpp"
 #include "coderunner.hpp"
+#include "cache.hpp"
+
 using Row_t = tabulate::Table::Row_t;
 
 std::unordered_map<std::string, std::string> master_var_tab;
@@ -14,6 +17,8 @@ std::unordered_set<std::string> processed_files;
 std::unordered_set<std::string> concerned_targets;
 std::unordered_set<std::string> all_import_vars;
 std::unordered_map<std::string, std::string> all_import_prefixes;
+std::unordered_map<std::string, std::string> act_targs;
+std::set<std::string> all_targs;
 
 void findDependencies(const std::string& target_name, const std::unordered_map<std::string, target>& targ_tab, std::set<std::string>& relevant_targets, const std::string& prefix) {
     if (relevant_targets.count(target_name)) {
@@ -60,6 +65,8 @@ void parse_and_collect_dependencies(const std::string& filename, const std::stri
         std::string new_target_name = prefix + target_name;
         all_import_prefixes[new_target_name] = prefix;
         master_targ_tab[new_target_name] = targ_tab[target_name];
+        act_targs[new_target_name] = target_name;
+        all_targs.insert(target_name);
     }
 
     for (auto& [import_var, _] : import_tab) {
@@ -163,7 +170,7 @@ int main(int argc, char ** argv) {
       .default_value(std::string{"DEFAULT"})
       .help("Specify the Log-Level for Logging. Available Options: DEFAULT, INFO, DEBUG and ERROR");
 
-    program.add_argument("file")
+    program.add_argument("file", "-f", "--file")
       .default_value(std::string{"forgefile"})
       .help("Specify the file to be considered");
 
@@ -227,15 +234,19 @@ int main(int argc, char ** argv) {
     //     std::cout << target << " : " << data << "\n";
     // }
 
-    Graph<Node> targ_graph;
+    // for (const auto& [targ, act_targ]: act_targs) {
+    //     std::cout << "Target: " << targ << " -> Actual Target: " << act_targ << "\n";
+    // }
+
+    Graph<Node> targ_graph, rev_targ_graph;
     // Add Nodes
 
     for (const auto& [target, data] : master_targ_tab) {
         Node node{target, data};
         targ_graph.addNode(node);
+        rev_targ_graph.addNode(node);
     }
 
-    // Add Edges
     for (const auto& [target, data] : master_targ_tab) {
         for (const auto& dep : data.dependencies) {
             Node node1{target, data};
@@ -249,8 +260,11 @@ int main(int argc, char ** argv) {
             }
             Node node2{prefix + dep, master_targ_tab[prefix + dep]};
             targ_graph.addEdge(node2, node1);
+            rev_targ_graph.addEdge(node1, node2);
         }
     }
+
+    rev_targ_graph.visualize("rev_graph.dot", "rev_graph");
 
     auto is_cycle = targ_graph.hasCycle();
     if (is_cycle.has_value()) {
@@ -264,14 +278,48 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
-    targ_graph.visualize("graph.dot");
+    targ_graph.visualize("graph.dot", "graph");
 
     auto topoSort = targ_graph.topologicalSort();
 
-    std::vector<std::string> commands;
-    for (const auto& node : topoSort) {
-        for (const auto& cmd : node.targ_data.commands) {
-            commands.push_back(cmd);
+    std::vector<Node> compilable_nodes;
+    Cache cache;
+    std::unordered_map<std::string, bool> to_compile;
+
+    for (const auto& node: topoSort) {
+        auto deps = node.targ_data.dependencies;
+        to_compile[node.name] = false;
+
+        for (auto& dep: deps) {
+            bool is_targ = false;
+            if ((act_targs.find(dep) != act_targs.end()) || (all_targs.find(dep) != all_targs.end())) {
+                is_targ = true;
+            }
+
+            if(is_targ) {
+                std::string targ_name = dep;
+                if (to_compile[targ_name] == true) {
+                    to_compile[act_targs[node.name]] = true;
+                    compilable_nodes.push_back(node);
+                    break;
+                }
+            } else {
+                std::string full_file_path = std::filesystem::current_path().string() + "/" + dep;
+                if (!cache.check(full_file_path)) {
+                    cache.add(full_file_path);
+                    to_compile[act_targs[node.name]] = true;
+                    compilable_nodes.push_back(node);
+                    break;
+                }
+            }
+
+        }
+        if (to_compile[act_targs[node.name]] == false) {
+            std::string full_target_path = std::filesystem::current_path().string() + "/" + act_targs[node.name];
+            if (!std::filesystem::exists(full_target_path)) {
+                to_compile[act_targs[node.name]] = true;
+                compilable_nodes.push_back(node);
+            }
         }
     }
 
@@ -282,11 +330,15 @@ int main(int argc, char ** argv) {
             std::vector<Node> nodesToRemove;
             for (const auto& node : topoSort) {
                 if (targ_graph.inDegree(node) == 0) {
-                    labels.push_back(node.name);
+                    if (to_compile[act_targs[node.name]] == true) {
+                        labels.push_back(node.name);
+                    }
                     nodesToRemove.push_back(node);
                 }
             }
-            parallelizable_labels.push_back(labels);
+            if(!labels.empty()) {
+                parallelizable_labels.push_back(labels);
+            }
             for (const auto& node : nodesToRemove) {
                 targ_graph.removeNode(node);
             }
@@ -303,27 +355,21 @@ int main(int argc, char ** argv) {
         }
 
         std::string output = run_commands_parallel(parallelizable_commands, njobs);
-        std::ofstream out("output3.html");
+        std::ofstream out("forge_output.html");
         out << output;
         out.close();
     } else {
+        std::vector<std::string> commands;
+        for (const auto& node : compilable_nodes) {
+            for (const auto& cmd : node.targ_data.commands) {
+                commands.push_back(cmd);
+            }
+        }
         std::string output = run_commands(commands);
-        std::ofstream out("output2.html");
+        std::ofstream out("forge_output.html");
         out << output;
         out.close();
     }
-
-    // for (auto val : parallelizable_commands) {
-    //     std::cout << "[ ";
-    //     for (auto d: val) {
-    //         std::cout << "{ ";
-    //         for (auto i : d) {
-    //             std::cout << i << " ";
-    //         }
-    //         std::cout << "} ";
-    //     } 
-    //     std::cout << "]" << "\n";   
-    // }
 
     return 0;
 }

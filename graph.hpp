@@ -1,3 +1,6 @@
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -18,7 +21,7 @@ public:
     std::vector<T> topologicalSort();
     int inDegree(const T& node);
     int outDegree(const T& node);
-    void visualize(const std::string& filename);
+    void visualize(const std::string& filename, const std::string& imgfilename);
 
 private:
     std::unordered_map<T, std::unordered_set<T>> adjList;
@@ -132,9 +135,9 @@ int Graph<T>::outDegree(const T& node) {
 }
 
 template <typename T>
-void Graph<T>::visualize(const std::string& filename) {
+void Graph<T>::visualize(const std::string& filename, const std::string& imgfilename) {
     generateDotFile(filename);
-    std::string command = "dot -Tpng " + filename + " -o graph.png";
+    std::string command = "dot -Tpng " + filename + " -o " + imgfilename + ".png";
     system(command.c_str());
     std::remove(filename.c_str());  
 }
@@ -151,3 +154,5 @@ void Graph<T>::generateDotFile(const std::string& filename) {
     file << "}\n";
     file.close();
 }
+
+#endif // GRAPH_HPP

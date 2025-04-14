@@ -3,4 +3,5 @@ antlr4_tut/
 build/
 dump/
 forge
+rule.txt
 *.o
