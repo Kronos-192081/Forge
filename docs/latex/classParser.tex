@@ -1,0 +1,530 @@
+\doxysection{Parser Class Reference}
+\hypertarget{classParser}{}\label{classParser}\index{Parser@{Parser}}
+
+
+Class for parsing a build configuration file.  
+
+
+
+
+{\ttfamily \#include $<$parser.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classParser_a7bdbdb34c4b5409881a9f7b5a6217d70}{Parser}} (const std\+::string \&file)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classParser}{Parser} object with the given file name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_af0d9aa8c7a9ba10dd53278a890dfc7af}{print\+Results}} () const
+\begin{DoxyCompactList}\small\item\em Prints the parsed results (variables, targets, and imports). \end{DoxyCompactList}\item 
+std\+::tuple$<$ \mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}}, \mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}}, \mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} $>$ \mbox{\hyperlink{classParser_a420ed0e95c1406968a250a7904937382}{get\+\_\+parsed\+\_\+results}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the parsed results as a tuple. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_ad941a297e9f6abb39271090806a6be33}{parse}} ()
+\begin{DoxyCompactList}\small\item\em Parses the file and populates the variables, targets, and imports. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_aa3aafc917465cbda7f07f532460f5473}{set\+\_\+file\+\_\+name}} (std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the file to be parsed. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classParser_a00f23aa1221eff73e58c16b9238d5494}{get\+\_\+first\+\_\+target}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the first target in the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}} (std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Trims leading and trailing whitespace from a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_ab830959f725ae577e2661f8f61e36539}{parsefile}} (std\+::ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Parses the contents of the file and populates the tables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac}{filename}}
+\begin{DoxyCompactList}\small\item\em The name of the file to be parsed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}} \mbox{\hyperlink{classParser_a3ca39f1d1493291552b21e279dcbe323}{variables}}
+\begin{DoxyCompactList}\small\item\em Table of variables defined in the file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}} \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}
+\begin{DoxyCompactList}\small\item\em Table of targets defined in the file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} \mbox{\hyperlink{classParser_a0494e53464f1c5ad5166c0723b1f2762}{imports}}
+\begin{DoxyCompactList}\small\item\em Table of imported files. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classParser_a4b2c20b1c74532cad2dede56b53c4a1d}{first\+\_\+target}}
+\begin{DoxyCompactList}\small\item\em The name of the first target in the file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{current\+Target}}
+\begin{DoxyCompactList}\small\item\em The name of the current target being parsed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classParser_afdb7a0b39356d46faa656bee866c8871}{line\+\_\+no}} = 0
+\begin{DoxyCompactList}\small\item\em The current line number being processed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for parsing a build configuration file. 
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00123}{123}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classParser_a7bdbdb34c4b5409881a9f7b5a6217d70}\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}}
+{\footnotesize\ttfamily \label{classParser_a7bdbdb34c4b5409881a9f7b5a6217d70} 
+Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classParser}{Parser} object with the given file name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The name of the file to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00131}{131}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ :\ \mbox{\hyperlink{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac}{filename}}(file)\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classParser_a00f23aa1221eff73e58c16b9238d5494}\index{Parser@{Parser}!get\_first\_target@{get\_first\_target}}
+\index{get\_first\_target@{get\_first\_target}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{get\_first\_target()}{get\_first\_target()}}
+{\footnotesize\ttfamily \label{classParser_a00f23aa1221eff73e58c16b9238d5494} 
+std\+::string Parser\+::get\+\_\+first\+\_\+target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the name of the first target in the file. 
+
+\begin{DoxyReturn}{Returns}
+The name of the first target. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00175}{175}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00175\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classParser_a4b2c20b1c74532cad2dede56b53c4a1d}{first\_target}};\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a00f23aa1221eff73e58c16b9238d5494_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParser_a420ed0e95c1406968a250a7904937382}\index{Parser@{Parser}!get\_parsed\_results@{get\_parsed\_results}}
+\index{get\_parsed\_results@{get\_parsed\_results}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{get\_parsed\_results()}{get\_parsed\_results()}}
+{\footnotesize\ttfamily \label{classParser_a420ed0e95c1406968a250a7904937382} 
+std\+::tuple$<$ \mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}}, \mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}}, \mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} $>$ Parser\+::get\+\_\+parsed\+\_\+results (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the parsed results as a tuple. 
+
+\begin{DoxyReturn}{Returns}
+A tuple containing the variable table, target table, and import table. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00143}{143}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_tuple(std::move(\mbox{\hyperlink{classParser_a3ca39f1d1493291552b21e279dcbe323}{variables}}),\ std::move(\mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}),\ std::move(\mbox{\hyperlink{classParser_a0494e53464f1c5ad5166c0723b1f2762}{imports}}));}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a420ed0e95c1406968a250a7904937382_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParser_ad941a297e9f6abb39271090806a6be33}\index{Parser@{Parser}!parse@{parse}}
+\index{parse@{parse}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classParser_ad941a297e9f6abb39271090806a6be33} 
+void Parser\+::parse (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parses the file and populates the variables, targets, and imports. 
+
+\begin{DoxyNote}{Note}
+Exits the program if the file cannot be opened. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00152}{152}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ file(\mbox{\hyperlink{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac}{filename}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ opening\ forgefile.\ No\ such\ file\ found."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_ab830959f725ae577e2661f8f61e36539}{parsefile}}(file);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_ad941a297e9f6abb39271090806a6be33_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_ad941a297e9f6abb39271090806a6be33_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParser_ab830959f725ae577e2661f8f61e36539}\index{Parser@{Parser}!parsefile@{parsefile}}
+\index{parsefile@{parsefile}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parsefile()}{parsefile()}}
+{\footnotesize\ttfamily \label{classParser_ab830959f725ae577e2661f8f61e36539} 
+void Parser\+::parsefile (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses the contents of the file and populates the tables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The input file stream to be parsed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_first\_target\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ line\_cont\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afdb7a0b39356d46faa656bee866c8871}{line\_no}}++;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(line);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\ the\ exact\ characters\ of\ the\ line\ in\ ascii}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty()\ ||\ line[0]\ ==\ \textcolor{charliteral}{'\#'})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a077d2d87060909c21219040c4709c9c9}{replace\_vars}}(line,\ \mbox{\hyperlink{classParser_a3ca39f1d1493291552b21e279dcbe323}{variables}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ ==\ \textcolor{charliteral}{'\(\backslash\)t'})\ \{\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.length()\ ==\ 1)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}.empty())\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!line.empty()\ \&\&\ line.back()\ ==\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line.pop\_back();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ last\_cmd\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\_cont)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ last\_cmd\ =\ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.back();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.pop\_back();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ last\_cmd\ +=\ line.substr(1);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.push\_back(last\_cmd);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\_cont\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\_cont)\{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ last\_cmd\ =\ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.back();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.pop\_back();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ last\_cmd\ +=\ line.substr(1);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.push\_back(last\_cmd);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\_cont\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].commands.push\_back(line.substr(1));}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}:"{}})\ !=\ std::string::npos\ \&\&\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (line.find(\textcolor{stringliteral}{"{}="{}})\ ==\ std::string::npos\ ||\ line.find(\textcolor{stringliteral}{"{}:"{}})\ <\ line.find(\textcolor{stringliteral}{"{}="{}})))\ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ colonPos\ =\ line.find(\textcolor{stringliteral}{"{}:"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}\ =\ line.substr(0,\ colonPos);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(is\_first\_target)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_a4b2c20b1c74532cad2dede56b53c4a1d}{first\_target}}\ =\ \mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_first\_target\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ depStream(line.substr(colonPos\ +\ 1));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dep;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (depStream\ >>\ dep)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(dep);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}}[\mbox{\hyperlink{classParser_a61bbcf79364931a124c73995cbc493f2}{currentTarget}}].dependencies.insert(dep);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}="{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ eqPos\ =\ line.find(\textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ var\ =\ line.substr(0,\ eqPos);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ value\ =\ line.substr(eqPos\ +\ 1);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(var);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(value);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ after\_assign\ =\ line.substr(eqPos\ +\ 1,\ 7);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(after\_assign);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (after\_assign\ ==\ \textcolor{stringliteral}{"{}import"{}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ import\_str\ =\ line.substr(eqPos\ +\ 8);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}{trim}}(import\_str);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ import\_str\ =\ import\_str.substr(1,\ import\_str.size()-\/\ 2);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_a0494e53464f1c5ad5166c0723b1f2762}{imports}}[var]\ =\ import\_str;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_a3ca39f1d1493291552b21e279dcbe323}{variables}}[var]\ =\ value;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}},\ \textcolor{stringliteral}{"{}\ Error\ parsing\ forgefile\ in\ line\ "{}}\ <<\ \mbox{\hyperlink{classParser_afdb7a0b39356d46faa656bee866c8871}{line\_no}}\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ line);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{classParser_ab830959f725ae577e2661f8f61e36539_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_ab830959f725ae577e2661f8f61e36539_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParser_af0d9aa8c7a9ba10dd53278a890dfc7af}\index{Parser@{Parser}!printResults@{printResults}}
+\index{printResults@{printResults}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{printResults()}{printResults()}}
+{\footnotesize\ttfamily \label{classParser_af0d9aa8c7a9ba10dd53278a890dfc7af} 
+void Parser\+::print\+Results (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Prints the parsed results (variables, targets, and imports). 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}Variables:\(\backslash\)n"{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&var\ :\ \mbox{\hyperlink{classParser_a3ca39f1d1493291552b21e279dcbe323}{variables}})\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ var.first\ <<\ \textcolor{stringliteral}{"{}\ =\ "{}}\ <<\ var.second\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}\(\backslash\)nTargets:\(\backslash\)n"{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&t\ :\ \mbox{\hyperlink{classParser_aa8204720858590dc711441313499c099}{targets}})\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ t.first\ <<\ \textcolor{stringliteral}{"{}:\ "{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&dep\ :\ t.second.dependencies)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ dep\ <<\ \textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}\(\backslash\)nCommands:\(\backslash\)n"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&cmd\ :\ t.second.commands)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ cmd\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ std::endl);}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}\(\backslash\)nImports:\(\backslash\)n"{}});}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&imp\ :\ \mbox{\hyperlink{classParser_a0494e53464f1c5ad5166c0723b1f2762}{imports}})\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ imp.first\ <<\ \textcolor{stringliteral}{"{}\ =\ import\ "{}}\ <<\ imp.second\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_af0d9aa8c7a9ba10dd53278a890dfc7af_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classParser_aa3aafc917465cbda7f07f532460f5473}\index{Parser@{Parser}!set\_file\_name@{set\_file\_name}}
+\index{set\_file\_name@{set\_file\_name}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{set\_file\_name()}{set\_file\_name()}}
+{\footnotesize\ttfamily \label{classParser_aa3aafc917465cbda7f07f532460f5473} 
+void Parser\+::set\+\_\+file\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the name of the file to be parsed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The new file name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00166}{166}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac}{filename}}\ =\ name;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61}\index{Parser@{Parser}!trim@{trim}}
+\index{trim@{trim}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily \label{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61} 
+void Parser\+::trim (\begin{DoxyParamCaption}\item[{std\+::string \&}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Trims leading and trailing whitespace from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to be trimmed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(s[0]\ ==\ \textcolor{charliteral}{'\(\backslash\)t'})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start\ =\ s.find\_first\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ end\ =\ s.find\_last\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}});}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ s\ =\ (start\ ==\ std::string::npos)\ ?\ \textcolor{stringliteral}{"{}"{}}\ :\ s.substr(start,\ end\ -\/\ start\ +\ 1);}
+\DoxyCodeLine{00018\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_afbeb9d54c3e8b024c3a9ee9ba4967d61_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classParser_a61bbcf79364931a124c73995cbc493f2}\index{Parser@{Parser}!currentTarget@{currentTarget}}
+\index{currentTarget@{currentTarget}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{currentTarget}{currentTarget}}
+{\footnotesize\ttfamily \label{classParser_a61bbcf79364931a124c73995cbc493f2} 
+std\+::string Parser\+::current\+Target\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name of the current target being parsed. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00184}{184}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac}\index{Parser@{Parser}!filename@{filename}}
+\index{filename@{filename}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily \label{classParser_a51ab5ef21abc91c9dfb74ca7f0592dac} 
+std\+::string Parser\+::filename\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name of the file to be parsed. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00178}{178}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_a4b2c20b1c74532cad2dede56b53c4a1d}\index{Parser@{Parser}!first\_target@{first\_target}}
+\index{first\_target@{first\_target}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{first\_target}{first\_target}}
+{\footnotesize\ttfamily \label{classParser_a4b2c20b1c74532cad2dede56b53c4a1d} 
+std\+::string Parser\+::first\+\_\+target\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The name of the first target in the file. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00183}{183}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_a0494e53464f1c5ad5166c0723b1f2762}\index{Parser@{Parser}!imports@{imports}}
+\index{imports@{imports}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{imports}{imports}}
+{\footnotesize\ttfamily \label{classParser_a0494e53464f1c5ad5166c0723b1f2762} 
+\mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} Parser\+::imports\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Table of imported files. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00181}{181}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_afdb7a0b39356d46faa656bee866c8871}\index{Parser@{Parser}!line\_no@{line\_no}}
+\index{line\_no@{line\_no}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{line\_no}{line\_no}}
+{\footnotesize\ttfamily \label{classParser_afdb7a0b39356d46faa656bee866c8871} 
+int Parser\+::line\+\_\+no = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current line number being processed. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00185}{185}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_aa8204720858590dc711441313499c099}\index{Parser@{Parser}!targets@{targets}}
+\index{targets@{targets}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{targets}{targets}}
+{\footnotesize\ttfamily \label{classParser_aa8204720858590dc711441313499c099} 
+\mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}} Parser\+::targets\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Table of targets defined in the file. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00180}{180}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{classParser_a3ca39f1d1493291552b21e279dcbe323}\index{Parser@{Parser}!variables@{variables}}
+\index{variables@{variables}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{variables}{variables}}
+{\footnotesize\ttfamily \label{classParser_a3ca39f1d1493291552b21e279dcbe323} 
+\mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}} Parser\+::variables\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Table of variables defined in the file. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00179}{179}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{parser_8hpp}{parser.\+hpp}}\item 
+\mbox{\hyperlink{parser_8cpp}{parser.\+cpp}}\end{DoxyCompactItemize}

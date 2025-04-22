@@ -1,0 +1,446 @@
+\doxysection{Cache Class Reference}
+\hypertarget{classCache}{}\label{classCache}\index{Cache@{Cache}}
+
+
+A class to manage a file cache using an SQLite database.  
+
+
+
+
+{\ttfamily \#include $<$cache.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCache_a486f257a48e32d0083f8ae41f78074d1}{Cache}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classCache}{Cache} object and initializes the SQLite database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCache_af8b171a6c49d88d3ba179477484b9d48}{\texorpdfstring{$\sim$}{\string~}\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classCache}{Cache} object and closes the SQLite database connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed}{add}} (const std\+::string \&file\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Adds or updates a file\textquotesingle{}s hash in the cache. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCache_ae3bc347e375337dcd29fbd6afc517b15}{find}} (const std\+::string \&file\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Finds the hash of a file in the cache. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCache_a24fef4b50988e0004beba3934d565cbf}{check}} (const std\+::string \&file\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Checks if a file\textquotesingle{}s current hash matches the hash stored in the cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{compute\+Hash}} (const std\+::string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Computes the SHA256 hash of a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}{initialize\+DB}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the SQLite database and creates the required table if it does not exist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sqlite3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}}
+\begin{DoxyCompactList}\small\item\em Pointer to the SQLite database connection. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\+\_\+path}}
+\begin{DoxyCompactList}\small\item\em Path to the SQLite database file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to manage a file cache using an SQLite database. 
+
+The \doxylink{classCache}{Cache} class provides functionality to store file hashes in an SQLite database, compute file hashes using SHA256, and check if a file\textquotesingle{}s hash matches the stored hash. 
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00018}{18}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCache_a486f257a48e32d0083f8ae41f78074d1}\index{Cache@{Cache}!Cache@{Cache}}
+\index{Cache@{Cache}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{Cache()}{Cache()}}
+{\footnotesize\ttfamily \label{classCache_a486f257a48e32d0083f8ae41f78074d1} 
+Cache\+::\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classCache}{Cache} object and initializes the SQLite database. 
+
+The database is created in the user\textquotesingle{}s home directory as {\ttfamily .forgecache} if it does not already exist.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the HOME environment variable is not set or the database cannot be opened. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00085}{85}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ home\ =\ std::getenv(\textcolor{stringliteral}{"{}HOME"{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!home)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}HOME\ environment\ variable\ not\ set"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\_path}}\ =\ std::string(home)\ +\ \textcolor{stringliteral}{"{}/.forgecache"{}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_open(\mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\_path}}.c\_str(),\ \&\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ open\ SQLite\ database"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}{initializeDB}}();}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classCache_a486f257a48e32d0083f8ae41f78074d1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCache_af8b171a6c49d88d3ba179477484b9d48}\index{Cache@{Cache}!````~Cache@{\texorpdfstring{$\sim$}{\string~}Cache}}
+\index{````~Cache@{\texorpdfstring{$\sim$}{\string~}Cache}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Cache()}{\string~Cache()}}
+{\footnotesize\ttfamily \label{classCache_af8b171a6c49d88d3ba179477484b9d48} 
+Cache\+::\texorpdfstring{$\sim$}{\string~}\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destroys the \doxylink{classCache}{Cache} object and closes the SQLite database connection. 
+
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00103}{103}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}})\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_close(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed}\index{Cache@{Cache}!add@{add}}
+\index{add@{add}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed} 
+void Cache\+::add (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds or updates a file\textquotesingle{}s hash in the cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+addr} & The path to the file to be added or updated in the cache. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the insert operation fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00115}{115}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::string\ file\_hash\ =\ \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{computeHash}}(file\_addr);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ insert\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ INSERT\ OR\ REPLACE\ INTO\ cache\ (file\_addr,\ file\_hash)}}
+\DoxyCodeLine{00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ VALUES\ (?,\ ?);}}
+\DoxyCodeLine{00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{00122\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ sqlite3\_stmt*\ stmt;}}
+\DoxyCodeLine{00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (sqlite3\_prepare\_v2(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ insert\_query,\ -\/1,\ \&stmt,\ \textcolor{keyword}{nullptr})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ prepare\ insert\ statement"{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 1,\ file\_addr.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 2,\ file\_hash.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_step(stmt)\ !=\ SQLITE\_DONE)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ execute\ insert\ statement"{}});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCache_a24fef4b50988e0004beba3934d565cbf}\index{Cache@{Cache}!check@{check}}
+\index{check@{check}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily \label{classCache_a24fef4b50988e0004beba3934d565cbf} 
+bool Cache\+::check (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if a file\textquotesingle{}s current hash matches the hash stored in the cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+addr} & The path to the file to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file\textquotesingle{}s current hash matches the stored hash, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00173}{173}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ std::string\ file\_hash\ =\ \mbox{\hyperlink{classCache_ae3bc347e375337dcd29fbd6afc517b15}{find}}(file\_addr);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_hash.empty())\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ std::string\ current\_hash\ =\ \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{computeHash}}(file\_addr);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_hash\ ==\ current\_hash;}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{classCache_a24fef4b50988e0004beba3934d565cbf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCache_a24fef4b50988e0004beba3934d565cbf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCache_a473349242151a17c2e345f82dc2e72d1}\index{Cache@{Cache}!computeHash@{computeHash}}
+\index{computeHash@{computeHash}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{computeHash()}{computeHash()}}
+{\footnotesize\ttfamily \label{classCache_a473349242151a17c2e345f82dc2e72d1} 
+std\+::string Cache\+::compute\+Hash (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Computes the SHA256 hash of a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The path to the file whose hash is to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The computed SHA256 hash as a hexadecimal string. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the file cannot be opened. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00030}{30}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::ifstream\ file(file\_path,\ std::ios::binary);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unable\ to\ open\ file:\ "{}}\ +\ file\_path);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ SHA256\_CTX\ sha256;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ SHA256\_Init(\&sha256);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[8192];}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (file.read(buffer,\ \textcolor{keyword}{sizeof}(buffer)))\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ SHA256\_Update(\&sha256,\ buffer,\ file.gcount());}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ SHA256\_Update(\&sha256,\ buffer,\ file.gcount());}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ hash[SHA256\_DIGEST\_LENGTH];}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ SHA256\_Final(hash,\ \&sha256);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c\ :\ hash)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::hex\ <<\ std::setw(2)\ <<\ std::setfill('0')\ <<\ static\_cast<int>(c);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ oss.str();}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCache_a473349242151a17c2e345f82dc2e72d1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCache_ae3bc347e375337dcd29fbd6afc517b15}\index{Cache@{Cache}!find@{find}}
+\index{find@{find}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{classCache_ae3bc347e375337dcd29fbd6afc517b15} 
+std\+::string Cache\+::find (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finds the hash of a file in the cache. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+addr} & The path to the file whose hash is to be retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash of the file as a string, or an empty string if the file is not in the cache. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the select operation fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00146}{146}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ select\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00148\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ file\_hash\ FROM\ cache\ WHERE\ file\_addr\ =\ ?;}}
+\DoxyCodeLine{00149\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{00150\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00151\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ sqlite3\_stmt*\ stmt;}}
+\DoxyCodeLine{00152\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (sqlite3\_prepare\_v2(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ select\_query,\ -\/1,\ \&stmt,\ \textcolor{keyword}{nullptr})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ prepare\ select\ statement"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 1,\ file\_addr.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ std::string\ file\_hash;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_step(stmt)\ ==\ SQLITE\_ROW)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ file\_hash\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(sqlite3\_column\_text(stmt,\ 0));}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_hash;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCache_ae3bc347e375337dcd29fbd6afc517b15_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}\index{Cache@{Cache}!initializeDB@{initializeDB}}
+\index{initializeDB@{initializeDB}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{initializeDB()}{initializeDB()}}
+{\footnotesize\ttfamily \label{classCache_a2b5cc1c4e9e0d9fa38e295481e104037} 
+void Cache\+::initialize\+DB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Initializes the SQLite database and creates the required table if it does not exist. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the table creation fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00060}{60}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ create\_table\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ CREATE\ TABLE\ IF\ NOT\ EXISTS\ cache\ (}}
+\DoxyCodeLine{00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_addr\ TEXT\ PRIMARY\ KEY,}}
+\DoxyCodeLine{00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_hash\ TEXT}}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ );}}
+\DoxyCodeLine{00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{00067\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordtype}{char}*\ err\_msg\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_exec(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ create\_table\_query,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \&err\_msg)\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\ =\ \textcolor{stringliteral}{"{}Failed\ to\ create\ table:\ "{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ error\ +=\ err\_msg;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_free(err\_msg);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(error);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classCache_a2b5cc1c4e9e0d9fa38e295481e104037_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}\index{Cache@{Cache}!db@{db}}
+\index{db@{db}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \label{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7} 
+sqlite3\texorpdfstring{$\ast$}{*} Cache\+::db\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the SQLite database connection. 
+
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00020}{20}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+\Hypertarget{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}\index{Cache@{Cache}!db\_path@{db\_path}}
+\index{db\_path@{db\_path}!Cache@{Cache}}
+\doxysubsubsection{\texorpdfstring{db\_path}{db\_path}}
+{\footnotesize\ttfamily \label{classCache_ad7908693337d64a92ca5f0a55a3f1b0d} 
+std\+::string Cache\+::db\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Path to the SQLite database file. 
+
+
+
+Definition at line \mbox{\hyperlink{cache_8hpp_source_l00021}{21}} of file \mbox{\hyperlink{cache_8hpp_source}{cache.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache_8hpp}{cache.\+hpp}}\end{DoxyCompactItemize}

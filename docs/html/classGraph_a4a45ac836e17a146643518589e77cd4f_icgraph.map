@@ -1,0 +1,17 @@
+<map id="Graph::inDegree" name="Graph::inDegree">
+<area shape="rect" id="Node000001" title="Computes the in&#45;degree of a node." alt="" coords="680,47,808,72"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="577,47,632,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="666,62,632,62,632,57,666,57"/>
+<area shape="rect" id="Node000003" href="$coderunner_8hpp.html#a628ee1dab137e39f9905148445a2de6b" title="Converts ANSI text to HTML using the Python ansi2html library." alt="" coords="423,47,529,72"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="564,62,529,62,529,57,564,57"/>
+<area shape="rect" id="Node000004" href="$coderunner_8hpp.html#ae430781c06ec1049f5d846176fda66d3" title="Executes a list of commands sequentially and captures their output." alt="" coords="246,21,361,47"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="408,52,360,45,361,40,409,47"/>
+<area shape="rect" id="Node000006" href="$coderunner_8hpp.html#aa01f606e7178210f2c40d315f4e029eb" title="Executes a list of commands sequentially in parallel and captures their output." alt="" coords="232,71,375,96"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="409,71,375,76,374,71,409,66"/>
+<area shape="rect" id="Node000005" href="$coderunner_8hpp.html#a837b06ab768dc62cbf9e289c80469dff" title="Executes a list of commands sequentially and generates an HTML report." alt="" coords="33,9,156,35"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="232,33,156,28,156,23,232,27"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="170,11,232,6,316,3,382,5,448,14,530,33,578,47,576,52,529,38,447,19,382,10,316,8,232,11,170,16"/>
+<area shape="rect" id="Node000007" href="$coderunner_8hpp.html#ae9b0399497c010ffea9d950f94bd9c63" title="Executes batches of commands in parallel using multiple threads and generates an HTML report." alt="" coords="5,84,184,109"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="218,91,184,94,184,88,218,86"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="198,104,232,106,316,109,382,108,447,100,529,82,576,67,578,72,530,87,448,105,382,113,316,115,232,111,197,109"/>
+</map>

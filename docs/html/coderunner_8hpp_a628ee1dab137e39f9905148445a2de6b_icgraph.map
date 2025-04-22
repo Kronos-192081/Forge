@@ -1,0 +1,15 @@
+<map id="ansi_to_html" name="ansi_to_html">
+<area shape="rect" id="Node000001" title="Converts ANSI text to HTML using the Python ansi2html library." alt="" coords="525,55,632,80"/>
+<area shape="rect" id="Node000002" href="$coderunner_8hpp.html#ae430781c06ec1049f5d846176fda66d3" title="Executes a list of commands sequentially and captures their output." alt="" coords="349,5,463,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="520,53,451,33,452,28,521,48"/>
+<area shape="rect" id="Node000005" href="$coderunner_8hpp.html#aa01f606e7178210f2c40d315f4e029eb" title="Executes a list of commands sequentially in parallel and captures their output." alt="" coords="335,55,477,80"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="512,70,477,70,477,65,512,65"/>
+<area shape="rect" id="Node000003" href="$coderunner_8hpp.html#a837b06ab768dc62cbf9e289c80469dff" title="Executes a list of commands sequentially and generates an HTML report." alt="" coords="136,5,259,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,21,259,21,259,15,335,15"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,55,60,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,37,109,45,61,60,59,55,107,39,133,32"/>
+<area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="74,80,109,89,211,102,292,106,373,100,477,89,533,77,534,83,478,94,374,106,292,111,211,108,107,94,72,85"/>
+<area shape="rect" id="Node000006" href="$coderunner_8hpp.html#ae9b0399497c010ffea9d950f94bd9c63" title="Executes batches of commands in parallel using multiple threads and generates an HTML report." alt="" coords="108,55,287,80"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="321,70,287,70,287,65,321,65"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="94,70,60,70,60,65,94,65"/>
+</map>

@@ -1,0 +1,628 @@
+\doxysection{Graph\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classGraph}{}\label{classGraph}\index{Graph$<$ T $>$@{Graph$<$ T $>$}}
+
+
+A generic directed graph implementation with utility functions.  
+
+
+
+
+{\ttfamily \#include $<$graph.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGraph_a77f28a3773538c6922c76d8e7ec19bab}{add\+Node}} (const T \&node)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aaf06c17e9a9505dc2723e34e7c892397}{remove\+Node}} (const T \&node)
+\begin{DoxyCompactList}\small\item\em Removes a node from the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aed4f61304e0a2b1635e7404f5a3ed657}{add\+Edge}} (const T \&from, const T \&to)
+\begin{DoxyCompactList}\small\item\em Adds a directed edge between two nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aadfe2b7654f9627ec5d9a7e82aa12005}{remove\+Edge}} (const T \&from, const T \&to)
+\begin{DoxyCompactList}\small\item\em Removes a directed edge between two nodes. \end{DoxyCompactList}\item 
+std\+::optional$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126}{has\+Cycle}} ()
+\begin{DoxyCompactList}\small\item\em Detects if the graph contains a cycle. \end{DoxyCompactList}\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classGraph_a3c3b460058bfb69fa2540d0f5c680b49}{topological\+Sort}} ()
+\begin{DoxyCompactList}\small\item\em Performs a topological sort of the graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraph_a4a45ac836e17a146643518589e77cd4f}{in\+Degree}} (const T \&node)
+\begin{DoxyCompactList}\small\item\em Computes the in-\/degree of a node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraph_a96ff022f21902cdc8fc2935476da9d4d}{out\+Degree}} (const T \&node)
+\begin{DoxyCompactList}\small\item\em Computes the out-\/degree of a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a2f8760f56350d004bb7e7058dd100a56}{visualize}} (const std\+::string \&filename, const std\+::string \&imgfilename)
+\begin{DoxyCompactList}\small\item\em Visualizes the graph by generating a DOT file and an image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b}{dfs\+Cycle\+Detection}} (const T \&node, std\+::unordered\+\_\+set$<$ T $>$ \&visited, std\+::unordered\+\_\+set$<$ T $>$ \&rec\+Stack, std\+::vector$<$ T $>$ \&path, std\+::vector$<$ T $>$ \&cycle)
+\begin{DoxyCompactList}\small\item\em Helper function for cycle detection using Depth-\/\+First Search (DFS). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a9f7201c5e3a09fe944f979440385de66}{dfs\+Topological\+Sort}} (const T \&node, std\+::unordered\+\_\+set$<$ T $>$ \&visited, std\+::stack$<$ T $>$ \&Stack)
+\begin{DoxyCompactList}\small\item\em Helper function for topological sorting using Depth-\/\+First Search (DFS). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a7afa5ccc894d0db45c6b71888183e70b}{generate\+Dot\+File}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Generates a DOT file representing the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ T, std\+::unordered\+\_\+set$<$ T $>$ $>$ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adj\+List}}
+\begin{DoxyCompactList}\small\item\em The adjacency list representation of the graph. Maps each node to a set of its neighboring nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Graph$<$ T $>$}
+A generic directed graph implementation with utility functions. 
+
+This class provides a representation of a directed graph using an adjacency list. It includes methods for adding and removing nodes and edges, detecting cycles, performing topological sorting, and visualizing the graph.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the nodes in the graph. Must be hashable and comparable. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00023}{23}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGraph_aed4f61304e0a2b1635e7404f5a3ed657}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily \label{classGraph_aed4f61304e0a2b1635e7404f5a3ed657} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::add\+Edge (\begin{DoxyParamCaption}\item[{const T \&}]{from}{, }\item[{const T \&}]{to}{}\end{DoxyParamCaption})}
+
+
+
+Adds a directed edge between two nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & The source node of the edge. \\
+\hline
+{\em to} & The destination node of the edge. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00134}{134}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{from}}].insert(\mbox{\hyperlink{classGraph}{to}});}
+\DoxyCodeLine{00136\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_aed4f61304e0a2b1635e7404f5a3ed657_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a77f28a3773538c6922c76d8e7ec19bab}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addNode@{addNode}}
+\index{addNode@{addNode}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}}
+{\footnotesize\ttfamily \label{classGraph_a77f28a3773538c6922c76d8e7ec19bab} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::add\+Node (\begin{DoxyParamCaption}\item[{const T \&}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Adds a node to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00121}{121}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{node}}];}
+\DoxyCodeLine{00123\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a77f28a3773538c6922c76d8e7ec19bab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfsCycleDetection@{dfsCycleDetection}}
+\index{dfsCycleDetection@{dfsCycleDetection}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dfsCycleDetection()}{dfsCycleDetection()}}
+{\footnotesize\ttfamily \label{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b} 
+template$<$typename T$>$ \\
+bool \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs\+Cycle\+Detection (\begin{DoxyParamCaption}\item[{const T \&}]{node}{, }\item[{std\+::unordered\+\_\+set$<$ T $>$ \&}]{visited}{, }\item[{std\+::unordered\+\_\+set$<$ T $>$ \&}]{rec\+Stack}{, }\item[{std\+::vector$<$ T $>$ \&}]{path}{, }\item[{std\+::vector$<$ T $>$ \&}]{cycle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper function for cycle detection using Depth-\/\+First Search (DFS). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The current node being visited. \\
+\hline
+{\em visited} & A set of nodes that have been visited. \\
+\hline
+{\em rec\+Stack} & A set of nodes in the current recursion stack. \\
+\hline
+{\em path} & A vector to store the current path of nodes. \\
+\hline
+{\em cycle} & A vector to store the detected cycle if one exists. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if a cycle is detected, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00158}{158}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph}{recStack}}.find(\mbox{\hyperlink{classGraph}{node}})\ !=\ \mbox{\hyperlink{classGraph}{recStack}}.end())\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classGraph}{it}}\ =\ \mbox{\hyperlink{classGraph}{std::find}}(\mbox{\hyperlink{classGraph}{path}}.begin(),\ \mbox{\hyperlink{classGraph}{path}}.end(),\ \mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{cycle}}.assign(\mbox{\hyperlink{classGraph}{it}},\ \mbox{\hyperlink{classGraph}{path}}.end());}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph}{visited}}.find(\mbox{\hyperlink{classGraph}{node}})\ !=\ \mbox{\hyperlink{classGraph}{visited}}.end())\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classGraph}{visited}}.insert(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{classGraph}{recStack}}.insert(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classGraph}{path}}.push\_back(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classGraph}{neighbor}}\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{node}}])\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b}{dfsCycleDetection}}(\mbox{\hyperlink{classGraph}{neighbor}},\ \mbox{\hyperlink{classGraph}{visited}},\ \mbox{\hyperlink{classGraph}{recStack}},\ \mbox{\hyperlink{classGraph}{path}},\ \mbox{\hyperlink{classGraph}{cycle}}))\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classGraph}{recStack}}.erase(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{classGraph}{path}}.pop\_back();}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a9f7201c5e3a09fe944f979440385de66}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfsTopologicalSort@{dfsTopologicalSort}}
+\index{dfsTopologicalSort@{dfsTopologicalSort}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dfsTopologicalSort()}{dfsTopologicalSort()}}
+{\footnotesize\ttfamily \label{classGraph_a9f7201c5e3a09fe944f979440385de66} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs\+Topological\+Sort (\begin{DoxyParamCaption}\item[{const T \&}]{node}{, }\item[{std\+::unordered\+\_\+set$<$ T $>$ \&}]{visited}{, }\item[{std\+::stack$<$ T $>$ \&}]{Stack}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper function for topological sorting using Depth-\/\+First Search (DFS). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The current node being visited. \\
+\hline
+{\em visited} & A set of nodes that have been visited. \\
+\hline
+{\em Stack} & A stack to store the topologically sorted nodes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00198}{198}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{classGraph}{visited}}.insert(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classGraph}{neighbor}}\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{node}}])\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph}{visited}}.find(\mbox{\hyperlink{classGraph}{neighbor}})\ ==\ \mbox{\hyperlink{classGraph}{visited}}.end())\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph_a9f7201c5e3a09fe944f979440385de66}{dfsTopologicalSort}}(\mbox{\hyperlink{classGraph}{neighbor}},\ \mbox{\hyperlink{classGraph}{visited}},\ \mbox{\hyperlink{classGraph}{Stack}});}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{classGraph}{Stack}}.push(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00206\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classGraph_a9f7201c5e3a09fe944f979440385de66_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a9f7201c5e3a09fe944f979440385de66_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a7afa5ccc894d0db45c6b71888183e70b}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!generateDotFile@{generateDotFile}}
+\index{generateDotFile@{generateDotFile}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{generateDotFile()}{generateDotFile()}}
+{\footnotesize\ttfamily \label{classGraph_a7afa5ccc894d0db45c6b71888183e70b} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::generate\+Dot\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates a DOT file representing the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the DOT file to be generated. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00233}{233}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::ofstream}}\ \mbox{\hyperlink{classGraph}{file}}(\mbox{\hyperlink{classGraph}{filename}});}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{classGraph}{file}}\ <<\ \textcolor{stringliteral}{"{}digraph\ G\ \{\(\backslash\)n"{}};}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classGraph}{node}},\ \mbox{\hyperlink{classGraph}{neighbors}}]\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}})\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classGraph}{neighbor}}\ :\ \mbox{\hyperlink{classGraph}{neighbors}})\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{file}}\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \(\backslash\)"{}"{}}\ <<\ \mbox{\hyperlink{classGraph}{node}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ -\/>\ \(\backslash\)"{}"{}}\ <<\ \mbox{\hyperlink{classGraph}{neighbor}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{};\(\backslash\)n"{}};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{classGraph}{file}}\ <<\ \textcolor{stringliteral}{"{}\}\(\backslash\)n"{}};}
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{classGraph}{file}}.close();}
+\DoxyCodeLine{00243\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a7afa5ccc894d0db45c6b71888183e70b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!hasCycle@{hasCycle}}
+\index{hasCycle@{hasCycle}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{hasCycle()}{hasCycle()}}
+{\footnotesize\ttfamily \label{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126} 
+template$<$typename T$>$ \\
+std\+::optional$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::has\+Cycle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detects if the graph contains a cycle. 
+
+\begin{DoxyReturn}{Returns}
+An optional vector of nodes representing the cycle if one exists, or an empty optional otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00144}{144}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::unordered\_set<T>}}\ \mbox{\hyperlink{classGraph}{visited}};}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::unordered\_set<T>}}\ \mbox{\hyperlink{classGraph}{recStack}};}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::vector<T>}}\ \mbox{\hyperlink{classGraph}{path}};}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::vector<T>}}\ \mbox{\hyperlink{classGraph}{cycle}};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classGraph}{node}},\ \mbox{\hyperlink{classGraph}{\_}}]\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}})\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph_aa8238f9646c72f3aea32dd7fd4321b0b}{dfsCycleDetection}}(\mbox{\hyperlink{classGraph}{node}},\ \mbox{\hyperlink{classGraph}{visited}},\ \mbox{\hyperlink{classGraph}{recStack}},\ \mbox{\hyperlink{classGraph}{path}},\ \mbox{\hyperlink{classGraph}{cycle}}))\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGraph}{cycle}};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGraph}{std::nullopt}};}
+\DoxyCodeLine{00155\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a4a45ac836e17a146643518589e77cd4f}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!inDegree@{inDegree}}
+\index{inDegree@{inDegree}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inDegree()}{inDegree()}}
+{\footnotesize\ttfamily \label{classGraph_a4a45ac836e17a146643518589e77cd4f} 
+template$<$typename T$>$ \\
+int \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::in\+Degree (\begin{DoxyParamCaption}\item[{const T \&}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Computes the in-\/degree of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node whose in-\/degree is to be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The in-\/degree of the node. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00209}{209}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classGraph}{degree}}\ =\ 0;}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classGraph}{key}},\ \mbox{\hyperlink{classGraph}{neighbors}}]\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}})\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph}{neighbors}}.find(\mbox{\hyperlink{classGraph}{node}})\ !=\ \mbox{\hyperlink{classGraph}{neighbors}}.end())\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{degree}}++;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGraph}{degree}};}
+\DoxyCodeLine{00217\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a4a45ac836e17a146643518589e77cd4f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a96ff022f21902cdc8fc2935476da9d4d}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!outDegree@{outDegree}}
+\index{outDegree@{outDegree}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{outDegree()}{outDegree()}}
+{\footnotesize\ttfamily \label{classGraph_a96ff022f21902cdc8fc2935476da9d4d} 
+template$<$typename T$>$ \\
+int \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::out\+Degree (\begin{DoxyParamCaption}\item[{const T \&}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Computes the out-\/degree of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node whose out-\/degree is to be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The out-\/degree of the node. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00220}{220}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{node}}].size();}
+\DoxyCodeLine{00222\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classGraph_aadfe2b7654f9627ec5d9a7e82aa12005}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeEdge()}{removeEdge()}}
+{\footnotesize\ttfamily \label{classGraph_aadfe2b7654f9627ec5d9a7e82aa12005} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::remove\+Edge (\begin{DoxyParamCaption}\item[{const T \&}]{from}{, }\item[{const T \&}]{to}{}\end{DoxyParamCaption})}
+
+
+
+Removes a directed edge between two nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & The source node of the edge. \\
+\hline
+{\em to} & The destination node of the edge. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00139}{139}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}[\mbox{\hyperlink{classGraph}{from}}].erase(\mbox{\hyperlink{classGraph}{to}});}
+\DoxyCodeLine{00141\ \}}
+
+\end{DoxyCode}
+\Hypertarget{classGraph_aaf06c17e9a9505dc2723e34e7c892397}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!removeNode@{removeNode}}
+\index{removeNode@{removeNode}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeNode()}{removeNode()}}
+{\footnotesize\ttfamily \label{classGraph_aaf06c17e9a9505dc2723e34e7c892397} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::remove\+Node (\begin{DoxyParamCaption}\item[{const T \&}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Removes a node from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00126}{126}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}}.erase(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classGraph}{key}},\ \mbox{\hyperlink{classGraph}{neighbors}}]\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{neighbors}}.erase(\mbox{\hyperlink{classGraph}{node}});}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_aaf06c17e9a9505dc2723e34e7c892397_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a3c3b460058bfb69fa2540d0f5c680b49}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!topologicalSort@{topologicalSort}}
+\index{topologicalSort@{topologicalSort}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{topologicalSort()}{topologicalSort()}}
+{\footnotesize\ttfamily \label{classGraph_a3c3b460058bfb69fa2540d0f5c680b49} 
+template$<$typename T$>$ \\
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::topological\+Sort (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Performs a topological sort of the graph. 
+
+\begin{DoxyReturn}{Returns}
+A vector of nodes in topologically sorted order. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The graph must be a Directed Acyclic \doxylink{classGraph}{Graph} (DAG) for this to work correctly. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00181}{181}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::stack<T>}}\ \mbox{\hyperlink{classGraph}{Stack}};}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::unordered\_set<T>}}\ \mbox{\hyperlink{classGraph}{visited}};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classGraph}{node}},\ \mbox{\hyperlink{classGraph}{\_}}]\ :\ \mbox{\hyperlink{classGraph_aefc5963cbaff3283d729484403f04710}{adjList}})\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGraph}{visited}}.find(\mbox{\hyperlink{classGraph}{node}})\ ==\ \mbox{\hyperlink{classGraph}{visited}}.end())\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph_a9f7201c5e3a09fe944f979440385de66}{dfsTopologicalSort}}(\mbox{\hyperlink{classGraph}{node}},\ \mbox{\hyperlink{classGraph}{visited}},\ \mbox{\hyperlink{classGraph}{Stack}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::vector<T>}}\ \mbox{\hyperlink{classGraph}{result}};}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{classGraph}{Stack}}.empty())\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{result}}.push\_back(\mbox{\hyperlink{classGraph}{Stack}}.top());}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{Stack}}.pop();}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGraph}{result}};}
+\DoxyCodeLine{00195\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a3c3b460058bfb69fa2540d0f5c680b49_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a3c3b460058bfb69fa2540d0f5c680b49_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classGraph_a2f8760f56350d004bb7e7058dd100a56}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!visualize@{visualize}}
+\index{visualize@{visualize}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{visualize()}{visualize()}}
+{\footnotesize\ttfamily \label{classGraph_a2f8760f56350d004bb7e7058dd100a56} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::visualize (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::string \&}]{imgfilename}{}\end{DoxyParamCaption})}
+
+
+
+Visualizes the graph by generating a DOT file and an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the DOT file to be generated. \\
+\hline
+{\em imgfilename} & The name of the image file to be generated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requires Graphviz to generate the image from the DOT file. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00225}{225}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{classGraph_a7afa5ccc894d0db45c6b71888183e70b}{generateDotFile}}(\mbox{\hyperlink{classGraph}{filename}});}
+\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::string}}\ \mbox{\hyperlink{classGraph}{command}}\ =\ \textcolor{stringliteral}{"{}dot\ -\/Tpng\ "{}}\ +\ \mbox{\hyperlink{classGraph}{filename}}\ +\ \textcolor{stringliteral}{"{}\ -\/o\ "{}}\ +\ \mbox{\hyperlink{classGraph}{imgfilename}}\ +\ \textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{classGraph}{system}}(\mbox{\hyperlink{classGraph}{command}}.c\_str());}
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{classGraph}{std::remove}}(\mbox{\hyperlink{classGraph}{filename}}.c\_str());\ \ }
+\DoxyCodeLine{00230\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{classGraph_a2f8760f56350d004bb7e7058dd100a56_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraph_a2f8760f56350d004bb7e7058dd100a56_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classGraph_aefc5963cbaff3283d729484403f04710}\index{Graph$<$ T $>$@{Graph$<$ T $>$}!adjList@{adjList}}
+\index{adjList@{adjList}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{adjList}{adjList}}
+{\footnotesize\ttfamily \label{classGraph_aefc5963cbaff3283d729484403f04710} 
+template$<$typename T$>$ \\
+std\+::unordered\+\_\+map$<$T, std\+::unordered\+\_\+set$<$T$>$ $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::adj\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The adjacency list representation of the graph. Maps each node to a set of its neighboring nodes. 
+
+
+
+Definition at line \mbox{\hyperlink{graph_8hpp_source_l00092}{92}} of file \mbox{\hyperlink{graph_8hpp_source}{graph.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{graph_8hpp}{graph.\+hpp}}\end{DoxyCompactItemize}

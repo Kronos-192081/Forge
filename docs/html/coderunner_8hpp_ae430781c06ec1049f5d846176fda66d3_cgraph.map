@@ -1,0 +1,83 @@
+<map id="run_command" name="run_command">
+<area shape="rect" id="Node000001" title="Executes a list of commands sequentially and captures their output." alt="" coords="5,976,120,1001"/>
+<area shape="rect" id="Node000002" href="$coderunner_8hpp.html#a628ee1dab137e39f9905148445a2de6b" title="Converts ANSI text to HTML using the Python ansi2html library." alt="" coords="171,976,278,1001"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,986,157,986,157,991,120,991"/>
+<area shape="rect" id="Node000028" href="$coderunner_8hpp.html#aa4fcf103548bae6cf2a940ef85399622" title="Extracts the content inside &lt;pre&gt; tags from an HTML string." alt="" coords="952,908,1104,933"/>
+<area shape="poly" id="edge44_Node000001_Node000028" title=" " alt="" coords="62,975,83,782,105,631,135,468,174,310,197,239,223,175,251,121,283,80,317,54,336,47,355,44,551,44,607,41,656,33,743,17,783,15,823,21,864,38,906,71,920,109,936,193,972,441,1026,894,1021,894,967,442,931,194,915,111,902,74,861,43,822,26,783,20,744,22,657,38,607,46,551,50,355,50,337,52,320,58,287,84,256,124,228,177,202,240,179,312,140,469,110,632,88,783,68,976"/>
+<area shape="rect" id="Node000029" href="$coderunner_8hpp.html#a3f5b1698e28559945f9aad0250b213d6" title="Formats a std::chrono::system_clock::time_point into a JavaScript Date object string." alt="" coords="963,982,1093,1008"/>
+<area shape="poly" id="edge45_Node000001_Node000029" title=" " alt="" coords="110,998,221,1023,288,1032,355,1036,551,1036,660,1033,768,1025,949,1004,950,1009,768,1030,660,1038,551,1042,355,1042,287,1038,220,1028,108,1004"/>
+<area shape="rect" id="Node000035" href="$coderunner_8hpp.html#a60eb1f1f817fc04129041772fe931da9" title="Extracts the exit code from the last line of a file." alt="" coords="168,1077,281,1102"/>
+<area shape="poly" id="edge46_Node000001_Node000035" title=" " alt="" coords="84,999,169,1055,190,1068,187,1072,167,1060,81,1003"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="329,556,384,581"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,974,345,593,350,595,233,976"/>
+<area shape="rect" id="Node000004" href="$classCache.html#a633cdc727dd8d0b3e86b6abbe1b7b8ed" title="Adds or updates a file&#39;s hash in the cache." alt="" coords="503,530,597,556"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="384,562,488,548,489,554,384,567"/>
+<area shape="rect" id="Node000006" href="$classGraph.html#aed4f61304e0a2b1635e7404f5a3ed657" title="Adds a directed edge between two nodes." alt="" coords="487,678,613,704"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="366,580,391,623,410,646,433,665,474,681,472,686,431,669,407,649,387,626,362,583"/>
+<area shape="rect" id="Node000007" href="$classGraph.html#a77f28a3773538c6922c76d8e7ec19bab" title="Adds a node to the graph." alt="" coords="487,728,613,753"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="363,580,370,609,384,645,405,683,434,714,452,725,474,732,472,737,450,730,430,718,400,686,379,647,365,610,358,582"/>
+<area shape="rect" id="Node000008" href="$classCache.html#a24fef4b50988e0004beba3934d565cbf" title="Checks if a file&#39;s current hash matches the hash stored in the cache." alt="" coords="496,629,604,654"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="375,579,401,598,433,615,483,630,482,635,431,620,398,602,372,583"/>
+<area shape="rect" id="Node000010" href="$classParser.html#a00f23aa1221eff73e58c16b9238d5494" title="Retrieves the name of the first target in the file." alt="" coords="465,777,635,802"/>
+<area shape="poly" id="edge10_Node000003_Node000010" title=" " alt="" coords="361,581,366,618,377,667,399,720,414,743,434,764,454,776,451,781,430,768,410,747,394,722,372,669,361,619,356,582"/>
+<area shape="rect" id="Node000011" href="$classGraph.html#ac1a127007a9e9f38fa20c92e2ebaf126" title="Detects if the graph contains a cycle." alt="" coords="486,146,614,172"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="356,555,362,482,376,373,398,266,412,223,430,193,449,178,471,167,474,172,452,182,434,197,417,225,403,267,381,374,368,482,361,556"/>
+<area shape="rect" id="Node000013" href="$classGraph.html#a4a45ac836e17a146643518589e77cd4f" title="Computes the in&#45;degree of a node." alt="" coords="486,826,614,852"/>
+<area shape="poly" id="edge14_Node000003_Node000013" title=" " alt="" coords="360,581,362,626,371,689,380,723,393,756,411,787,434,813,452,825,473,833,472,838,450,830,430,817,406,790,388,758,375,724,366,690,357,626,355,581"/>
+<area shape="rect" id="Node000014" href="$classParser.html#ad941a297e9f6abb39271090806a6be33" title="Parses the file and populates the variables, targets, and imports." alt="" coords="757,346,863,372"/>
+<area shape="poly" id="edge15_Node000003_Node000014" title=" " alt="" coords="357,555,366,503,381,431,403,362,416,335,430,318,467,295,501,283,534,280,567,283,635,304,717,331,750,340,748,345,715,336,634,309,566,289,534,285,503,288,469,300,434,322,420,338,408,364,386,432,371,504,362,556"/>
+<area shape="rect" id="Node000016" href="$parser_8cpp.html#a077d2d87060909c21219040c4709c9c9" title="Replaces variables in a string with their corresponding values." alt="" coords="1152,62,1257,88"/>
+<area shape="poly" id="edge28_Node000003_Node000016" title=" " alt="" coords="356,555,360,470,371,343,380,277,393,216,409,166,430,132,469,97,511,69,557,46,605,29,655,16,707,8,811,3,912,9,1007,22,1088,39,1151,56,1150,61,1087,45,1006,28,912,14,811,8,707,14,656,22,606,34,559,51,514,73,472,101,434,135,414,168,398,217,385,278,376,344,365,471,361,555"/>
+<area shape="rect" id="Node000018" href="$main_8cpp.html#a9978854dac6991be7cc41f773385d108" title="Parses a file and collects dependencies, updating global tables and variables." alt="" coords="432,232,668,257"/>
+<area shape="poly" id="edge19_Node000003_Node000018" title=" " alt="" coords="357,555,365,496,380,412,402,329,415,297,430,274,447,261,451,265,434,278,420,299,407,331,386,413,371,496,362,556"/>
+<area shape="rect" id="Node000022" href="$main_8cpp.html#ad6da18174ed9892c214e56bac27bfc7f" title="Displays a banner with information about the Forge build system." alt="" coords="498,432,602,457"/>
+<area shape="poly" id="edge26_Node000003_Node000022" title=" " alt="" coords="361,554,387,510,406,486,431,466,456,454,484,446,485,451,458,459,433,471,410,490,391,513,366,557"/>
+<area shape="rect" id="Node000023" href="$classGraph.html#aaf06c17e9a9505dc2723e34e7c892397" title="Removes a node from the graph." alt="" coords="473,481,627,506"/>
+<area shape="poly" id="edge27_Node000003_Node000023" title=" " alt="" coords="372,553,398,534,431,516,459,507,461,512,433,521,401,539,375,558"/>
+<area shape="rect" id="Node000024" href="$coderunner_8hpp.html#a837b06ab768dc62cbf9e289c80469dff" title="Executes a list of commands sequentially and generates an HTML report." alt="" coords="489,925,611,950"/>
+<area shape="poly" id="edge29_Node000003_Node000024" title=" " alt="" coords="362,581,368,650,381,750,403,849,417,887,434,912,453,925,476,933,474,938,451,930,430,915,413,889,398,850,376,751,363,651,356,581"/>
+<area shape="rect" id="Node000026" href="$coderunner_8hpp.html#ae9b0399497c010ffea9d950f94bd9c63" title="Executes batches of commands in parallel using multiple threads and generates an HTML report." alt="" coords="461,876,639,901"/>
+<area shape="poly" id="edge32_Node000003_Node000026" title=" " alt="" coords="362,581,370,641,385,726,406,809,419,841,434,862,450,874,446,878,430,866,415,844,401,811,379,727,365,642,357,581"/>
+<area shape="rect" id="Node000030" href="$parser_8cpp.html#a0e3cb927f70f28b4b95c2254828cf6be" title="Sets the log level for filtering log messages." alt="" coords="496,580,604,605"/>
+<area shape="poly" id="edge38_Node000003_Node000030" title=" " alt="" coords="384,569,483,581,482,587,384,574"/>
+<area shape="rect" id="Node000031" href="$classGraph.html#a3c3b460058bfb69fa2540d0f5c680b49" title="Performs a topological sort of the graph." alt="" coords="467,382,633,408"/>
+<area shape="poly" id="edge39_Node000003_Node000031" title=" " alt="" coords="358,555,365,526,379,488,400,450,430,417,452,404,454,409,434,421,404,453,384,491,370,528,363,556"/>
+<area shape="rect" id="Node000033" href="$classGraph.html#a2f8760f56350d004bb7e7058dd100a56" title="Visualizes the graph by generating a DOT file and an image." alt="" coords="487,333,613,358"/>
+<area shape="poly" id="edge42_Node000003_Node000033" title=" " alt="" coords="356,555,360,518,372,467,394,413,410,389,430,368,450,355,472,347,474,352,453,360,434,372,414,392,399,416,377,468,366,519,361,555"/>
+<area shape="rect" id="Node000005" href="$classCache.html#a473349242151a17c2e345f82dc2e72d1" title="Computes the SHA256 hash of a file." alt="" coords="730,554,890,580"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="598,545,717,556,716,561,597,550"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="604,630,667,615,764,582,765,587,669,620,605,635"/>
+<area shape="rect" id="Node000009" href="$classCache.html#ae3bc347e375337dcd29fbd6afc517b15" title="Finds the hash of a file in the cache." alt="" coords="763,629,857,654"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="604,639,749,639,749,644,604,644"/>
+<area shape="rect" id="Node000012" href="$classGraph.html#aa8238f9646c72f3aea32dd7fd4321b0b" title="Helper function for cycle detection using Depth&#45;First Search (DFS)." alt="" coords="716,109,904,134"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="614,147,707,134,708,139,615,152"/>
+<area shape="poly" id="edge13_Node000012_Node000012" title=" " alt="" coords="775,111,767,101,771,91,786,84,810,82,840,86,852,95,849,99,838,91,810,88,787,90,775,94,772,100,779,107"/>
+<area shape="rect" id="Node000015" href="$classParser.html#ab830959f725ae577e2661f8f61e36539" title="Parses the contents of the file and populates the tables." alt="" coords="965,268,1091,293"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="862,344,903,331,987,296,989,301,905,336,864,349"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="1038,266,1182,96,1186,100,1042,269"/>
+<area shape="rect" id="Node000017" href="$classParser.html#afbeb9d54c3e8b024c3a9ee9ba4967d61" title="Trims leading and trailing whitespace from a string." alt="" coords="1156,268,1253,293"/>
+<area shape="poly" id="edge18_Node000015_Node000017" title=" " alt="" coords="1092,278,1142,278,1142,283,1092,283"/>
+<area shape="poly" id="edge23_Node000018_Node000014" title=" " alt="" coords="626,255,669,274,685,289,694,304,703,318,717,331,744,344,742,349,715,336,699,321,690,306,681,292,667,278,623,259"/>
+<area shape="poly" id="edge24_Node000018_Node000018" title=" " alt="" coords="518,233,512,223,515,213,528,207,550,205,576,209,587,217,584,221,574,213,550,210,530,212,519,217,517,223,523,230"/>
+<area shape="rect" id="Node000019" href="$main_8cpp.html#a12e4b14ae5693285489ba3e3a769be8a" title="Recursively finds and collects all dependencies for a given target." alt="" coords="741,232,879,257"/>
+<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="668,242,727,242,727,247,668,247"/>
+<area shape="rect" id="Node000020" href="$classParser.html#a420ed0e95c1406968a250a7904937382" title="Retrieves the parsed results as a tuple." alt="" coords="739,282,881,322"/>
+<area shape="poly" id="edge22_Node000018_Node000020" title=" " alt="" coords="609,254,726,280,725,286,608,260"/>
+<area shape="rect" id="Node000021" href="$classParser.html#af0d9aa8c7a9ba10dd53278a890dfc7af" title="Prints the parsed results (variables, targets, and imports)." alt="" coords="736,158,884,184"/>
+<area shape="poly" id="edge25_Node000018_Node000021" title=" " alt="" coords="591,229,715,192,744,185,746,190,717,197,593,234"/>
+<area shape="poly" id="edge21_Node000019_Node000019" title=" " alt="" coords="775,233,767,223,771,213,786,207,810,205,840,209,852,218,849,222,838,214,810,210,787,212,775,217,772,223,779,230"/>
+<area shape="poly" id="edge31_Node000024_Node000001" title=" " alt="" coords="488,942,342,949,168,967,125,975,124,970,168,962,342,943,488,936"/>
+<area shape="rect" id="Node000025" href="$coderunner_8hpp.html#a2d3656cb04c48144b93aa0d0ff1437ab" title="Creates an HTML document containing build results and a Gantt chart." alt="" coords="760,882,860,908"/>
+<area shape="poly" id="edge30_Node000024_Node000025" title=" " alt="" coords="611,925,746,903,747,908,612,930"/>
+<area shape="poly" id="edge33_Node000026_Node000025" title=" " alt="" coords="640,888,746,891,746,896,639,893"/>
+<area shape="rect" id="Node000027" href="$coderunner_8hpp.html#aa01f606e7178210f2c40d315f4e029eb" title="Executes a list of commands sequentially in parallel and captures their output." alt="" coords="739,945,881,970"/>
+<area shape="poly" id="edge34_Node000026_Node000027" title=" " alt="" coords="616,898,669,911,759,938,758,943,667,916,615,904"/>
+<area shape="poly" id="edge35_Node000027_Node000002" title=" " alt="" coords="739,964,292,987,292,982,738,959"/>
+<area shape="poly" id="edge36_Node000027_Node000028" title=" " alt="" coords="881,943,940,933,941,938,882,948"/>
+<area shape="poly" id="edge37_Node000027_Node000029" title=" " alt="" coords="882,967,950,979,949,984,881,972"/>
+<area shape="rect" id="Node000032" href="$classGraph.html#a9f7201c5e3a09fe944f979440385de66" title="Helper function for topological sorting using Depth&#45;First Search (DFS)." alt="" coords="716,469,904,494"/>
+<area shape="poly" id="edge40_Node000031_Node000032" title=" " alt="" coords="626,405,669,416,725,438,774,460,771,465,722,443,667,421,625,410"/>
+<area shape="poly" id="edge41_Node000032_Node000032" title=" " alt="" coords="775,471,767,461,771,451,786,444,810,442,840,446,852,455,849,459,838,451,810,448,787,450,775,454,772,460,779,467"/>
+<area shape="rect" id="Node000034" href="$classGraph.html#a7afa5ccc894d0db45c6b71888183e70b" title="Generates a DOT file representing the graph." alt="" coords="723,396,897,421"/>
+<area shape="poly" id="edge43_Node000033_Node000034" title=" " alt="" coords="614,355,669,367,717,380,750,389,748,395,715,385,667,372,613,360"/>
+</map>

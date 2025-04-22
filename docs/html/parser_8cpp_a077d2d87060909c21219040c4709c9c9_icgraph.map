@@ -1,0 +1,26 @@
+<map id="replace_vars" name="replace_vars">
+<area shape="rect" id="Node000001" title="Replaces variables in a string with their corresponding values." alt="" coords="1293,38,1399,64"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="577,76,632,101"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1280,40,1165,22,1014,9,931,8,846,13,762,24,681,43,648,58,622,78,618,73,645,54,679,38,761,19,846,8,931,3,1014,4,1165,17,1280,35"/>
+<area shape="rect" id="Node000008" href="$classParser.html#ab830959f725ae577e2661f8f61e36539" title="Parses the contents of the file and populates the tables." alt="" coords="1119,64,1245,89"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="1280,64,1246,69,1245,64,1279,59"/>
+<area shape="rect" id="Node000003" href="$coderunner_8hpp.html#a628ee1dab137e39f9905148445a2de6b" title="Converts ANSI text to HTML using the Python ansi2html library." alt="" coords="423,76,529,101"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="564,91,529,91,529,86,564,86"/>
+<area shape="rect" id="Node000004" href="$coderunner_8hpp.html#ae430781c06ec1049f5d846176fda66d3" title="Executes a list of commands sequentially and captures their output." alt="" coords="246,50,361,76"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="408,81,360,74,361,69,409,76"/>
+<area shape="rect" id="Node000006" href="$coderunner_8hpp.html#aa01f606e7178210f2c40d315f4e029eb" title="Executes a list of commands sequentially in parallel and captures their output." alt="" coords="232,100,375,125"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="409,100,375,105,374,100,409,95"/>
+<area shape="rect" id="Node000005" href="$coderunner_8hpp.html#a837b06ab768dc62cbf9e289c80469dff" title="Executes a list of commands sequentially and generates an HTML report." alt="" coords="33,38,156,64"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="232,62,156,57,156,52,232,56"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="170,41,232,36,316,33,382,35,448,44,530,62,578,76,576,81,529,67,447,49,382,40,316,39,232,42,170,46"/>
+<area shape="rect" id="Node000007" href="$coderunner_8hpp.html#ae9b0399497c010ffea9d950f94bd9c63" title="Executes batches of commands in parallel using multiple threads and generates an HTML report." alt="" coords="5,113,184,138"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="218,120,184,123,184,117,218,115"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="198,133,232,135,316,138,382,137,447,129,529,111,576,96,578,101,530,116,448,134,382,142,316,143,232,140,197,138"/>
+<area shape="rect" id="Node000009" href="$classParser.html#ad941a297e9f6abb39271090806a6be33" title="Parses the file and populates the variables, targets, and imports." alt="" coords="964,76,1071,101"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="1105,85,1071,87,1071,82,1105,79"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="963,107,916,116,798,128,746,125,679,116,631,102,633,97,681,111,746,120,798,122,916,111,962,102"/>
+<area shape="rect" id="Node000010" href="$main_8cpp.html#a9978854dac6991be7cc41f773385d108" title="Parses a file and collects dependencies, updating global tables and variables." alt="" coords="680,76,916,101"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="950,91,916,91,916,86,950,86"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="666,91,632,91,632,86,666,86"/>
+<area shape="poly" id="edge14_Node000010_Node000010" title=" " alt="" coords="832,65,822,57,798,54,778,56,767,61,765,67,771,74,766,77,760,67,763,57,776,51,798,49,824,53,835,61"/>
+</map>

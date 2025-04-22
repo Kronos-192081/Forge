@@ -1,0 +1,741 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include "{}parser.\+hpp"{}}\newline
+{\ttfamily \#include "{}argparse.\+hpp"{}}\newline
+{\ttfamily \#include "{}graph.\+hpp"{}}\newline
+{\ttfamily \#include "{}tabulate.\+hpp"{}}\newline
+{\ttfamily \#include "{}coderunner.\+hpp"{}}\newline
+{\ttfamily \#include "{}cache.\+hpp"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}}
+\begin{DoxyCompactList}\small\item\em Represents a node in a dependency graph with associated target data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structstd_1_1hash_3_01Node_01_4}{std\+::hash$<$ Node $>$}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\begin{DoxyCompactList}\small\item\em Specialization of the {\ttfamily std\+::hash} template for the {\ttfamily \doxylink{structNode}{Node}} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\+\_\+t}} = tabulate\+::\+Table\+::\+Row\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a}{find\+Dependencies}} (const std\+::string \&target\+\_\+name, const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structtarget}{target}} $>$ \&targ\+\_\+tab, std\+::set$<$ std\+::string $>$ \&relevant\+\_\+targets, const std\+::string \&prefix)
+\begin{DoxyCompactList}\small\item\em Recursively finds and collects all dependencies for a given target. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a9978854dac6991be7cc41f773385d108}{parse\+\_\+and\+\_\+collect\+\_\+dependencies}} (const std\+::string \&filename, const std\+::string \&prefix="{}"{})
+\begin{DoxyCompactList}\small\item\em Parses a file and collects dependencies, updating global tables and variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_ad6da18174ed9892c214e56bac27bfc7f}{print\+\_\+banner}} ()
+\begin{DoxyCompactList}\small\item\em Displays a banner with information about the Forge build system. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{main_8cpp_a68e9f9ae6a10157dfa184f8b6a17e418}{master\+\_\+var\+\_\+tab}}
+\begin{DoxyCompactList}\small\item\em table containing variable declarations across all forgefiles \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structtarget}{target}} $>$ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\+\_\+targ\+\_\+tab}}
+\begin{DoxyCompactList}\small\item\em All targets. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454}{processed\+\_\+files}}
+\begin{DoxyCompactList}\small\item\em list of files already processed \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}{concerned\+\_\+targets}}
+\begin{DoxyCompactList}\small\item\em targets which are concerned based on the target asked to be built \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{main_8cpp_ac521f8feb8e12106e7405ecf0e3e8d68}{all\+\_\+import\+\_\+vars}}
+\begin{DoxyCompactList}\small\item\em list of all import variables \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}{all\+\_\+import\+\_\+prefixes}}
+\begin{DoxyCompactList}\small\item\em list of all import variables with their prefixes \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\+\_\+targs}}
+\begin{DoxyCompactList}\small\item\em actual names of targets \end{DoxyCompactList}\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa}{all\+\_\+targs}}
+\begin{DoxyCompactList}\small\item\em list of all targets \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}\index{main.cpp@{main.cpp}!Row\_t@{Row\_t}}
+\index{Row\_t@{Row\_t}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{Row\_t}{Row\_t}}
+{\footnotesize\ttfamily \label{main_8cpp_ac55480bbda4d478b6bf05d51340713b6} 
+using \mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\+\_\+t}} = tabulate\+::\+Table\+::\+Row\+\_\+t}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a}\index{main.cpp@{main.cpp}!findDependencies@{findDependencies}}
+\index{findDependencies@{findDependencies}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{findDependencies()}{findDependencies()}}
+{\footnotesize\ttfamily \label{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a} 
+void find\+Dependencies (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{target\+\_\+name}{, }\item[{const std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structtarget}{target}} $>$ \&}]{targ\+\_\+tab}{, }\item[{std\+::set$<$ std\+::string $>$ \&}]{relevant\+\_\+targets}{, }\item[{const std\+::string \&}]{prefix}{}\end{DoxyParamCaption})}
+
+
+
+Recursively finds and collects all dependencies for a given target. 
+
+This function identifies all the dependencies of a specified target and adds them to the set of relevant targets. It ensures that each target is processed only once by checking if it is already in the set of relevant targets.
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+name} & The name of the target whose dependencies are to be found. \\
+\hline
+{\em targ\+\_\+tab} & A map containing all targets and their associated data, including dependencies. \\
+\hline
+{\em relevant\+\_\+targets} & A set to store all relevant targets (including dependencies) for the given target. \\
+\hline
+{\em prefix} & A string prefix to prepend to dependency names (if needed). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (relevant\_targets.count(target\_name))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ relevant\_targets.insert(target\_name);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{structtarget}{target}}\ =\ targ\_tab.at(target\_name);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ dep\ :\ \mbox{\hyperlink{structtarget}{target}}.\mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}})\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::string\ prefixed\_dep\ =\ prefix\ +\ dep;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targ\_tab.find(dep)\ !=\ targ\_tab.end())\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a}{findDependencies}}(dep,\ targ\_tab,\ relevant\_targets,\ prefix);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+\texorpdfstring{$<$}{<} argument parser object
+
+\texorpdfstring{$<$}{<} argument for loglevel
+
+\texorpdfstring{$<$}{<} file to be considered
+
+\texorpdfstring{$<$}{<} target to be built
+
+\texorpdfstring{$<$}{<} about forge
+
+\texorpdfstring{$<$}{<} number of jobs (parallel threads)
+
+\texorpdfstring{$<$}{<} DAG of the forgefile based on the target and dependencies
+
+\texorpdfstring{$<$}{<} building the target graph
+
+\texorpdfstring{$<$}{<} return if the graph has cycle by printing a cycle as well
+
+\texorpdfstring{$<$}{<} visualises the graph as a png file
+
+\texorpdfstring{$<$}{<} toposort of the graph
+
+\texorpdfstring{$<$}{<} all nodes which are to be compiled
+
+\texorpdfstring{$<$}{<} a cache to store the files which are already compiled
+
+Determines which nodes in the dependency graph need to be compiled.
+
+This loop iterates over the topologically sorted nodes ({\ttfamily topo\+Sort}) and evaluates whether each node requires compilation based on its dependencies and cache status.
+
+
+\begin{DoxyItemize}
+\item For each node\+:
+\begin{DoxyItemize}
+\item Retrieves its dependencies.
+\item Initializes the {\ttfamily to\+\_\+compile} status for the node as {\ttfamily false}.
+\item Iterates over the dependencies\+:
+\begin{DoxyItemize}
+\item Checks if the dependency is a target ({\ttfamily act\+\_\+targs} or {\ttfamily all\+\_\+targs}).
+\begin{DoxyItemize}
+\item If the dependency is a target and marked for compilation, marks the current node for compilation and adds it to {\ttfamily compilable\+\_\+nodes}.
+\end{DoxyItemize}
+\item If the dependency is not a target\+:
+\begin{DoxyItemize}
+\item Constructs the full file path and checks the cache.
+\item If the file is not in the cache, adds it to the cache, marks the current node for compilation, and adds it to {\ttfamily compilable\+\_\+nodes}.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item If the node is still not marked for compilation\+:
+\begin{DoxyItemize}
+\item Constructs the full target path and checks if it exists in the filesystem.
+\item If the target does not exist, marks the node for compilation and adds it to {\ttfamily compilable\+\_\+nodes}.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+This logic ensures that only nodes with unmet dependencies or missing targets are marked for compilation, optimizing the build process.
+\end{DoxyNote}
+\texorpdfstring{$<$}{<} configure the targets that are to be compiled in parallel
+
+\texorpdfstring{$<$}{<} running jobs in parallel
+
+\texorpdfstring{$<$}{<} running jobs in serial
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00261}{261}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ argparse::ArgumentParser\ program(\textcolor{stringliteral}{"{}forge"{}});\ }
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ program.add\_argument(\textcolor{stringliteral}{"{}-\/-\/log-\/level"{}})\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ .default\_value(std::string\{\textcolor{stringliteral}{"{}DEFAULT"{}}\})}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ .help(\textcolor{stringliteral}{"{}Specify\ the\ Log-\/Level\ for\ Logging.\ Available\ Options:\ DEFAULT,\ INFO,\ DEBUG\ and\ ERROR"{}});}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ program.add\_argument(\textcolor{stringliteral}{"{}file"{}},\ \textcolor{stringliteral}{"{}-\/f"{}},\ \textcolor{stringliteral}{"{}-\/-\/file"{}})\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ .default\_value(std::string\{\textcolor{stringliteral}{"{}forgefile"{}}\})}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ .help(\textcolor{stringliteral}{"{}Specify\ the\ file\ to\ be\ considered"{}});}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ program.add\_argument(\textcolor{stringliteral}{"{}target"{}})\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ .default\_value(std::string\{\textcolor{stringliteral}{"{}"{}}\})}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ .help(\textcolor{stringliteral}{"{}Specify\ the\ target.\ If\ not\ given,\ first\ target\ will\ be\ considered"{}});}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ program.add\_argument(\textcolor{stringliteral}{"{}-\/a"{}},\ \textcolor{stringliteral}{"{}-\/-\/about"{}})\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ .action([](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&)\{\ \mbox{\hyperlink{main_8cpp_ad6da18174ed9892c214e56bac27bfc7f}{print\_banner}}();\ exit(0);\})}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ .help(\textcolor{stringliteral}{"{}Show\ about\ information"{}})}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ .default\_value(\textcolor{keyword}{false})}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ .implicit\_value(\textcolor{keyword}{true});}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ program.add\_argument(\textcolor{stringliteral}{"{}-\/j"{}},\ \textcolor{stringliteral}{"{}-\/-\/jobs"{}})\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ .default\_value(1)}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ .help(\textcolor{stringliteral}{"{}Specify\ the\ number\ of\ jobs\ to\ run\ in\ parallel.\ Default\ is\ 1"{}})}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ .scan<\textcolor{charliteral}{'i'},\ \textcolor{keywordtype}{int}>();}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ program.parse\_args(argc,\ argv);}
+\DoxyCodeLine{00289\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::exception\ \&err)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ std::cerr\ <<\ err.what()\ <<\ std::endl;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ std::cerr\ <<\ program;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00293\ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ std::string\ loglevel\ =\ program.get<std::string>(\textcolor{stringliteral}{"{}-\/-\/log-\/level"{}});\ }
+\DoxyCodeLine{00296\ \ \ \ \ std::string\ filename\ =\ program.get<std::string>(\textcolor{stringliteral}{"{}file"{}});}
+\DoxyCodeLine{00297\ \ \ \ \ std::string\ \mbox{\hyperlink{structtarget}{target}}\ =\ program.get<std::string>(\textcolor{stringliteral}{"{}target"{}});}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{int}\ njobs\ =\ program.get<\textcolor{keywordtype}{int}>(\textcolor{stringliteral}{"{}-\/-\/jobs"{}});}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_par\ =\ njobs\ >\ 1;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{structtarget}{target}}.length()\ ==\ 0)\{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \mbox{\hyperlink{classParser}{Parser}}\ parser(filename);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ parser.parse();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \mbox{\hyperlink{structtarget}{target}}\ =\ parser.get\_first\_target();}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \mbox{\hyperlink{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}{concerned\_targets}}.insert(\mbox{\hyperlink{structtarget}{target}});}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \mbox{\hyperlink{parser_8cpp_a0e3cb927f70f28b4b95c2254828cf6be}{set\_log\_level}}(loglevel);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}Parsing\ ...\(\backslash\)n"{}});}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a9978854dac6991be7cc41f773385d108}{parse\_and\_collect\_dependencies}}(filename);}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{structtarget}{target}},\ data]\ :\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}})\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ cmd\ :\ data.commands)\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8cpp_a077d2d87060909c21219040c4709c9c9}{replace\_vars}}(cmd,\ \mbox{\hyperlink{main_8cpp_a68e9f9ae6a10157dfa184f8b6a17e418}{master\_var\_tab}});}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph<Node>}}\ targ\_graph;\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{structtarget}{target}},\ data]\ :\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}})\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNode}{Node}}\ node\{\mbox{\hyperlink{structtarget}{target}},\ data\};}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ targ\_graph.\mbox{\hyperlink{classGraph_a77f28a3773538c6922c76d8e7ec19bab}{addNode}}(node);}
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{structtarget}{target}},\ data]\ :\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}})\ \{\ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ dep\ :\ data.dependencies)\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNode}{Node}}\ node1\{\mbox{\hyperlink{structtarget}{target}},\ data\};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.find(\mbox{\hyperlink{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}{all\_import\_prefixes}}[\mbox{\hyperlink{structtarget}{target}}]\ +\ dep)\ ==\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.end())\ \&\&\ (\mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.find(dep)\ ==\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.end()))\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ prefix;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.find(\mbox{\hyperlink{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}{all\_import\_prefixes}}[\mbox{\hyperlink{structtarget}{target}}]\ +\ dep)\ ==\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}.end())\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefix\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prefix\ =\ \mbox{\hyperlink{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}{all\_import\_prefixes}}[\mbox{\hyperlink{structtarget}{target}}];}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNode}{Node}}\ node2\{prefix\ +\ dep,\ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}[prefix\ +\ dep]\};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ targ\_graph.\mbox{\hyperlink{classGraph_aed4f61304e0a2b1635e7404f5a3ed657}{addEdge}}(node2,\ node1);}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{auto}\ is\_cycle\ =\ targ\_graph.\mbox{\hyperlink{classGraph_ac1a127007a9e9f38fa20c92e2ebaf126}{hasCycle}}();\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_cycle.has\_value())\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ std::string\ cycle\_message\ =\ \textcolor{stringliteral}{"{}Cycle\ detected:\ "{}};}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ node\ :\ is\_cycle.value())\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ cycle\_message\ +=\ node.name\ +\ \textcolor{stringliteral}{"{}\ -\/>\ "{}};}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ cycle\_message\ +=\ is\_cycle.value().front().name;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}},\ cycle\_message);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00355\ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ targ\_graph.\mbox{\hyperlink{classGraph_a2f8760f56350d004bb7e7058dd100a56}{visualize}}(\textcolor{stringliteral}{"{}graph.dot"{}},\ \textcolor{stringliteral}{"{}graph"{}});\ }
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{auto}\ topoSort\ =\ targ\_graph.\mbox{\hyperlink{classGraph_a3c3b460058bfb69fa2540d0f5c680b49}{topologicalSort}}();\ }
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ std::vector<Node>\ compilable\_nodes;\ }
+\DoxyCodeLine{00362\ \ \ \ \ \mbox{\hyperlink{classCache}{Cache}}\ cache;\ }
+\DoxyCodeLine{00363\ \ \ \ \ std::unordered\_map<std::string,\ bool>\ to\_compile;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ node:\ topoSort)\ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ deps\ =\ node.targ\_data.dependencies;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ to\_compile[node.name]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ dep:\ deps)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_targ\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}.find(dep)\ !=\ \mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}.end())\ ||\ (\mbox{\hyperlink{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa}{all\_targs}}.find(dep)\ !=\ \mbox{\hyperlink{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa}{all\_targs}}.end()))\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_targ\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(is\_targ)\ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ targ\_name\ =\ dep;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_compile[targ\_name]\ ==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_compile[\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name]]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ compilable\_nodes.push\_back(node);}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ full\_file\_path\ =\ std::filesystem::current\_path().string()\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ dep;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cache.\mbox{\hyperlink{classCache_a24fef4b50988e0004beba3934d565cbf}{check}}(full\_file\_path))\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cache.\mbox{\hyperlink{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed}{add}}(full\_file\_path);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_compile[\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name]]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ compilable\_nodes.push\_back(node);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_compile[\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name]]\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ full\_target\_path\ =\ std::filesystem::current\_path().string()\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ \mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name];}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::filesystem::exists(full\_target\_path))\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_compile[\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name]]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ compilable\_nodes.push\_back(node);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_par)\ \{\ }
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ parallelizable\_labels;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!topoSort.empty())\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ labels;}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Node>\ nodesToRemove;}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ node\ :\ topoSort)\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targ\_graph.\mbox{\hyperlink{classGraph_a4a45ac836e17a146643518589e77cd4f}{inDegree}}(node)\ ==\ 0)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_compile[\mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[node.name]]\ ==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ labels.push\_back(node.name);}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodesToRemove.push\_back(node);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!labels.empty())\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parallelizable\_labels.push\_back(labels);}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ node\ :\ nodesToRemove)\ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targ\_graph.\mbox{\hyperlink{classGraph_aaf06c17e9a9505dc2723e34e7c892397}{removeNode}}(node);}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ topoSort\ =\ targ\_graph.\mbox{\hyperlink{classGraph_a3c3b460058bfb69fa2540d0f5c680b49}{topologicalSort}}();}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ std::vector<std::vector<std::vector<std::string>>>\ parallelizable\_commands;}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ labels\ :\ parallelizable\_labels)\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<std::string>>\ commands\_for\_labels;}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ label\ :\ labels)\ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commands\_for\_labels.push\_back(\mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}[label].commands);}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ parallelizable\_commands.push\_back(commands\_for\_labels);}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ std::string\ output\ =\ \mbox{\hyperlink{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63}{run\_commands\_parallel}}(parallelizable\_commands,\ njobs);\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ std::ofstream\ out(\textcolor{stringliteral}{"{}forge\_output.html"{}});}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ out\ <<\ output;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{00464\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ std::vector<std::string>\ commands;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ node\ :\ compilable\_nodes)\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ cmd\ :\ node.targ\_data.commands)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commands.push\_back(cmd);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ std::string\ output\ =\ \mbox{\hyperlink{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff}{run\_commands}}(commands);\ }
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ std::ofstream\ out(\textcolor{stringliteral}{"{}forge\_output.html"{}});}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ out\ <<\ output;}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ out.close();}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00478\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8cpp_a9978854dac6991be7cc41f773385d108}\index{main.cpp@{main.cpp}!parse\_and\_collect\_dependencies@{parse\_and\_collect\_dependencies}}
+\index{parse\_and\_collect\_dependencies@{parse\_and\_collect\_dependencies}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{parse\_and\_collect\_dependencies()}{parse\_and\_collect\_dependencies()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9978854dac6991be7cc41f773385d108} 
+void parse\+\_\+and\+\_\+collect\+\_\+dependencies (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::string \&}]{prefix}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Parses a file and collects dependencies, updating global tables and variables. 
+
+This function processes a given file, parses its contents, and collects all relevant dependencies, variables, and targets. It ensures that files are processed only once and handles variable redefinitions across files. The function also recursively processes imported files and their dependencies.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to parse and process. \\
+\hline
+{\em prefix} & A string prefix to prepend to variable and target names (default is an empty string).\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item Updates the {\ttfamily master\+\_\+var\+\_\+tab} with variables from the parsed file.
+\item Updates the {\ttfamily master\+\_\+targ\+\_\+tab} with targets from the parsed file.
+\item Handles recursive imports and ensures no variable redefinitions occur across files.
+\item Processes dependencies for concerned targets and recursively parses imported files.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+If a variable is redefined across files, the function logs an error and exits. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454}{processed\_files}}.find(filename)\ !=\ \mbox{\hyperlink{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454}{processed\_files}}.end())\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454}{processed\_files}}.insert(filename);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classParser}{Parser}}\ parser(filename);}
+\DoxyCodeLine{00077\ \ \ \ \ parser.parse();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ parser.printResults();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{auto}\ [var\_tab,\ targ\_tab,\ import\_tab]\ =\ parser.get\_parsed\_results();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ std::set<std::string>\ relevant\_targets;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ target\_name\ :\ \mbox{\hyperlink{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}{concerned\_targets}})\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::string\ original\_target\_name\ =\ target\_name.substr(prefix.length());}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targ\_tab.find(original\_target\_name)\ !=\ targ\_tab.end())\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a12e4b14ae5693285489ba3e3a769be8a}{findDependencies}}(original\_target\_name,\ targ\_tab,\ relevant\_targets,\ prefix);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [var\_name,\ value]\ :\ var\_tab)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a68e9f9ae6a10157dfa184f8b6a17e418}{master\_var\_tab}}[prefix\ +\ var\_name]\ =\ value;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ target\_name\ :\ relevant\_targets)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std::string\ new\_target\_name\ =\ prefix\ +\ target\_name;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}{all\_import\_prefixes}}[new\_target\_name]\ =\ prefix;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}{master\_targ\_tab}}[new\_target\_name]\ =\ targ\_tab[target\_name];}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}{act\_targs}}[new\_target\_name]\ =\ target\_name;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa}{all\_targs}}.insert(target\_name);}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ [import\_var,\ \_]\ :\ import\_tab)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8cpp_ac521f8feb8e12106e7405ecf0e3e8d68}{all\_import\_vars}}.count(import\_var))}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}},\ \textcolor{stringliteral}{"{}\ variable\ redefination\ error.\ variable\ "{}}\ <<\ import\_var\ <<\ \textcolor{stringliteral}{"{}\ redefined.\ Please\ don't\ reuse\ variable\ names\ across\ files."{}})}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_ac521f8feb8e12106e7405ecf0e3e8d68}{all\_import\_vars}}.insert(import\_var);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ if\ (relevant\_targets.empty())\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}{concerned\_targets}}.clear();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ target\_name\ :\ relevant\_targets)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{structtarget}{target}}\ =\ targ\_tab[target\_name];}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ dep\ :\ \mbox{\hyperlink{structtarget}{target}}.\mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}})\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [import\_var,\ import\_file]\ :\ import\_tab)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dep.find(import\_var)\ ==\ 0)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}{concerned\_targets}}.insert(dep);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ dep\ :\ \mbox{\hyperlink{structtarget}{target}}.\mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [import\_var,\ import\_file]\ :\ import\_tab)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dep.find(import\_var)\ ==\ 0)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a9978854dac6991be7cc41f773385d108}{parse\_and\_collect\_dependencies}}(import\_file,\ import\_var\ +\ \textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a9978854dac6991be7cc41f773385d108_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_a9978854dac6991be7cc41f773385d108_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8cpp_ad6da18174ed9892c214e56bac27bfc7f}\index{main.cpp@{main.cpp}!print\_banner@{print\_banner}}
+\index{print\_banner@{print\_banner}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_banner()}{print\_banner()}}
+{\footnotesize\ttfamily \label{main_8cpp_ad6da18174ed9892c214e56bac27bfc7f} 
+void print\+\_\+banner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays a banner with information about the Forge build system. 
+
+This function uses the {\ttfamily tabulate} library to create a styled table that displays a banner with details about Forge, including its purpose, license, and usage instructions. The banner is formatted with various font styles, colors, and alignments to enhance readability.
+
+
+\begin{DoxyItemize}
+\item The banner includes\+:
+\begin{DoxyItemize}
+\item A title with the name of the build system.
+\item A link to the Forge Git\+Hub repository.
+\item A brief description of Forge.
+\item Highlights such as the required C++ version and license.
+\item A quick-\/start instruction.
+\end{DoxyItemize}
+\item The table is styled using the {\ttfamily tabulate} library with custom colors, font styles, and alignments.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+This function outputs the banner directly to the standard output. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00228}{228}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ tabulate::Table\ readme;}
+\DoxyCodeLine{00230\ \ \ readme.format().border\_color(tabulate::Color::yellow);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ readme.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{\textcolor{stringliteral}{"{}Forge\ -\/\ an\ easy\ and\ user-\/friendly\ build-\/system"{}}\});}
+\DoxyCodeLine{00233\ \ \ readme[0].format().font\_style(\{tabulate::FontStyle::underline,\ tabulate::FontStyle::bold,\ tabulate::FontStyle::italic\}).font\_align(tabulate::FontAlign::center).font\_color(tabulate::Color::yellow);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ readme.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{\textcolor{stringliteral}{"{}https://github.com/Kronos-\/192081/Forge"{}}\});}
+\DoxyCodeLine{00236\ \ \ readme[1]}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ .format()}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ .font\_align(tabulate::FontAlign::center)}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ .font\_style(\{tabulate::FontStyle::underline,\ tabulate::FontStyle::italic\})}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ .font\_color(tabulate::Color::white)}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ .hide\_border\_top();}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ readme.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{\textcolor{stringliteral}{"{}Forge\ is\ a\ build\ system\ built\ in\ Modern\ C++,\ inspired\ by\ Make\ and\ designed\ to\ be\ more\ intuitive\ and\ user-\/friendly"{}}\});}
+\DoxyCodeLine{00244\ \ \ readme[2].format().font\_style(\{tabulate::FontStyle::italic\}).font\_color(tabulate::Color::magenta);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ tabulate::Table\ highlights;}
+\DoxyCodeLine{00247\ \ \ highlights.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{\textcolor{stringliteral}{"{}Requires\ C++20"{}},\ \textcolor{stringliteral}{"{}MIT\ License"{}}\});}
+\DoxyCodeLine{00248\ \ \ readme.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{highlights\});}
+\DoxyCodeLine{00249\ \ \ readme[3].format().font\_align(tabulate::FontAlign::center).hide\_border\_top();}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ readme.add\_row(\mbox{\hyperlink{main_8cpp_ac55480bbda4d478b6bf05d51340713b6}{Row\_t}}\{\textcolor{stringliteral}{"{}To\ begin\ with,\ run\ forge\ -\/h"{}}\});}
+\DoxyCodeLine{00252\ \ \ \ \ readme[4]}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ .format()}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ .font\_align(tabulate::FontAlign::center)}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ .font\_color(tabulate::Color::white)}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ .hide\_border\_top();}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ std::cout\ <<\ readme\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00259\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp_ad6da18174ed9892c214e56bac27bfc7f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7}\index{main.cpp@{main.cpp}!act\_targs@{act\_targs}}
+\index{act\_targs@{act\_targs}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{act\_targs}{act\_targs}}
+{\footnotesize\ttfamily \label{main_8cpp_a1f3e666730770ce3e05ae8707d37f6e7} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ act\+\_\+targs}
+
+
+
+actual names of targets 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce}\index{main.cpp@{main.cpp}!all\_import\_prefixes@{all\_import\_prefixes}}
+\index{all\_import\_prefixes@{all\_import\_prefixes}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{all\_import\_prefixes}{all\_import\_prefixes}}
+{\footnotesize\ttfamily \label{main_8cpp_a9f803d347532244a4b0fe2cdd07fbfce} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ all\+\_\+import\+\_\+prefixes}
+
+
+
+list of all import variables with their prefixes 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_ac521f8feb8e12106e7405ecf0e3e8d68}\index{main.cpp@{main.cpp}!all\_import\_vars@{all\_import\_vars}}
+\index{all\_import\_vars@{all\_import\_vars}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{all\_import\_vars}{all\_import\_vars}}
+{\footnotesize\ttfamily \label{main_8cpp_ac521f8feb8e12106e7405ecf0e3e8d68} 
+std\+::unordered\+\_\+set$<$std\+::string$>$ all\+\_\+import\+\_\+vars}
+
+
+
+list of all import variables 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa}\index{main.cpp@{main.cpp}!all\_targs@{all\_targs}}
+\index{all\_targs@{all\_targs}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{all\_targs}{all\_targs}}
+{\footnotesize\ttfamily \label{main_8cpp_a2287be1d7a8af7a81a014470c74c61aa} 
+std\+::set$<$std\+::string$>$ all\+\_\+targs}
+
+
+
+list of all targets 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2}\index{main.cpp@{main.cpp}!concerned\_targets@{concerned\_targets}}
+\index{concerned\_targets@{concerned\_targets}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{concerned\_targets}{concerned\_targets}}
+{\footnotesize\ttfamily \label{main_8cpp_aeebbe494ef10c536dba908dbd1c92cb2} 
+std\+::unordered\+\_\+set$<$std\+::string$>$ concerned\+\_\+targets}
+
+
+
+targets which are concerned based on the target asked to be built 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2}\index{main.cpp@{main.cpp}!master\_targ\_tab@{master\_targ\_tab}}
+\index{master\_targ\_tab@{master\_targ\_tab}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{master\_targ\_tab}{master\_targ\_tab}}
+{\footnotesize\ttfamily \label{main_8cpp_a7ec7863332b9fa7011138b2a2a771eb2} 
+std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{structtarget}{target}}$>$ master\+\_\+targ\+\_\+tab}
+
+
+
+All targets. 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a68e9f9ae6a10157dfa184f8b6a17e418}\index{main.cpp@{main.cpp}!master\_var\_tab@{master\_var\_tab}}
+\index{master\_var\_tab@{master\_var\_tab}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{master\_var\_tab}{master\_var\_tab}}
+{\footnotesize\ttfamily \label{main_8cpp_a68e9f9ae6a10157dfa184f8b6a17e418} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$ master\+\_\+var\+\_\+tab}
+
+
+
+table containing variable declarations across all forgefiles 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454}\index{main.cpp@{main.cpp}!processed\_files@{processed\_files}}
+\index{processed\_files@{processed\_files}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{processed\_files}{processed\_files}}
+{\footnotesize\ttfamily \label{main_8cpp_ad029aaaa9f760a67dc02d12d7c05d454} 
+std\+::unordered\+\_\+set$<$std\+::string$>$ processed\+\_\+files}
+
+
+
+list of files already processed 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+

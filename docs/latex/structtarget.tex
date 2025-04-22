@@ -1,0 +1,108 @@
+\doxysection{target Struct Reference}
+\hypertarget{structtarget}{}\label{structtarget}\index{target@{target}}
+
+
+Struct representing a build target with its dependencies and commands.  
+
+
+
+
+{\ttfamily \#include $<$parser.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{structtarget_ac4f5e151c6997f9e10d9efc0d730d869}{commands}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{structtarget_ac2c92d3783da5bd5da9e5abe5b08dcbd}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structtarget}{target}} \&targ)
+\begin{DoxyCompactList}\small\item\em Overloads the stream insertion operator to print the target\textquotesingle{}s details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct representing a build target with its dependencies and commands. 
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00084}{84}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structtarget_ac2c92d3783da5bd5da9e5abe5b08dcbd}\index{target@{target}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!target@{target}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{structtarget_ac2c92d3783da5bd5da9e5abe5b08dcbd} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{structtarget}{target}} \&}]{targ}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Overloads the stream insertion operator to print the target\textquotesingle{}s details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The output stream. \\
+\hline
+{\em targ} & The target to be printed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output stream with the target\textquotesingle{}s details. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00095}{95}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}Dependencies["{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ dep\ :\ targ.\mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ dep;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dep\ !=\ *targ.\mbox{\hyperlink{structtarget_a3c10db0dfd87413fbbad95001527bffb}{dependencies}}.rbegin())\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}]\ Commands["{}};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ targ.\mbox{\hyperlink{structtarget_ac4f5e151c6997f9e10d9efc0d730d869}{commands}}.size();\ ++i)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ targ.\mbox{\hyperlink{structtarget_ac4f5e151c6997f9e10d9efc0d730d869}{commands}}[i];}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ targ.\mbox{\hyperlink{structtarget_ac4f5e151c6997f9e10d9efc0d730d869}{commands}}.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structtarget_ac4f5e151c6997f9e10d9efc0d730d869}\index{target@{target}!commands@{commands}}
+\index{commands@{commands}!target@{target}}
+\doxysubsubsection{\texorpdfstring{commands}{commands}}
+{\footnotesize\ttfamily \label{structtarget_ac4f5e151c6997f9e10d9efc0d730d869} 
+std\+::vector$<$std\+::string$>$ target\+::commands}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00086}{86}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{structtarget_a3c10db0dfd87413fbbad95001527bffb}\index{target@{target}!dependencies@{dependencies}}
+\index{dependencies@{dependencies}!target@{target}}
+\doxysubsubsection{\texorpdfstring{dependencies}{dependencies}}
+{\footnotesize\ttfamily \label{structtarget_a3c10db0dfd87413fbbad95001527bffb} 
+std\+::set$<$std\+::string$>$ target\+::dependencies}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00085}{85}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{parser_8hpp}{parser.\+hpp}}\end{DoxyCompactItemize}

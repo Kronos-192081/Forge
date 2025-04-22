@@ -1,0 +1,142 @@
+\doxysection{cache.\+hpp}
+\hypertarget{cache_8hpp_source}{}\label{cache_8hpp_source}\mbox{\hyperlink{cache_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ CACHE\_HPP}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00002}00002\ \textcolor{preprocessor}{\#define\ CACHE\_HPP}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <sqlite3.h>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <openssl/sha.h>}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00018}\mbox{\hyperlink{classCache}{00018}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCache_a486f257a48e32d0083f8ae41f78074d1}{Cache}}\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00019}00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00020}\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{00020}}\ \ \ \ \ sqlite3*\ \mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}};\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00021}\mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{00021}}\ \ \ \ \ std::string\ \mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\_path}};\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00030}\mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{00030}}\ \ \ \ \ std::string\ \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{computeHash}}(\textcolor{keyword}{const}\ std::string\&\ file\_path)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ std::ifstream\ file(file\_path,\ std::ios::binary);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Unable\ to\ open\ file:\ "{}}\ +\ file\_path);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00036}00036\ \ \ \ \ \ \ \ \ SHA256\_CTX\ sha256;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00037}00037\ \ \ \ \ \ \ \ \ SHA256\_Init(\&sha256);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[8192];}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (file.read(buffer,\ \textcolor{keyword}{sizeof}(buffer)))\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ SHA256\_Update(\&sha256,\ buffer,\ file.gcount());}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00043}00043\ \ \ \ \ \ \ \ \ SHA256\_Update(\&sha256,\ buffer,\ file.gcount());}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ hash[SHA256\_DIGEST\_LENGTH];}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00046}00046\ \ \ \ \ \ \ \ \ SHA256\_Final(hash,\ \&sha256);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00048}00048\ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c\ :\ hash)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::hex\ <<\ std::setw(2)\ <<\ std::setfill('0')\ <<\ static\_cast<int>(c);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ oss.str();}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00060}\mbox{\hyperlink{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}{00060}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}{initializeDB}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ create\_table\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ CREATE\ TABLE\ IF\ NOT\ EXISTS\ cache\ (}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_addr\ TEXT\ PRIMARY\ KEY,}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_hash\ TEXT}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ );}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00067}00067\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordtype}{char}*\ err\_msg\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_exec(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ create\_table\_query,\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \&err\_msg)\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ error\ =\ \textcolor{stringliteral}{"{}Failed\ to\ create\ table:\ "{}};}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ error\ +=\ err\_msg;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_free(err\_msg);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(error);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00077}00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00085}\mbox{\hyperlink{classCache_a486f257a48e32d0083f8ae41f78074d1}{00085}}\ \ \ \ \ \mbox{\hyperlink{classCache_a486f257a48e32d0083f8ae41f78074d1}{Cache}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ home\ =\ std::getenv(\textcolor{stringliteral}{"{}HOME"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!home)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}HOME\ environment\ variable\ not\ set"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\_path}}\ =\ std::string(home)\ +\ \textcolor{stringliteral}{"{}/.forgecache"{}};}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_open(\mbox{\hyperlink{classCache_ad7908693337d64a92ca5f0a55a3f1b0d}{db\_path}}.c\_str(),\ \&\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ open\ SQLite\ database"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCache_a2b5cc1c4e9e0d9fa38e295481e104037}{initializeDB}}();}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00103}\mbox{\hyperlink{classCache_af8b171a6c49d88d3ba179477484b9d48}{00103}}\ \ \ \ \ \mbox{\hyperlink{classCache_af8b171a6c49d88d3ba179477484b9d48}{\string~Cache}}()\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}})\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_close(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00115}\mbox{\hyperlink{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed}{00115}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCache_a633cdc727dd8d0b3e86b6abbe1b7b8ed}{add}}(\textcolor{keyword}{const}\ std::string\&\ file\_addr)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00116}00116\ \ \ \ \ \ \ \ \ std::string\ file\_hash\ =\ \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{computeHash}}(file\_addr);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ insert\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ INSERT\ OR\ REPLACE\ INTO\ cache\ (file\_addr,\ file\_hash)}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ VALUES\ (?,\ ?);}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00122}00122\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ sqlite3\_stmt*\ stmt;}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (sqlite3\_prepare\_v2(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ insert\_query,\ -\/1,\ \&stmt,\ \textcolor{keyword}{nullptr})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ prepare\ insert\ statement"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00128}00128\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 1,\ file\_addr.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00129}00129\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 2,\ file\_hash.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_step(stmt)\ !=\ SQLITE\_DONE)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ execute\ insert\ statement"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00136}00136\ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00137}00137\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00146}\mbox{\hyperlink{classCache_ae3bc347e375337dcd29fbd6afc517b15}{00146}}\ \ \ \ \ std::string\ \mbox{\hyperlink{classCache_ae3bc347e375337dcd29fbd6afc517b15}{find}}(\textcolor{keyword}{const}\ std::string\&\ file\_addr)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ select\_query\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00148}00148\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ file\_hash\ FROM\ cache\ WHERE\ file\_addr\ =\ ?;}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00149}00149\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ )"{};}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00150}00150\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00151}00151\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ sqlite3\_stmt*\ stmt;}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00152}00152\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (sqlite3\_prepare\_v2(\mbox{\hyperlink{classCache_ab0f7ff6f55f7ceac44237a67fe26b1d7}{db}},\ select\_query,\ -\/1,\ \&stmt,\ \textcolor{keyword}{nullptr})\ !=\ SQLITE\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ prepare\ select\ statement"{}});}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00156}00156\ \ \ \ \ \ \ \ \ sqlite3\_bind\_text(stmt,\ 1,\ file\_addr.c\_str(),\ -\/1,\ SQLITE\_STATIC);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00158}00158\ \ \ \ \ \ \ \ \ std::string\ file\_hash;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sqlite3\_step(stmt)\ ==\ SQLITE\_ROW)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ file\_hash\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(sqlite3\_column\_text(stmt,\ 0));}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00163}00163\ \ \ \ \ \ \ \ \ sqlite3\_finalize(stmt);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_hash;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00173}\mbox{\hyperlink{classCache_a24fef4b50988e0004beba3934d565cbf}{00173}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classCache_a24fef4b50988e0004beba3934d565cbf}{check}}(\textcolor{keyword}{const}\ std::string\&\ file\_addr)\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00174}00174\ \ \ \ \ \ \ \ \ std::string\ file\_hash\ =\ \mbox{\hyperlink{classCache_ae3bc347e375337dcd29fbd6afc517b15}{find}}(file\_addr);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_hash.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00179}00179\ \ \ \ \ \ \ \ \ std::string\ current\_hash\ =\ \mbox{\hyperlink{classCache_a473349242151a17c2e345f82dc2e72d1}{computeHash}}(file\_addr);}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_hash\ ==\ current\_hash;}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00181}00181\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00182}00182\ \};}
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{cache_8hpp_source_l00184}00184\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CACHE\_HPP}}
+
+\end{DoxyCode}

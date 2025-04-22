@@ -1,0 +1,7 @@
+<map id="Cache::check" name="Cache::check">
+<area shape="rect" id="Node000001" title="Checks if a file&#39;s current hash matches the hash stored in the cache." alt="" coords="5,31,113,56"/>
+<area shape="rect" id="Node000002" href="$classCache.html#a473349242151a17c2e345f82dc2e72d1" title="Computes the SHA256 hash of a file." alt="" coords="161,5,321,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,33,148,28,148,34,114,39"/>
+<area shape="rect" id="Node000003" href="$classCache.html#ae3bc347e375337dcd29fbd6afc517b15" title="Finds the hash of a file in the cache." alt="" coords="194,55,289,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,48,180,57,180,62,113,53"/>
+</map>

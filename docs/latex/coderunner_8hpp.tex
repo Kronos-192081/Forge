@@ -1,0 +1,942 @@
+\doxysection{coderunner.\+hpp File Reference}
+\hypertarget{coderunner_8hpp}{}\label{coderunner_8hpp}\index{coderunner.hpp@{coderunner.hpp}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$format$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+{\ttfamily \#include $<$pybind11/embed.\+h$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$future$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for coderunner.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{coderunner_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{coderunner_8hpp_a60eb1f1f817fc04129041772fe931da9}{get\+\_\+exit\+\_\+code}} (const std\+::string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Extracts the exit code from the last line of a file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b}{ansi\+\_\+to\+\_\+html}} (const std\+::string \&ansi\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Converts ANSI text to HTML using the Python {\ttfamily ansi2html} library. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622}{extract\+\_\+pre\+\_\+content}} (const std\+::string \&\mbox{\hyperlink{coderunner_8hpp_a28141bc89afb42a8f39e596105992271}{html}})
+\begin{DoxyCompactList}\small\item\em Extracts the content inside {\ttfamily \texorpdfstring{$<$}{<}pre\texorpdfstring{$>$}{>}} tags from an HTML string. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab}{create\+\_\+html}} (const std\+::string \&output, std\+::string \&commands)
+\begin{DoxyCompactList}\small\item\em Creates an HTML document containing build results and a Gantt chart. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}{format\+Date\+Time}} (const std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \&tp)
+\begin{DoxyCompactList}\small\item\em Formats a {\ttfamily std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point} into a Java\+Script {\ttfamily Date} object string. \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::string, std\+::string, bool $>$ \mbox{\hyperlink{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3}{run\+\_\+command}} (const std\+::vector$<$ std\+::string $>$ \&commands)
+\begin{DoxyCompactList}\small\item\em Executes a list of commands sequentially and captures their output. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff}{run\+\_\+commands}} (const std\+::vector$<$ std\+::string $>$ \&commands)
+\begin{DoxyCompactList}\small\item\em Executes a list of commands sequentially and generates an HTML report. \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::string, std\+::string, bool $>$ \mbox{\hyperlink{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb}{run\+\_\+command\+\_\+par}} (const std\+::vector$<$ std\+::string $>$ \&commands)
+\begin{DoxyCompactList}\small\item\em Executes a list of commands sequentially in parallel and captures their output. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63}{run\+\_\+commands\+\_\+parallel}} (const std\+::vector$<$ std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \&command\+\_\+batches, size\+\_\+t num\+\_\+threads)
+\begin{DoxyCompactList}\small\item\em Executes batches of commands in parallel using multiple threads and generates an HTML report. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{coderunner_8hpp_aefbee10b5bc373190824a9a7f24289aa}{py\+\_\+mutex}}
+\item 
+std\+::mutex \mbox{\hyperlink{coderunner_8hpp_a0cd7cdd81ab9ac65636bef59ee163ade}{stdout\+\_\+mutex}}
+\item 
+\mbox{\hyperlink{coderunner_8hpp_a28141bc89afb42a8f39e596105992271}{html}} = output
+\item 
+\mbox{\hyperlink{coderunner_8hpp_a14d48c2e9f05d0b03044eb45f308fcb0}{body}}
+\item 
+padding \mbox{\hyperlink{coderunner_8hpp_a513d7c86abe486db371d75c04cb42fb2}{\+\_\+\+\_\+pad0\+\_\+\+\_\+}}
+\item 
+$<$/style $>$$<$/head $>$$<$ \mbox{\hyperlink{coderunner_8hpp_a14d48c2e9f05d0b03044eb45f308fcb0}{body}} class="{}body\+\_\+foreground body\+\_\+background"{}$>$$<$ h1 class="{}forge-\/box"{}$>$$<$ a href="{}https\+: $<$/h1$>$$<$h2 style="{}color\+:black;"{}$>$ Build \mbox{\hyperlink{coderunner_8hpp_a0a21766ff3616f16d45c18c5db60c21c}{Summary}}
+\item 
+Compilation \mbox{\hyperlink{coderunner_8hpp_a45cc6f8d0d8a49afb035f62147ea317c}{Details}}
+\item 
+auto \mbox{\hyperlink{coderunner_8hpp_a661b774c71d967dc3402ac2c4f80d2c7}{base}} = std\+::chrono\+::system\+\_\+clock\+::from\+\_\+time\+\_\+t(0)
+\item 
+int \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b}\index{coderunner.hpp@{coderunner.hpp}!ansi\_to\_html@{ansi\_to\_html}}
+\index{ansi\_to\_html@{ansi\_to\_html}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{ansi\_to\_html()}{ansi\_to\_html()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b} 
+std\+::string ansi\+\_\+to\+\_\+html (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ansi\+\_\+text}{}\end{DoxyParamCaption})}
+
+
+
+Converts ANSI text to HTML using the Python {\ttfamily ansi2html} library. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ansi\+\_\+text} & The ANSI-\/formatted text to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The converted HTML string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00066}{66}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{coderunner_8hpp_aefbee10b5bc373190824a9a7f24289aa}{py\_mutex}});}
+\DoxyCodeLine{00068\ \ \ \ \ py::scoped\_interpreter\ guard\{\};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ py::module\ sys\ =\ py::module::import(\textcolor{stringliteral}{"{}sys"{}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::string\ python\_code\ =\ R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00074\ \textcolor{stringliteral}{from\ ansi2html\ import\ Ansi2HTMLConverter}}
+\DoxyCodeLine{00075\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00076\ \textcolor{stringliteral}{def\ convert\_ansi\_to\_html(ansi\_text):}}
+\DoxyCodeLine{00077\ \textcolor{stringliteral}{\ \ \ \ conv\ =\ Ansi2HTMLConverter()}}
+\DoxyCodeLine{00078\ \textcolor{stringliteral}{\ \ \ \ html\_text\ =\ conv.convert(ansi\_text)}}
+\DoxyCodeLine{00079\ \textcolor{stringliteral}{\ \ \ \ return\ html\_text}}
+\DoxyCodeLine{00080\ \textcolor{stringliteral}{)"{};}}
+\DoxyCodeLine{00081\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00082\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ py::exec(python\_code.c\_str());}}
+\DoxyCodeLine{00083\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00084\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ py::module\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}\ =\ py::module::import(}\textcolor{stringliteral}{"{}\_\_main\_\_"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ py::object\ convert\_ansi\_to\_html\ =\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}.attr(\textcolor{stringliteral}{"{}convert\_ansi\_to\_html"{}});}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ py::object\ result\ =\ convert\_ansi\_to\_html(ansi\_text);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result.cast<std::string>();}
+\DoxyCodeLine{00090\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ py::error\_already\_set\&\ e)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ "{}}\ <<\ e.what()\ <<\ std::endl;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \}\ }
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab}\index{coderunner.hpp@{coderunner.hpp}!create\_html@{create\_html}}
+\index{create\_html@{create\_html}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{create\_html()}{create\_html()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab} 
+std\+::string create\+\_\+html (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{output}{, }\item[{std\+::string \&}]{commands}{}\end{DoxyParamCaption})}
+
+
+
+Creates an HTML document containing build results and a Gantt chart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & The HTML content for the build results. \\
+\hline
+{\em commands} & The commands and their execution details for the Gantt chart. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The complete HTML document as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00142}{142}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ std::string\ \mbox{\hyperlink{coderunner_8hpp_a28141bc89afb42a8f39e596105992271}{html}}\ =\ R\textcolor{stringliteral}{"{}(<!DOCTYPE\ HTML\ PUBLIC\ "{}-\///W3C//DTD\ HTML\ 4.01\ Transitional//EN"{}\ "{}http://www.w3.org/TR/html4/loose.dtd"{}>}}
+\DoxyCodeLine{00144\ \textcolor{stringliteral}{<html>}}
+\DoxyCodeLine{00145\ \textcolor{stringliteral}{<head>}}
+\DoxyCodeLine{00146\ \textcolor{stringliteral}{\ \ <meta\ http-\/equiv="{}Content-\/Type"{}\ content="{}text/html;\ charset=utf-\/8"{}>}}
+\DoxyCodeLine{00147\ \textcolor{stringliteral}{\ \ <title>Forge\ Build\ Timeline</title>}}
+\DoxyCodeLine{00148\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00149\ \textcolor{stringliteral}{\ \ <script\ type="{}text/javascript"{}\ src="{}https://www.gstatic.com/charts/loader.js"{}></script>}}
+\DoxyCodeLine{00150\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00151\ \textcolor{stringliteral}{\ \ <style\ type="{}text/css"{}>}}
+\DoxyCodeLine{00152\ \textcolor{stringliteral}{\ \ \ \ .ansi2html-\/content\ \{\ display:\ inline;\ white-\/space:\ pre-\/wrap;\ word-\/wrap:\ break-\/word;\ \}}}
+\DoxyCodeLine{00153\ \textcolor{stringliteral}{\ \ \ \ .body\_foreground\ \{\ color:\ \#f5f3f3;\ \}}}
+\DoxyCodeLine{00154\ \textcolor{stringliteral}{\ \ \ \ .body\_background\ \{\ background-\/color:\ \#ffffff;\ \}}}
+\DoxyCodeLine{00155\ \textcolor{stringliteral}{\ \ \ \ .inv\_foreground\ \{\ color:\ \#000000;\ \}}}
+\DoxyCodeLine{00156\ \textcolor{stringliteral}{\ \ \ \ .inv\_background\ \{\ background-\/color:\ \#faf9f9;\ \}}}
+\DoxyCodeLine{00157\ \textcolor{stringliteral}{\ \ \ \ .ansi1\ \{\ font-\/weight:\ bold;\ color:\ \#0b0b0b;\ \}}}
+\DoxyCodeLine{00158\ \textcolor{stringliteral}{\ \ \ \ .ansi2\ \{\ font-\/weight:\ bold;\ color:\ \#f7f7f7;\ \}}}
+\DoxyCodeLine{00159\ \textcolor{stringliteral}{\ \ \ \ .ansi32\ \{\ color:\ \#00aa00;\ \}}}
+\DoxyCodeLine{00160\ \textcolor{stringliteral}{\ \ \ \ .ansi35\ \{\ color:\ \#E850A8;\ \}}}
+\DoxyCodeLine{00161\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00162\ \textcolor{stringliteral}{\ \ \ \ .command-\/box\ \{}}
+\DoxyCodeLine{00163\ \textcolor{stringliteral}{\ \ \ \ \ \ border:\ 2px\ solid\ \#0332b2;}}
+\DoxyCodeLine{00164\ \textcolor{stringliteral}{\ \ \ \ \ \ background-\/color:\ \ \#0332b2;}}
+\DoxyCodeLine{00165\ \textcolor{stringliteral}{\ \ \ \ \ \ padding:\ 5px;}}
+\DoxyCodeLine{00166\ \textcolor{stringliteral}{\ \ \ \ \ \ display:\ inline-\/block;}}
+\DoxyCodeLine{00167\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/top-\/left-\/radius:\ 8px;}}
+\DoxyCodeLine{00168\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/top-\/right-\/radius:\ 8px;}}
+\DoxyCodeLine{00169\ \textcolor{stringliteral}{\ \ \ \ \ \ margin-\/bottom:\ 0;}}
+\DoxyCodeLine{00170\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00171\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00172\ \textcolor{stringliteral}{\ \ \ \ .forge-\/box\ \{}}
+\DoxyCodeLine{00173\ \textcolor{stringliteral}{\ \ \ \ \ \ border:\ 2px\ solid\ \#0e0e0e;}}
+\DoxyCodeLine{00174\ \textcolor{stringliteral}{\ \ \ \ \ \ padding:\ 5px;}}
+\DoxyCodeLine{00175\ \textcolor{stringliteral}{\ \ \ \ \ \ color:\ black;}}
+\DoxyCodeLine{00176\ \textcolor{stringliteral}{\ \ \ \ \ \ background-\/color:\ \ \#f6f6f7;}}
+\DoxyCodeLine{00177\ \textcolor{stringliteral}{\ \ \ \ \ \ margin-\/bottom:\ 0;}}
+\DoxyCodeLine{00178\ \textcolor{stringliteral}{\ \ \ \ \ \ display:\ block;}}
+\DoxyCodeLine{00179\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/radius:\ 8px;}}
+\DoxyCodeLine{00180\ \textcolor{stringliteral}{\ \ \ \ \ \ text-\/align:\ center;}}
+\DoxyCodeLine{00181\ \textcolor{stringliteral}{\ \ \ \ \ \ margin:\ 0\ auto;}}
+\DoxyCodeLine{00182\ \textcolor{stringliteral}{\ \ \ \ \ \ max-\/width:\ 400px;}}
+\DoxyCodeLine{00183\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00184\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00185\ \textcolor{stringliteral}{\ \ \ \ .error-\/box\ \{}}
+\DoxyCodeLine{00186\ \textcolor{stringliteral}{\ \ \ \ \ \ border:\ 2px\ solid\ \#0332b2;}}
+\DoxyCodeLine{00187\ \textcolor{stringliteral}{\ \ \ \ \ \ padding:\ 10px;}}
+\DoxyCodeLine{00188\ \textcolor{stringliteral}{\ \ \ \ \ \ background-\/color:\ \#fafafa;}}
+\DoxyCodeLine{00189\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/bottom-\/left-\/radius:\ 8px;}}
+\DoxyCodeLine{00190\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/bottom-\/right-\/radius:\ 8px;}}
+\DoxyCodeLine{00191\ \textcolor{stringliteral}{\ \ \ \ \ \ border-\/top-\/right-\/radius:\ 8px;}}
+\DoxyCodeLine{00192\ \textcolor{stringliteral}{\ \ \ \ \ \ color:\ \#0b0a0a;}}
+\DoxyCodeLine{00193\ \textcolor{stringliteral}{\ \ \ \ \ \ white-\/space:\ pre-\/wrap;}}
+\DoxyCodeLine{00194\ \textcolor{stringliteral}{\ \ \ \ \ \ word-\/wrap:\ break-\/word;}}
+\DoxyCodeLine{00195\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00196\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00197\ \textcolor{stringliteral}{\ \ \ \ .gantt-\/header\ \{}}
+\DoxyCodeLine{00198\ \textcolor{stringliteral}{\ \ \ \ \ \ display:\ flex;}}
+\DoxyCodeLine{00199\ \textcolor{stringliteral}{\ \ \ \ \ \ font-\/weight:\ bold;}}
+\DoxyCodeLine{00200\ \textcolor{stringliteral}{\ \ \ \ \ \ background-\/color:\ \#600780;}}
+\DoxyCodeLine{00201\ \textcolor{stringliteral}{\ \ \ \ \ \ color:\ white;}}
+\DoxyCodeLine{00202\ \textcolor{stringliteral}{\ \ \ \ \ \ padding:\ 8px\ 12px;}}
+\DoxyCodeLine{00203\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00204\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00205\ \textcolor{stringliteral}{\ \ \ \ .gantt-\/header\ .command-\/col\ \{}}
+\DoxyCodeLine{00206\ \textcolor{stringliteral}{\ \ \ \ \ \ width:\ 25\%;}}
+\DoxyCodeLine{00207\ \textcolor{stringliteral}{\ \ \ \ \ \ min-\/width:\ 120px;}}
+\DoxyCodeLine{00208\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00209\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00210\ \textcolor{stringliteral}{\ \ \ \ .gantt-\/header\ .time-\/col\ \{}}
+\DoxyCodeLine{00211\ \textcolor{stringliteral}{\ \ \ \ \ \ flex:\ 1;}}
+\DoxyCodeLine{00212\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00213\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00214\ \textcolor{stringliteral}{\ \ \ \ \#chart\_div\ \{}}
+\DoxyCodeLine{00215\ \textcolor{stringliteral}{\ \ \ \ \ \ width:\ 100\%;}}
+\DoxyCodeLine{00216\ \textcolor{stringliteral}{\ \ \ \ \}}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622}\index{coderunner.hpp@{coderunner.hpp}!extract\_pre\_content@{extract\_pre\_content}}
+\index{extract\_pre\_content@{extract\_pre\_content}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{extract\_pre\_content()}{extract\_pre\_content()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622} 
+std\+::string extract\+\_\+pre\+\_\+content (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{html}{}\end{DoxyParamCaption})}
+
+
+
+Extracts the content inside {\ttfamily \texorpdfstring{$<$}{<}pre\texorpdfstring{$>$}{>}} tags from an HTML string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em html} & The HTML string to process. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extracted content inside {\ttfamily \texorpdfstring{$<$}{<}pre\texorpdfstring{$>$}{>}} tags, or an empty string if no content is found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00102}{102}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ std::vector<std::string>\ lines;}
+\DoxyCodeLine{00104\ \ \ \ \ std::istringstream\ stream(\mbox{\hyperlink{coderunner_8hpp_a28141bc89afb42a8f39e596105992271}{html}});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ std::string\ output\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ pre\_start\ =\ \textcolor{keyword}{false},\ pre\_end\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 0;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(stream,\ line))\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}pre\ "{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ pre\_start\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}</pre>"{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ pre\_end\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ line;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pre\_start\ \&\&\ !pre\_end)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::all\_of(line.begin(),\ line.end(),\ [](\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ ch)\ \{\ return\ std::isspace(ch);\ \}))\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cnt++;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}\ (cnt\ ==\ 0)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{00133\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}\index{coderunner.hpp@{coderunner.hpp}!formatDateTime@{formatDateTime}}
+\index{formatDateTime@{formatDateTime}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{formatDateTime()}{formatDateTime()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6} 
+std\+::string format\+Date\+Time (\begin{DoxyParamCaption}\item[{const std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \&}]{tp}{}\end{DoxyParamCaption})}
+
+
+
+Formats a {\ttfamily std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point} into a Java\+Script {\ttfamily Date} object string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tp} & The time point to format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the Java\+Script {\ttfamily Date} object. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00343}{343}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std::chrono;}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{auto}\ duration\ =\ tp\ -\/\ \mbox{\hyperlink{coderunner_8hpp_a661b774c71d967dc3402ac2c4f80d2c7}{base}};}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keyword}{auto}\ millis\ =\ duration\_cast<milliseconds>(duration).count();}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{auto}\ hours\ =\ millis\ /\ (1000\ *\ 60\ *\ 60);}
+\DoxyCodeLine{00350\ \ \ \ \ millis\ \%=\ (1000\ *\ 60\ *\ 60);}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{auto}\ minutes\ =\ millis\ /\ (1000\ *\ 60);}
+\DoxyCodeLine{00352\ \ \ \ \ millis\ \%=\ (1000\ *\ 60);}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{auto}\ seconds\ =\ millis\ /\ 1000;}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{auto}\ milliseconds\_part\ =\ millis\ \%\ 1000;}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00357\ \ \ \ \ oss\ <<\ \textcolor{stringliteral}{"{}new\ Date(1970,\ 0,\ 1,\ "{}}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ <<\ hours\ <<\ \textcolor{stringliteral}{"{},\ "{}}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ <<\ minutes\ <<\ \textcolor{stringliteral}{"{},\ "{}}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ <<\ seconds\ <<\ \textcolor{stringliteral}{"{},\ "{}}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ <<\ milliseconds\_part\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordflow}{return}\ oss.str();}
+\DoxyCodeLine{00364\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_a60eb1f1f817fc04129041772fe931da9}\index{coderunner.hpp@{coderunner.hpp}!get\_exit\_code@{get\_exit\_code}}
+\index{get\_exit\_code@{get\_exit\_code}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{get\_exit\_code()}{get\_exit\_code()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a60eb1f1f817fc04129041772fe931da9} 
+int get\+\_\+exit\+\_\+code (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Extracts the exit code from the last line of a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The path to the file containing the exit code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extracted exit code as an integer. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the file cannot be opened or the exit code is not found. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ std::ifstream\ file(file\_path);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.is\_open())\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ open\ file"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00043\ \ \ \ \ std::string\ last\_line;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ last\_line\ =\ line;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ file.close();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::regex\ exit\_code\_regex(R\textcolor{stringliteral}{"{}(\(\backslash\)[COMMAND\_EXIT\_CODE="{}(\(\backslash\)d+)\(\backslash\)"{}])"{});}}
+\DoxyCodeLine{00051\ \textcolor{stringliteral}{\ \ \ \ std::smatch\ match;}}
+\DoxyCodeLine{00052\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (std::regex\_search(last\_line,\ match,\ exit\_code\_regex)\ \&\&\ match.size()\ >\ 1)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::stoi(match.str(1));}
+\DoxyCodeLine{00054\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::cout\ <<\ file\_path\ <<\ std::endl;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Exit\ code\ not\ found\ in\ the\ last\ line"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a60eb1f1f817fc04129041772fe931da9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3}\index{coderunner.hpp@{coderunner.hpp}!run\_command@{run\_command}}
+\index{run\_command@{run\_command}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{run\_command()}{run\_command()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3} 
+std\+::tuple$<$ std\+::string, std\+::string, bool $>$ run\+\_\+command (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{commands}{}\end{DoxyParamCaption})}
+
+
+
+Executes a list of commands sequentially and captures their output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & A vector of commands to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple containing\+:
+\begin{DoxyItemize}
+\item The HTML-\/formatted output of the commands.
+\item The timeline data for the Gantt chart.
+\item A boolean indicating if any command failed. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00378}{378}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ timer::time\_point<std::chrono::system\_clock>\ start,\ end;}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ std::string\ time;}
+\DoxyCodeLine{00383\ \ \ \ \ std::array<char,\ 128>\ buffer;}
+\DoxyCodeLine{00384\ \ \ \ \ std::string\ final\_result;}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordtype}{bool}\ err\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ command\ :\ commands)\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}}++;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ std::string\ result;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ std::string\ full\_command\ =\ \textcolor{stringliteral}{"{}script\ -\/q\ -\/c\ \(\backslash\)"{}"{}}\ +\ command\ +\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}\ +\ \textcolor{stringliteral}{"{}\ 2>\&1"{}};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ std::cout\ <<\ command\ <<\ std::endl;\ }
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ start\ =\ timer::system\_clock::now();}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ std::unique\_ptr<FILE,\ \textcolor{keyword}{decltype}(\&pclose)>\ pipe(popen(full\_command.c\_str(),\ \textcolor{stringliteral}{"{}r"{}}),\ pclose);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pipe)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}popen()\ failed!"{}});}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(buffer.data(),\ buffer.size(),\ pipe.get())\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ buffer.data();}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ std::cout\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ std::string\ html\_output\ =\ \mbox{\hyperlink{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b}{ansi\_to\_html}}(result);}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ std::string\ pre\_content\ =\ \mbox{\hyperlink{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622}{extract\_pre\_content}}(html\_output);}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ std::string\ start\_tags\ =\ std::format(R\textcolor{stringliteral}{"{}(<div\ class="{}command-\/box"{}>}}
+\DoxyCodeLine{00410\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <span\ class="{}ansi2"{}\ id\ =\ "{}cmd\{\}"{}>\ \{\}\ </span>}}
+\DoxyCodeLine{00411\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00412\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}error-\/box"{}>)"{},\ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}},\ command);}}
+\DoxyCodeLine{00413\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00414\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (pre\_content.length()\ >\ 0)}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ pre\_content\ =\ start\_tags\ +\ pre\_content\ +\ \textcolor{stringliteral}{"{}</div><br><br>"{}};}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ final\_result\ +=\ pre\_content;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_err\ =\ \textcolor{keyword}{false},\ is\_warn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ is\_err\ =\ \mbox{\hyperlink{coderunner_8hpp_a60eb1f1f817fc04129041772fe931da9}{get\_exit\_code}}(\textcolor{stringliteral}{"{}typescript"{}})\ !=\ 0;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_err)\ err\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.find(\textcolor{stringliteral}{"{}warning"{}})\ !=\ std::string::npos\ ||\ result.find(\textcolor{stringliteral}{"{}Warning"{}})\ !=\ std::string::npos\ ||\ result.find(\textcolor{stringliteral}{"{}WARNING"{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ is\_warn\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ end\ =\ timer::system\_clock::now();}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ std::string\ color\ =\ is\_err\ ?\ \textcolor{stringliteral}{"{}red"{}}\ :\ (is\_warn\ ?\ \textcolor{stringliteral}{"{}yellow"{}}\ :\ \textcolor{stringliteral}{"{}green"{}});}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ std::ostringstream\ ostr;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ ostr\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ command\ <<\ \ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ color\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}{formatDateTime}}(start)\ <<\ \textcolor{stringliteral}{"{}\ ,\ "{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}{formatDateTime}}(end)\ <<\ \textcolor{stringliteral}{"{},\ null\ ,\ "{}}\ <<\ (is\_err\ ?\ 0\ :\ 100)\ <<\ \textcolor{stringliteral}{"{}\ ,\ null\ ],"{}};}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ time\ +=\ ostr.str();}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(is\_err)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ std::remove(\textcolor{stringliteral}{"{}typescript"{}});}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ std::remove(\textcolor{stringliteral}{"{}typescript"{}});}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{return}\ \{final\_result,\ time,\ err\};}
+\DoxyCodeLine{00441\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb}\index{coderunner.hpp@{coderunner.hpp}!run\_command\_par@{run\_command\_par}}
+\index{run\_command\_par@{run\_command\_par}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{run\_command\_par()}{run\_command\_par()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb} 
+std\+::tuple$<$ std\+::string, std\+::string, bool $>$ run\+\_\+command\+\_\+par (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{commands}{}\end{DoxyParamCaption})}
+
+
+
+Executes a list of commands sequentially in parallel and captures their output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & A vector of commands to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple containing\+:
+\begin{DoxyItemize}
+\item The HTML-\/formatted output of the commands.
+\item The timeline data for the Gantt chart.
+\item A boolean indicating if any command failed. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00485}{485}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ timer::time\_point<std::chrono::system\_clock>\ start,\ end;}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ \ \ std::string\ time;}
+\DoxyCodeLine{00490\ \ \ \ \ std::array<char,\ 128>\ buffer;}
+\DoxyCodeLine{00491\ \ \ \ \ std::string\ final\_result;}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keywordtype}{bool}\ err\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ command\ :\ commands)\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ std::string\ result;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ std::string\ full\_command\ =\ command\ +\textcolor{stringliteral}{"{}\ 2>\&1"{}};}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ start\ =\ timer::system\_clock::now();}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ std::unique\_ptr<FILE,\ \textcolor{keyword}{decltype}(\&pclose)>\ pipe(popen(full\_command.c\_str(),\ \textcolor{stringliteral}{"{}r"{}}),\ pclose);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pipe)\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}popen()\ failed!"{}});}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(buffer.data(),\ buffer.size(),\ pipe.get())\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ buffer.data();}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{coderunner_8hpp_a0cd7cdd81ab9ac65636bef59ee163ade}{stdout\_mutex}});}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ command\ <<\ std::endl;}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ result\ <<\ std::endl;}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ std::string\ html\_output\ =\ \mbox{\hyperlink{coderunner_8hpp_a628ee1dab137e39f9905148445a2de6b}{ansi\_to\_html}}(result);}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ std::string\ pre\_content\ =\ \mbox{\hyperlink{coderunner_8hpp_aa4fcf103548bae6cf2a940ef85399622}{extract\_pre\_content}}(html\_output);}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_err\ =\ \textcolor{keyword}{false},\ is\_warn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pip\ =\ pipe.release();}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ is\_err\ =\ pclose(pip)\ !=\ 0;}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_err)\ err\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.find(\textcolor{stringliteral}{"{}warning"{}})\ !=\ std::string::npos\ ||\ result.find(\textcolor{stringliteral}{"{}Warning"{}})\ !=\ std::string::npos\ ||\ result.find(\textcolor{stringliteral}{"{}WARNING"{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ is\_warn\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ end\ =\ timer::system\_clock::now();}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ std::string\ color\ =\ is\_err\ ?\ \textcolor{stringliteral}{"{}red"{}}\ :\ (is\_warn\ ?\ \textcolor{stringliteral}{"{}yellow"{}}\ :\ \textcolor{stringliteral}{"{}green"{}});}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ std::ostringstream\ ostr;}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{coderunner_8hpp_a0cd7cdd81ab9ac65636bef59ee163ade}{stdout\_mutex}});}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}}++;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ ostr\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ command\ <<\ \ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'"{}}\ <<\ color\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)'\ ,\ "{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}{formatDateTime}}(start)\ <<\ \textcolor{stringliteral}{"{}\ ,\ "{}}\ <<\ \mbox{\hyperlink{coderunner_8hpp_a3f5b1698e28559945f9aad0250b213d6}{formatDateTime}}(end)\ <<\ \textcolor{stringliteral}{"{},\ null\ ,\ "{}}\ <<\ (is\_err\ ?\ 0\ :\ 100)\ <<\ \textcolor{stringliteral}{"{}\ ,\ null\ ],"{}};}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ time\ +=\ ostr.str();}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ start\_tags\ =\ std::format(R\textcolor{stringliteral}{"{}(<div\ class="{}command-\/box"{}>}}
+\DoxyCodeLine{00537\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <span\ class="{}ansi2"{}\ id\ =\ "{}cmd\{\}"{}>\ \{\}\ </span>}}
+\DoxyCodeLine{00538\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00539\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ class="{}error-\/box"{}>)"{},\ \mbox{\hyperlink{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}{counter}},\ command);}}
+\DoxyCodeLine{00540\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00541\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{keywordflow}{if}\ (pre\_content.length()\ >\ 0)}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pre\_content\ =\ start\_tags\ +\ pre\_content\ +\ \textcolor{stringliteral}{"{}</div><br><br>"{}};}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ final\_result\ +=\ pre\_content;}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(is\_err)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00548\ \ \ \ \ \}}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordflow}{return}\ \{final\_result,\ time,\ err\};}
+\DoxyCodeLine{00551\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff}\index{coderunner.hpp@{coderunner.hpp}!run\_commands@{run\_commands}}
+\index{run\_commands@{run\_commands}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{run\_commands()}{run\_commands()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff} 
+std\+::string run\+\_\+commands (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{commands}{}\end{DoxyParamCaption})}
+
+
+
+Executes a list of commands sequentially and generates an HTML report. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & A vector of commands to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The HTML report as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00449}{449}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ std::string\ time;}
+\DoxyCodeLine{00451\ \ \ \ \ std::string\ final\_result;}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_err\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{using\ }timer\ =\ std::chrono::system\_clock;}
+\DoxyCodeLine{00455\ \ \ \ \ timer::time\_point\ start,\ end;}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ start\ =\ timer::now();}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ command\ :\ commands)\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [result,\ command\_time,\ err]\ =\ \mbox{\hyperlink{coderunner_8hpp_ae430781c06ec1049f5d846176fda66d3}{run\_command}}(\{command\});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ final\_result\ +=\ result;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ time\ +=\ command\_time;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (err)\ \{\ is\_err\ =\ \textcolor{keyword}{true};\ \textcolor{keywordflow}{break};\ \}}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ end\ =\ timer::now();}
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keyword}{auto}\ elapsed\_seconds\ =\ std::chrono::duration<double>(end\ -\/\ start).count();}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_err)\{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[34m"{}}\ <<\ \textcolor{stringliteral}{"{}Compilation\ process\ completed\ in:\ "{}}\ <<\ elapsed\_seconds\ <<\ \textcolor{stringliteral}{"{}\ seconds"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00469\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}}\ <<\ \textcolor{stringliteral}{"{}Compilation\ process\ completed\ in:\ "{}}\ <<\ elapsed\_seconds\ <<\ \textcolor{stringliteral}{"{}\ seconds"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab}{create\_html}}(final\_result,\ time);}
+\DoxyCodeLine{00474\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_a837b06ab768dc62cbf9e289c80469dff_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63}\index{coderunner.hpp@{coderunner.hpp}!run\_commands\_parallel@{run\_commands\_parallel}}
+\index{run\_commands\_parallel@{run\_commands\_parallel}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{run\_commands\_parallel()}{run\_commands\_parallel()}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63} 
+std\+::string run\+\_\+commands\+\_\+parallel (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \&}]{command\+\_\+batches}{, }\item[{size\+\_\+t}]{num\+\_\+threads}{}\end{DoxyParamCaption})}
+
+
+
+Executes batches of commands in parallel using multiple threads and generates an HTML report. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+batches} & A vector of command batches, where each batch is a vector of command groups. \\
+\hline
+{\em num\+\_\+threads} & The maximum number of threads to use for parallel execution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The HTML report as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00560}{560}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00561\ \ \ \ \ std::string\ final\_result,\ total\_time;}
+\DoxyCodeLine{00562\ \ \ \ \ std::mutex\ result\_mutex;}
+\DoxyCodeLine{00563\ \ \ \ \ std::vector<std::thread>\ threads;}
+\DoxyCodeLine{00564\ \ \ \ \ std::atomic<bool>\ is\_err(\textcolor{keyword}{false});}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keyword}{using\ }clock\ =\ std::chrono::system\_clock;}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ clock::now();}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ batch\ :\ command\_batches)\ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ std::vector<std::future<void>>\ futures;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ is\_err.store(\textcolor{keyword}{false});}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ command\ :\ batch)\ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ futures.emplace\_back(std::async(std::launch::async,\ [\&command,\ \&final\_result,\ \&total\_time,\ \&result\_mutex,\ \&is\_err]()\ \{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_err.load())\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [result,\ command\_time,\ err]\ =\ \mbox{\hyperlink{coderunner_8hpp_aa01f606e7178210f2c40d315f4e029eb}{run\_command\_par}}(command);}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(result\_mutex);}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ final\_result\ +=\ result;}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_time\ +=\ command\_time;}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (err)\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_err.store(\textcolor{keyword}{true});}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (futures.size()\ >=\ num\_threads)\ \{}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ future\ :\ futures)\ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ future.get();}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ futures.clear();}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ future\ :\ futures)\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ future.get();}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_err.load())\ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00608\ \ \ \ \ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ clock::now();}
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keywordtype}{double}\ elapsed\ =\ std::chrono::duration<double>(end\ -\/\ start).count();}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ std::cout\ <<\ (is\_err.load()\ ?\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}}\ :\ \textcolor{stringliteral}{"{}\(\backslash\)033[34m"{}})}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Compilation\ process\ completed\ in:\ "{}}\ <<\ elapsed\ <<\ \textcolor{stringliteral}{"{}\ seconds"{}}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{coderunner_8hpp_a2d3656cb04c48144b93aa0d0ff1437ab}{create\_html}}(final\_result,\ total\_time);}
+\DoxyCodeLine{00618\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{coderunner_8hpp_ae9b0399497c010ffea9d950f94bd9c63_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{coderunner_8hpp_a513d7c86abe486db371d75c04cb42fb2}\index{coderunner.hpp@{coderunner.hpp}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a513d7c86abe486db371d75c04cb42fb2} 
+padding \+\_\+\+\_\+pad0\+\_\+\+\_\+}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00220}{220}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a661b774c71d967dc3402ac2c4f80d2c7}\index{coderunner.hpp@{coderunner.hpp}!base@{base}}
+\index{base@{base}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a661b774c71d967dc3402ac2c4f80d2c7} 
+auto base = std\+::chrono\+::system\+\_\+clock\+::from\+\_\+time\+\_\+t(0)}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00335}{335}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a14d48c2e9f05d0b03044eb45f308fcb0}\index{coderunner.hpp@{coderunner.hpp}!body@{body}}
+\index{body@{body}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{body}{body}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a14d48c2e9f05d0b03044eb45f308fcb0} 
+body}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ \ margin:\ 0}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00218}{218}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266}\index{coderunner.hpp@{coderunner.hpp}!counter@{counter}}
+\index{counter@{counter}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{counter}{counter}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a617a47c70795bcff659815ad0efd2266} 
+int counter = 0}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00367}{367}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a45cc6f8d0d8a49afb035f62147ea317c}\index{coderunner.hpp@{coderunner.hpp}!Details@{Details}}
+\index{Details@{Details}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{Details}{Details}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a45cc6f8d0d8a49afb035f62147ea317c} 
+Compilation Details}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00240}{240}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a28141bc89afb42a8f39e596105992271}\index{coderunner.hpp@{coderunner.hpp}!html@{html}}
+\index{html@{html}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{html}{html}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a28141bc89afb42a8f39e596105992271} 
+return html = output}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00218}{218}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_aefbee10b5bc373190824a9a7f24289aa}\index{coderunner.hpp@{coderunner.hpp}!py\_mutex@{py\_mutex}}
+\index{py\_mutex@{py\_mutex}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{py\_mutex}{py\_mutex}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_aefbee10b5bc373190824a9a7f24289aa} 
+std\+::mutex py\+\_\+mutex}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00027}{27}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a0cd7cdd81ab9ac65636bef59ee163ade}\index{coderunner.hpp@{coderunner.hpp}!stdout\_mutex@{stdout\_mutex}}
+\index{stdout\_mutex@{stdout\_mutex}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{stdout\_mutex}{stdout\_mutex}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a0cd7cdd81ab9ac65636bef59ee163ade} 
+std\+::mutex stdout\+\_\+mutex}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00027}{27}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+
+\Hypertarget{coderunner_8hpp_a0a21766ff3616f16d45c18c5db60c21c}\index{coderunner.hpp@{coderunner.hpp}!Summary@{Summary}}
+\index{Summary@{Summary}!coderunner.hpp@{coderunner.hpp}}
+\doxysubsubsection{\texorpdfstring{Summary}{Summary}}
+{\footnotesize\ttfamily \label{coderunner_8hpp_a0a21766ff3616f16d45c18c5db60c21c} 
+$<$/style$>$$<$/head$>$$<$\mbox{\hyperlink{coderunner_8hpp_a14d48c2e9f05d0b03044eb45f308fcb0}{body}} class="{}body\+\_\+foreground body\+\_\+background"{}$>$$<$h1 class="{}forge-\/box"{}$>$$<$a href="{}https\+: $<$/h1$>$$<$h2 style="{}color\+: black;"{}$>$ Build Summary}
+
+
+
+Definition at line \mbox{\hyperlink{coderunner_8hpp_source_l00231}{231}} of file \mbox{\hyperlink{coderunner_8hpp_source}{coderunner.\+hpp}}.
+

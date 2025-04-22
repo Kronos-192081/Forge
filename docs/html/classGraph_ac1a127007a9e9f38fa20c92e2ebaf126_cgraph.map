@@ -1,0 +1,6 @@
+<map id="Graph::hasCycle" name="Graph::hasCycle">
+<area shape="rect" id="Node000001" title="Detects if the graph contains a cycle." alt="" coords="5,29,133,55"/>
+<area shape="rect" id="Node000002" href="$classGraph.html#aa8238f9646c72f3aea32dd7fd4321b0b" title="Helper function for cycle detection using Depth&#45;First Search (DFS)." alt="" coords="181,29,369,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,39,167,39,167,45,134,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="242,31,234,21,238,11,252,5,275,3,304,6,315,15,312,20,302,11,275,8,253,10,242,15,240,20,246,28"/>
+</map>

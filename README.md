@@ -1,6 +1,7 @@
 <div align="center">
-  <img src="forge.png" alt="Forge Logo" width="400">
+  <img src="/home/shila/Documents/Design_Lab/forge.png" alt="Forge Logo" width="400">
 </div>
+
 
 ## Overview
 

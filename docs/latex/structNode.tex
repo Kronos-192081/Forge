@@ -1,0 +1,208 @@
+\doxysection{Node Struct Reference}
+\hypertarget{structNode}{}\label{structNode}\index{Node@{Node}}
+
+
+Represents a node in a dependency graph with associated target data.  
+
+
+
+
+Collaboration diagram for Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{structNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structNode_a0e28753e22ef956f881210795f1c102f}{operator==}} (const \mbox{\hyperlink{structNode}{Node}} \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if two nodes are equal based on their names. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structNode_a438f9a583f733cd05d0a6e0ef28dd3ef}{operator!=}} (const \mbox{\hyperlink{structNode}{Node}} \&other) const
+\begin{DoxyCompactList}\small\item\em Checks if two nodes are not equal based on their names. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structNode_acbf4c424e4e58ae45491583204bd80ce}{operator$<$}} (const \mbox{\hyperlink{structNode}{Node}} \&other) const
+\begin{DoxyCompactList}\small\item\em Compares two nodes for ordering based on their names. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}}
+\begin{DoxyCompactList}\small\item\em name of the node \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtarget}{target}} \mbox{\hyperlink{structNode_a59ef6539bd309a3e914294b922e70830}{targ\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em target data associated with the node \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{structNode_ac8f1251289ccce9277c2cac6f8871365}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structNode}{Node}} \&node)
+\begin{DoxyCompactList}\small\item\em Outputs the node\textquotesingle{}s name to an output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a node in a dependency graph with associated target data. 
+
+This struct encapsulates a node\textquotesingle{}s name and its associated target data. It provides comparison operators for equality, inequality, and ordering, as well as a friend function for outputting the node\textquotesingle{}s name to an output stream. 
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00145}{145}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structNode_a438f9a583f733cd05d0a6e0ef28dd3ef}\index{Node@{Node}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily \label{structNode_a438f9a583f733cd05d0a6e0ef28dd3ef} 
+bool Node\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNode}{Node}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if two nodes are not equal based on their names. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other node to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the names are not equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00163}{163}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structNode_acbf4c424e4e58ae45491583204bd80ce}\index{Node@{Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{structNode_acbf4c424e4e58ae45491583204bd80ce} 
+bool Node\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNode}{Node}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compares two nodes for ordering based on their names. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other node to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this node\textquotesingle{}s name is lexicographically less than the other\textquotesingle{}s name. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}}\ <\ other.\mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}};}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{structNode_a0e28753e22ef956f881210795f1c102f}\index{Node@{Node}!operator==@{operator==}}
+\index{operator==@{operator==}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{structNode_a0e28753e22ef956f881210795f1c102f} 
+bool Node\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structNode}{Node}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if two nodes are equal based on their names. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other node to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the names are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00154}{154}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}}\ ==\ other.\mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structNode_ac8f1251289ccce9277c2cac6f8871365}\index{Node@{Node}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{structNode_ac8f1251289ccce9277c2cac6f8871365} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{structNode}{Node}} \&}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Outputs the node\textquotesingle{}s name to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The output stream. \\
+\hline
+{\em node} & The node to output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output stream with the node\textquotesingle{}s name appended. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00182}{182}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ os\ <<\ node.\mbox{\hyperlink{structNode_aa829edc37a2c92dacdab95bcef248175}{name}};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structNode_aa829edc37a2c92dacdab95bcef248175}\index{Node@{Node}!name@{name}}
+\index{name@{name}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structNode_aa829edc37a2c92dacdab95bcef248175} 
+std\+::string Node\+::name}
+
+
+
+name of the node 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00146}{146}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{structNode_a59ef6539bd309a3e914294b922e70830}\index{Node@{Node}!targ\_data@{targ\_data}}
+\index{targ\_data@{targ\_data}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{targ\_data}{targ\_data}}
+{\footnotesize\ttfamily \label{structNode_a59ef6539bd309a3e914294b922e70830} 
+\mbox{\hyperlink{structtarget}{target}} Node\+::targ\+\_\+data}
+
+
+
+target data associated with the node 
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00147}{147}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{main_8cpp}{main.\+cpp}}\end{DoxyCompactItemize}

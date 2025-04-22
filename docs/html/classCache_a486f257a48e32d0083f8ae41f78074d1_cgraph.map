@@ -1,0 +1,5 @@
+<map id="Cache::Cache" name="Cache::Cache">
+<area shape="rect" id="Node000001" title="Constructs a Cache object and initializes the SQLite database." alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000002" href="$classCache.html#a2b5cc1c4e9e0d9fa38e295481e104037" title="Initializes the SQLite database and creates the required table if it does not exist." alt="" coords="164,5,309,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,15,150,15,150,21,116,21"/>
+</map>

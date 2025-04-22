@@ -1,0 +1,15 @@
+<map id="run_commands_parallel" name="run_commands_parallel">
+<area shape="rect" id="Node000001" title="Executes batches of commands in parallel using multiple threads and generates an HTML report." alt="" coords="624,56,803,81"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="521,31,576,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="617,56,576,50,577,45,618,51"/>
+<area shape="rect" id="Node000003" href="$coderunner_8hpp.html#a628ee1dab137e39f9905148445a2de6b" title="Converts ANSI text to HTML using the Python ansi2html library." alt="" coords="367,31,473,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="508,46,473,46,473,41,508,41"/>
+<area shape="rect" id="Node000004" href="$coderunner_8hpp.html#ae430781c06ec1049f5d846176fda66d3" title="Executes a list of commands sequentially and captures their output." alt="" coords="190,31,305,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="353,46,305,46,305,41,353,41"/>
+<area shape="rect" id="Node000006" href="$coderunner_8hpp.html#aa01f606e7178210f2c40d315f4e029eb" title="Executes a list of commands sequentially in parallel and captures their output." alt="" coords="176,80,319,105"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="363,62,294,82,292,77,361,57"/>
+<area shape="rect" id="Node000005" href="$coderunner_8hpp.html#a837b06ab768dc62cbf9e289c80469dff" title="Executes a list of commands sequentially and generates an HTML report." alt="" coords="5,5,128,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="176,36,128,29,129,24,176,31"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="142,9,295,4,385,7,474,17,522,30,520,35,473,22,384,12,295,9,142,14"/>
+<area shape="poly" id="edge7_Node000006_Node000001" title=" " alt="" coords="332,86,624,71,624,76,332,91"/>
+</map>

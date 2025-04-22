@@ -1,0 +1,393 @@
+\doxysection{parser.\+hpp File Reference}
+\hypertarget{parser_8hpp}{}\label{parser_8hpp}\index{parser.hpp@{parser.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+Include dependency graph for parser.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{parser_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{parser_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtarget}{target}}
+\begin{DoxyCompactList}\small\item\em Struct representing a build target with its dependencies and commands. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classParser}{Parser}}
+\begin{DoxyCompactList}\small\item\em Class for parsing a build configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{parser_8hpp_a17f760256046df23dd0ab46602f04d02}{COLOR\+\_\+\+RESET}}~"{}\textbackslash{}033\mbox{[}0m"{}
+\item 
+\#define \mbox{\hyperlink{parser_8hpp_ad86358bf19927183dd7b4ae215a29731}{COLOR\+\_\+\+RED}}~"{}\textbackslash{}033\mbox{[}31m"{}
+\item 
+\#define \mbox{\hyperlink{parser_8hpp_a4534b577b74a58b0f4b7be027af664e0}{COLOR\+\_\+\+YELLOW}}~"{}\textbackslash{}033\mbox{[}33m"{}
+\item 
+\#define \mbox{\hyperlink{parser_8hpp_a23c70d699a5a775bc2e1ebeb8603f630}{COLOR\+\_\+\+BLUE}}~"{}\textbackslash{}033\mbox{[}34m"{}
+\item 
+\#define \mbox{\hyperlink{parser_8hpp_af138fe50df6ee927a6968fa8b7d77b26}{LOG\+\_\+\+COLOR}}(LOG\+\_\+\+LEVEL)
+\begin{DoxyCompactList}\small\item\em Macro to determine the color for log messages based on the log level. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}{LOG}}(LOG\+\_\+\+LEVEL,  LOG\+\_\+\+STRING)
+\begin{DoxyCompactList}\small\item\em Macro to log messages to the console with color and log level filtering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$
+\begin{DoxyCompactList}\small\item\em Alias for a variable table. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{structtarget}{target}}$>$
+\begin{DoxyCompactList}\small\item\em Alias for a target table. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$
+\begin{DoxyCompactList}\small\item\em Alias for an import table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}} \{ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}}
+, \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}}
+, \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}
+, \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum representing different log levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{parser_8hpp_a0e3cb927f70f28b4b95c2254828cf6be}{set\+\_\+log\+\_\+level}} (std\+::string loglevel)
+\begin{DoxyCompactList}\small\item\em Sets the log level for filtering log messages. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{parser_8hpp_a077d2d87060909c21219040c4709c9c9}{replace\+\_\+vars}} (std\+::string \&line, const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \&variables)
+\begin{DoxyCompactList}\small\item\em Replaces variables in a string with their corresponding values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}} \mbox{\hyperlink{parser_8hpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\+\_\+\+LEVEL}}
+\begin{DoxyCompactList}\small\item\em Global variable to filter log messages based on their level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{parser_8hpp_a23c70d699a5a775bc2e1ebeb8603f630}\index{parser.hpp@{parser.hpp}!COLOR\_BLUE@{COLOR\_BLUE}}
+\index{COLOR\_BLUE@{COLOR\_BLUE}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{COLOR\_BLUE}{COLOR\_BLUE}}
+{\footnotesize\ttfamily \label{parser_8hpp_a23c70d699a5a775bc2e1ebeb8603f630} 
+\#define COLOR\+\_\+\+BLUE~"{}\textbackslash{}033\mbox{[}34m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00015}{15}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_ad86358bf19927183dd7b4ae215a29731}\index{parser.hpp@{parser.hpp}!COLOR\_RED@{COLOR\_RED}}
+\index{COLOR\_RED@{COLOR\_RED}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{COLOR\_RED}{COLOR\_RED}}
+{\footnotesize\ttfamily \label{parser_8hpp_ad86358bf19927183dd7b4ae215a29731} 
+\#define COLOR\+\_\+\+RED~"{}\textbackslash{}033\mbox{[}31m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00013}{13}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_a17f760256046df23dd0ab46602f04d02}\index{parser.hpp@{parser.hpp}!COLOR\_RESET@{COLOR\_RESET}}
+\index{COLOR\_RESET@{COLOR\_RESET}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{COLOR\_RESET}{COLOR\_RESET}}
+{\footnotesize\ttfamily \label{parser_8hpp_a17f760256046df23dd0ab46602f04d02} 
+\#define COLOR\+\_\+\+RESET~"{}\textbackslash{}033\mbox{[}0m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00012}{12}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_a4534b577b74a58b0f4b7be027af664e0}\index{parser.hpp@{parser.hpp}!COLOR\_YELLOW@{COLOR\_YELLOW}}
+\index{COLOR\_YELLOW@{COLOR\_YELLOW}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{COLOR\_YELLOW}{COLOR\_YELLOW}}
+{\footnotesize\ttfamily \label{parser_8hpp_a4534b577b74a58b0f4b7be027af664e0} 
+\#define COLOR\+\_\+\+YELLOW~"{}\textbackslash{}033\mbox{[}33m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00014}{14}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe}\index{parser.hpp@{parser.hpp}!LOG@{LOG}}
+\index{LOG@{LOG}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{LOG}{LOG}}
+{\footnotesize\ttfamily \label{parser_8hpp_a3beb32f05a493c648e984c27bdabebfe} 
+\#define LOG(\begin{DoxyParamCaption}\item[{}]{LOG\+\_\+\+LEVEL}{, }\item[{}]{LOG\+\_\+\+STRING}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (LOG\_LEVEL\ >=\ \mbox{\hyperlink{parser_8cpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\_LEVEL}})\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \mbox{\hyperlink{parser_8hpp_af138fe50df6ee927a6968fa8b7d77b26}{LOG\_COLOR}}(LOG\_LEVEL)\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ \#LOG\_LEVEL\ <<\ \textcolor{stringliteral}{"{}]\ "{}}\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ LOG\_STRING\ <<\ \mbox{\hyperlink{parser_8hpp_a17f760256046df23dd0ab46602f04d02}{COLOR\_RESET}}\ <<\ std::endl;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Macro to log messages to the console with color and log level filtering. 
+
+This macro checks if the provided log level is greater than or equal to the global {\ttfamily FILTER\+\_\+\+LEVEL}. If so, it prints the log message to the console with the appropriate color and log level tag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em LOG\+\_\+\+LEVEL} & The log level of the message (e.\+g., INFO, DEBUG, ERROR). \\
+\hline
+{\em LOG\+\_\+\+STRING} & The log message to be printed.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item The log message is prefixed with the log level (e.\+g., {\ttfamily \mbox{[}INFO\mbox{]}}, {\ttfamily \mbox{[}DEBUG\mbox{]}}).
+\item The message is displayed in a color corresponding to the log level.
+\item The color is reset after the message is printed. 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00075}{75}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ LOG(LOG\_LEVEL,\ LOG\_STRING)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ if\ (LOG\_LEVEL\ >=\ FILTER\_LEVEL)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ std::cout\ <<\ LOG\_COLOR(LOG\_LEVEL)\ <<\ "{}["{}\ <<\ \#LOG\_LEVEL\ <<\ "{}]\ "{}\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ LOG\_STRING\ <<\ COLOR\_RESET\ <<\ std::endl;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \}}}
+
+\end{DoxyCode}
+\Hypertarget{parser_8hpp_af138fe50df6ee927a6968fa8b7d77b26}\index{parser.hpp@{parser.hpp}!LOG\_COLOR@{LOG\_COLOR}}
+\index{LOG\_COLOR@{LOG\_COLOR}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{LOG\_COLOR}{LOG\_COLOR}}
+{\footnotesize\ttfamily \label{parser_8hpp_af138fe50df6ee927a6968fa8b7d77b26} 
+\#define LOG\+\_\+\+COLOR(\begin{DoxyParamCaption}\item[{}]{LOG\+\_\+\+LEVEL}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(LOG\_LEVEL\ ==\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}}\ ?\ \mbox{\hyperlink{parser_8hpp_a23c70d699a5a775bc2e1ebeb8603f630}{COLOR\_BLUE}}\ :\ (LOG\_LEVEL\ ==\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}}\ ?\ \mbox{\hyperlink{parser_8hpp_a4534b577b74a58b0f4b7be027af664e0}{COLOR\_YELLOW}}\ :\ \mbox{\hyperlink{parser_8hpp_ad86358bf19927183dd7b4ae215a29731}{COLOR\_RED}}))}
+
+\end{DoxyCode}
+
+
+Macro to determine the color for log messages based on the log level. 
+
+This macro evaluates the log level and returns the corresponding color code\+:
+\begin{DoxyItemize}
+\item {\ttfamily INFO} logs are displayed in blue.
+\item {\ttfamily DEBUG} logs are displayed in yellow.
+\item Other log levels (e.\+g., {\ttfamily ERROR}) are displayed in red.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em LOG\+\_\+\+LEVEL} & The log level (e.\+g., INFO, DEBUG, ERROR). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color code as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00058}{58}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}\index{parser.hpp@{parser.hpp}!import\_table@{import\_table}}
+\index{import\_table@{import\_table}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{import\_table}{import\_table}}
+{\footnotesize\ttfamily \label{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b} 
+using \mbox{\hyperlink{parser_8hpp_ab7e28c36733ffbd709e7e1c52a71e98b}{import\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$}
+
+
+
+Alias for an import table. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00118}{118}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_a19db4ee1e557440c953e346454946ed4}\index{parser.hpp@{parser.hpp}!targ\_table@{targ\_table}}
+\index{targ\_table@{targ\_table}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{targ\_table}{targ\_table}}
+{\footnotesize\ttfamily \label{parser_8hpp_a19db4ee1e557440c953e346454946ed4} 
+using \mbox{\hyperlink{parser_8hpp_a19db4ee1e557440c953e346454946ed4}{targ\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{structtarget}{target}}$>$}
+
+
+
+Alias for a target table. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00117}{117}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+\Hypertarget{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}\index{parser.hpp@{parser.hpp}!var\_table@{var\_table}}
+\index{var\_table@{var\_table}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{var\_table}{var\_table}}
+{\footnotesize\ttfamily \label{parser_8hpp_a212d2cd7d3dba32819c42356390626ac} 
+using \mbox{\hyperlink{parser_8hpp_a212d2cd7d3dba32819c42356390626ac}{var\+\_\+table}} = std\+::unordered\+\_\+map$<$std\+::string, std\+::string$>$}
+
+
+
+Alias for a variable table. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00116}{116}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9}\index{parser.hpp@{parser.hpp}!LogLevel@{LogLevel}}
+\index{LogLevel@{LogLevel}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{LogLevel}{LogLevel}}
+{\footnotesize\ttfamily \label{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9} 
+enum \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}}}
+
+
+
+Enum representing different log levels. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INFO@{INFO}!parser.hpp@{parser.hpp}}\index{parser.hpp@{parser.hpp}!INFO@{INFO}}}\Hypertarget{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}\label{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806} 
+INFO&Informational messages. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEBUG@{DEBUG}!parser.hpp@{parser.hpp}}\index{parser.hpp@{parser.hpp}!DEBUG@{DEBUG}}}\Hypertarget{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}\label{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f} 
+DEBUG&Debugging messages. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!parser.hpp@{parser.hpp}}\index{parser.hpp@{parser.hpp}!DEFAULT@{DEFAULT}}}\Hypertarget{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a88ec7d5086d2469ba843c7fcceade8a6}\label{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a88ec7d5086d2469ba843c7fcceade8a6} 
+DEFAULT&Default log level. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERROR@{ERROR}!parser.hpp@{parser.hpp}}\index{parser.hpp@{parser.hpp}!ERROR@{ERROR}}}\Hypertarget{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}\label{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90} 
+ERROR&Error messages. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{parser_8hpp_source_l00020}{20}} of file \mbox{\hyperlink{parser_8hpp_source}{parser.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}},\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}},\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}}\ \ }
+\DoxyCodeLine{00025\ \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{parser_8hpp_a077d2d87060909c21219040c4709c9c9}\index{parser.hpp@{parser.hpp}!replace\_vars@{replace\_vars}}
+\index{replace\_vars@{replace\_vars}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{replace\_vars()}{replace\_vars()}}
+{\footnotesize\ttfamily \label{parser_8hpp_a077d2d87060909c21219040c4709c9c9} 
+void replace\+\_\+vars (\begin{DoxyParamCaption}\item[{std\+::string \&}]{line}{, }\item[{const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \&}]{variables}{}\end{DoxyParamCaption})}
+
+
+
+Replaces variables in a string with their corresponding values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The string in which variables will be replaced. \\
+\hline
+{\em variables} & A map of variable names to their values. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ std::regex\ var\_pattern(R\textcolor{stringliteral}{"{}(\(\backslash\)\$\(\backslash\)(([\(\backslash\)w\(\backslash\).]+)\(\backslash\)))"{});}}
+\DoxyCodeLine{00022\ \textcolor{stringliteral}{\ \ \ \ std::smatch\ match;}}
+\DoxyCodeLine{00023\ \textcolor{stringliteral}{\ \ \ \ std::string::const\_iterator\ search\_start(line.cbegin());}}
+\DoxyCodeLine{00024\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{while}\ (std::regex\_search(search\_start,\ line.cend(),\ match,\ var\_pattern))\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::string\ var\_name\ =\ match[1].str();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (variables.find(var\_name)\ !=\ variables.end())\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ line.replace(match.position(0),\ match.length(0),\ variables.at(var\_name));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ search\_start\ =\ line.cbegin()\ +\ match.position(0)\ +\ variables.at(var\_name).length();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ search\_start\ =\ match.suffix().first;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{parser_8hpp_a077d2d87060909c21219040c4709c9c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{parser_8hpp_a0e3cb927f70f28b4b95c2254828cf6be}\index{parser.hpp@{parser.hpp}!set\_log\_level@{set\_log\_level}}
+\index{set\_log\_level@{set\_log\_level}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{set\_log\_level()}{set\_log\_level()}}
+{\footnotesize\ttfamily \label{parser_8hpp_a0e3cb927f70f28b4b95c2254828cf6be} 
+void set\+\_\+log\+\_\+level (\begin{DoxyParamCaption}\item[{std\+::string}]{loglevel}{}\end{DoxyParamCaption})}
+
+
+
+Sets the log level for filtering log messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loglevel} & The log level as a string (e.\+g., "{}\+INFO"{}, "{}\+DEBUG"{}). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (loglevel\ ==\ \textcolor{stringliteral}{"{}INFO"{}})\ \mbox{\hyperlink{parser_8cpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\_LEVEL}}\ =\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}};}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loglevel\ ==\ \textcolor{stringliteral}{"{}DEBUG"{}})\ \mbox{\hyperlink{parser_8cpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\_LEVEL}}\ =\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (loglevel\ ==\ \textcolor{stringliteral}{"{}ERROR"{}})\ \mbox{\hyperlink{parser_8cpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\_LEVEL}}=\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a2fd6f336d08340583bd620a7f5694c90}{ERROR}};}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{else}\ \mbox{\hyperlink{parser_8cpp_ad2671be610f8df2f05d87cbda15d6b43}{FILTER\_LEVEL}}\ =\ \mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}};}
+\DoxyCodeLine{00011\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{parser_8hpp_a0e3cb927f70f28b4b95c2254828cf6be_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{parser_8hpp_ad2671be610f8df2f05d87cbda15d6b43}\index{parser.hpp@{parser.hpp}!FILTER\_LEVEL@{FILTER\_LEVEL}}
+\index{FILTER\_LEVEL@{FILTER\_LEVEL}!parser.hpp@{parser.hpp}}
+\doxysubsubsection{\texorpdfstring{FILTER\_LEVEL}{FILTER\_LEVEL}}
+{\footnotesize\ttfamily \label{parser_8hpp_ad2671be610f8df2f05d87cbda15d6b43} 
+\mbox{\hyperlink{parser_8hpp_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}} FILTER\+\_\+\+LEVEL\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global variable to filter log messages based on their level. 
+
+
+
+Definition at line \mbox{\hyperlink{parser_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{parser_8cpp_source}{parser.\+cpp}}.
+

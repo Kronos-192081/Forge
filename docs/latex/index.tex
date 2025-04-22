@@ -1,0 +1,198 @@
+\chapter{Forge}
+\hypertarget{index}{}\label{index}\index{Forge@{Forge}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+   \hypertarget{index_autotoc_md0}{}\doxysubsection{\texorpdfstring{Overview}{Overview}}\label{index_autotoc_md0}
+Forge is a {\bfseries{modern}} and {\bfseries{user-\/friendly build system}} written in {\bfseries{C++20}}. It is designed to simplify and optimize the build process for projects of any size. With its powerful features and intuitive design, Forge is the perfect tool for developers looking for a flexible and efficient build system.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{Key Features}{Key Features}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Decomposition of Build Configurations}}\+: ~\newline
+ Forge allows you to split build configurations into multiple reusable files, making it easier to manage complex projects.
+\item {\bfseries{Python-\/\+Like Imports}}\+: ~\newline
+ Supports Python-\/like imports, optimizing the parsing and processing phases of configurations.
+\item {\bfseries{HTML Build Results}}\+: ~\newline
+ Generates {\bfseries{HTML outputs}} of the build results, making them easy to read and understand.
+\item {\bfseries{Caching}}\+: ~\newline
+ Implements caching mechanisms to avoid redundant builds, improving performance.
+\item {\bfseries{Parallel Processing}}\+: ~\newline
+ Supports parallel execution of tasks, significantly speeding up the build process.
+\item {\bfseries{Ease of Use}}\+: ~\newline
+ Designed to be simple and intuitive, making it easy to learn and use for developers of all skill levels.
+\item {\bfseries{Flexibility}}\+: ~\newline
+ A powerful and flexible system that can be adapted to any project.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Why Choose Forge?}{Why Choose Forge?}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{1. {\bfseries{Readable Build Outputs}}}{1. {\bfseries{Readable Build Outputs}}}}\label{index_autotoc_md5}
+Forge generates visually appealing {\bfseries{HTML reports}} for build results, making it easy to identify issues and understand the build process.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{2. {\bfseries{Optimized for Speed}}}{2. {\bfseries{Optimized for Speed}}}}\label{index_autotoc_md7}
+With features like {\bfseries{caching}} and {\bfseries{parallel processing}}, Forge ensures that your builds are as fast and efficient as possible.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{3. {\bfseries{Modern Design}}}{3. {\bfseries{Modern Design}}}}\label{index_autotoc_md9}
+Built with {\bfseries{C++20}}, Forge leverages the latest advancements in the language to provide a robust and modern build system.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{How It Works}{How It Works}}\label{index_autotoc_md11}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Define Your Build Configurations}}\+: ~\newline
+ Write your build configurations in a modular and reusable way.
+\item {\bfseries{Run Forge}}\+: ~\newline
+ Use Forge to parse and process your configurations.
+\item {\bfseries{View Results}}\+: ~\newline
+ Check the {\bfseries{HTML output}} for a detailed summary of the build process.
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md13}{}\doxysubsection{\texorpdfstring{Directory Structure}{Directory Structure}}\label{index_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Directory\ structure:}
+\DoxyCodeLine{└──\ kronos-\/192081-\/forge/}
+\DoxyCodeLine{\ \ \ \ ├──\ README.md}
+\DoxyCodeLine{\ \ \ \ ├──\ argparse.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ cache.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ coderunner.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ configure}
+\DoxyCodeLine{\ \ \ \ ├──\ Doxyfile}
+\DoxyCodeLine{\ \ \ \ ├──\ graph.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ main.cpp}
+\DoxyCodeLine{\ \ \ \ ├──\ Makefile}
+\DoxyCodeLine{\ \ \ \ ├──\ parser.cpp}
+\DoxyCodeLine{\ \ \ \ ├──\ parser.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ tabulate.hpp}
+\DoxyCodeLine{\ \ \ \ ├──\ doxygen-\/awesome-\/css/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ README.md}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ Doxyfile}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/darkmode-\/toggle.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/fragment-\/copy-\/button.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/interactive-\/toc.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/paragraph-\/link.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/sidebar-\/only-\/darkmode-\/toggle.css}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/sidebar-\/only.css}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome-\/tabs.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/awesome.css}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ LICENSE}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ Makefile}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ package.json}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ .gitignore}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ .npmignore}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ docs/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ customization.md}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ extensions.md}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ tricks.md}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ └──\ img/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ doxygen-\/custom/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ custom-\/alternative.css}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ custom.css}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ ├──\ header.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ └──\ toggle-\/alternative-\/theme.js}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ img/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ include/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ └──\ MyLibrary/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ \ \ \ \ ├──\ example.hpp}
+\DoxyCodeLine{\ \ \ \ │\ \ \ │\ \ \ \ \ \ \ └──\ subclass-\/example.hpp}
+\DoxyCodeLine{\ \ \ \ │\ \ \ └──\ .github/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ └──\ workflows/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ └──\ publish.yaml}
+\DoxyCodeLine{\ \ \ \ ├──\ test/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ 2>\&1}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ array.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ array\_gen}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ cd.py}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ forgefile}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ output.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ output2.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ output3.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ ├──\ sample.c}
+\DoxyCodeLine{\ \ \ \ │\ \ \ └──\ sample\_dep.c}
+\DoxyCodeLine{\ \ \ \ ├──\ test2/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ └──\ Query-\/Optimiser/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ README.md}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ call.py}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ clean.forge}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ deploy.py}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ forge\_output.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ forgefile}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ inp.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ lexer.forge}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ Makefile}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ output.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ output2.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ output3.html}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ requirements.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ res.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test.l}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test.y}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test\_res}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test\_target\_translator.cxx}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test\_translator.cxx}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ test\_translator.h}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ translator.forge}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ .gitignore}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ ├──\ tmp/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ │\ \ \ ├──\ in.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ │\ \ \ └──\ out.txt}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ └──\ .streamlit/}
+\DoxyCodeLine{\ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ └──\ config.toml}
+\DoxyCodeLine{\ \ \ \ └──\ test\_files/}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ sample.mk}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ sample2.mk}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ sample3.mk}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{index_autotoc_md14}
+\hypertarget{index_autotoc_md15}{}\doxysubsubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md15}
+
+\begin{DoxyItemize}
+\item {\bfseries{C++20 Compiler}} (e.\+g., GCC 10+, Clang 10+)
+\item {\bfseries{Python 3}} (for certain features like HTML generation)
+\item {\bfseries{SQLite3}} (for caching)
+\item {\bfseries{Open\+SSL}} (for hashing)
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsubsection{\texorpdfstring{Steps}{Steps}}\label{index_autotoc_md16}
+
+\begin{DoxyEnumerate}
+\item Clone the repository\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Kronos-\/192081/Forge.git}
+\DoxyCodeLine{cd\ forge}
+
+\end{DoxyCode}
+
+\item Install Pre-\/requisites\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./configure}
+
+\end{DoxyCode}
+
+\item Build Forge\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+\item Install Forge\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ make\ install}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md17}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{index_autotoc_md17}
+We welcome contributions to Forge! To get started\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1.\ Fork\ the\ repository.}
+\DoxyCodeLine{2.\ Create\ a\ new\ branch\ for\ your\ feature\ or\ bug\ fix.}
+\DoxyCodeLine{3.\ Submit\ a\ pull\ request.}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md18}{}\doxysubsubsection{\texorpdfstring{Acknowledgments}{Acknowledgments}}\label{index_autotoc_md18}
+Special thanks to p-\/ranav for the libraries argparse and tabulate which has streamlined the development of Forge. 
