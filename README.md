@@ -64,6 +64,7 @@ Built with **C++20**, Forge leverages the latest advancements in the language to
 ---
 
 ## Directory Structure
+```
 Directory structure:
 └── kronos-192081-forge/
     ├── README.md
@@ -156,6 +157,7 @@ Directory structure:
         ├── sample.mk
         ├── sample2.mk
         └── sample3.mk
+```
 
 
 ## Installation
