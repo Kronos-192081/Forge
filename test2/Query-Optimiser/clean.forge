@@ -1,0 +1,6 @@
+clean:
+	rm  test_res\
+		test_translator.o\
+		test_target_translator.o\
+		lex.yy.*\
+		y.tab.*

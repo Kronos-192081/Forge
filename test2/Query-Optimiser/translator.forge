@@ -1,0 +1,10 @@
+lexf = import "lexer.forge"
+
+test_res: lexf.lex.yy.o lexf.y.tab.o test_translator.o test_target_translator.o
+	g++ lex.yy.o y.tab.o test_translator.o test_target_translator.o -o test_res
+
+test_target_translator.o: test_target_translator.cxx test_translator.h
+	g++ -c test_target_translator.cxx
+
+test_translator.o: test_translator.cxx test_translator.h
+	g++ -c test_translator.cxx

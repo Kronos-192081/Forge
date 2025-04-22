@@ -1,0 +1,7 @@
+translate = import "translator.forge"
+cl = import "clean.forge"
+
+run: translate.test_res
+	./test_res inp.txt > res.txt
+
+clean: cl.clean

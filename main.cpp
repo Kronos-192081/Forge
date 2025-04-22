@@ -11,15 +11,28 @@
 
 using Row_t = tabulate::Table::Row_t;
 
-std::unordered_map<std::string, std::string> master_var_tab;
-std::unordered_map<std::string, target> master_targ_tab;
-std::unordered_set<std::string> processed_files;
-std::unordered_set<std::string> concerned_targets;
-std::unordered_set<std::string> all_import_vars;
-std::unordered_map<std::string, std::string> all_import_prefixes;
-std::unordered_map<std::string, std::string> act_targs;
-std::set<std::string> all_targs;
+std::unordered_map<std::string, std::string> master_var_tab; ///< table containing variable declarations across all forgefiles
+std::unordered_map<std::string, target> master_targ_tab; ///< All targets
+std::unordered_set<std::string> processed_files; ///< list of files already processed
+std::unordered_set<std::string> concerned_targets; ///< targets which are concerned based on the target asked to be built
+std::unordered_set<std::string> all_import_vars; ///< list of all import variables
+std::unordered_map<std::string, std::string> all_import_prefixes; ///< list of all import variables with their prefixes
+std::unordered_map<std::string, std::string> act_targs; ///< actual names of targets
+std::set<std::string> all_targs; ///< list of all targets
 
+
+/**
+ * @brief Recursively finds and collects all dependencies for a given target.
+ *
+ * This function identifies all the dependencies of a specified target and adds them
+ * to the set of relevant targets. It ensures that each target is processed only once
+ * by checking if it is already in the set of relevant targets.
+ *
+ * @param target_name The name of the target whose dependencies are to be found.
+ * @param targ_tab A map containing all targets and their associated data, including dependencies.
+ * @param relevant_targets A set to store all relevant targets (including dependencies) for the given target.
+ * @param prefix A string prefix to prepend to dependency names (if needed).
+ */
 void findDependencies(const std::string& target_name, const std::unordered_map<std::string, target>& targ_tab, std::set<std::string>& relevant_targets, const std::string& prefix) {
     if (relevant_targets.count(target_name)) {
         return;
@@ -35,6 +48,25 @@ void findDependencies(const std::string& target_name, const std::unordered_map<s
     }
 }
 
+/**
+ * @brief Parses a file and collects dependencies, updating global tables and variables.
+ *
+ * This function processes a given file, parses its contents, and collects all relevant
+ * dependencies, variables, and targets. It ensures that files are processed only once
+ * and handles variable redefinitions across files. The function also recursively processes
+ * imported files and their dependencies.
+ *
+ * @param filename The name of the file to parse and process.
+ * @param prefix A string prefix to prepend to variable and target names (default is an empty string).
+ *
+ * @details
+ * - Updates the `master_var_tab` with variables from the parsed file.
+ * - Updates the `master_targ_tab` with targets from the parsed file.
+ * - Handles recursive imports and ensures no variable redefinitions occur across files.
+ * - Processes dependencies for concerned targets and recursively parses imported files.
+ *
+ * @note If a variable is redefined across files, the function logs an error and exits.
+ */
 void parse_and_collect_dependencies(const std::string& filename, const std::string& prefix = "") {
     if (processed_files.find(filename) != processed_files.end()) {
         return;
@@ -103,33 +135,96 @@ void parse_and_collect_dependencies(const std::string& filename, const std::stri
     }
 }
 
+/**
+ * @brief Represents a node in a dependency graph with associated target data.
+ *
+ * This struct encapsulates a node's name and its associated target data. It provides
+ * comparison operators for equality, inequality, and ordering, as well as a friend
+ * function for outputting the node's name to an output stream.
+ */
 struct Node {
-    std::string name;
-    target targ_data;
+    std::string name; ///< name of the node
+    target targ_data; ///< target data associated with the node
+
+     /**
+     * @brief Checks if two nodes are equal based on their names.
+     * @param other The other node to compare with.
+     * @return True if the names are equal, false otherwise.
+     */
     bool operator==(const Node& other) const {
         return name == other.name;
     }
+
+    /**
+     * @brief Checks if two nodes are not equal based on their names.
+     * @param other The other node to compare with.
+     * @return True if the names are not equal, false otherwise.
+     */
     bool operator!=(const Node& other) const {
         return !(*this == other);
     }
+
+     /**
+     * @brief Compares two nodes for ordering based on their names.
+     * @param other The other node to compare with.
+     * @return True if this node's name is lexicographically less than the other's name.
+     */
     bool operator<(const Node& other) const {
         return name < other.name;
     }
+
+    /**
+     * @brief Outputs the node's name to an output stream.
+     * @param os The output stream.
+     * @param node The node to output.
+     * @return The output stream with the node's name appended.
+     */
     friend std::ostream& operator<<(std::ostream& os, const Node& node) {
         os << node.name;
         return os;
     }
 };
 
+/**
+ * @brief Specialization of the `std::hash` template for the `Node` struct.
+ *
+ * This specialization allows `Node` objects to be used as keys in unordered containers
+ * such as `std::unordered_map` or `std::unordered_set`. It computes the hash value
+ * for a `Node` based on its `name` attribute.
+ */
 namespace std {
     template <>
     struct hash<Node> {
+        /**
+         * @brief Computes the hash value for a given `Node`.
+         * 
+         * @param node The `Node` object for which the hash value is to be computed.
+         * @return The hash value of the `Node`'s `name` attribute.
+         */
         std::size_t operator()(const Node& node) const {
             return std::hash<std::string>()(node.name);
         }
     };
 }
 
+/**
+ * @brief Displays a banner with information about the Forge build system.
+ *
+ * This function uses the `tabulate` library to create a styled table that displays
+ * a banner with details about Forge, including its purpose, license, and usage instructions.
+ * The banner is formatted with various font styles, colors, and alignments to enhance readability.
+ *
+ * @details
+ * - The banner includes:
+ *   - A title with the name of the build system.
+ *   - A link to the Forge GitHub repository.
+ *   - A brief description of Forge.
+ *   - Highlights such as the required C++ version and license.
+ *   - A quick-start instruction.
+ * - The table is styled using the `tabulate` library with custom colors, font styles, and alignments.
+ *
+ * @note This function outputs the banner directly to the standard output.
+ */
 void print_banner() {
   tabulate::Table readme;
   readme.format().border_color(tabulate::Color::yellow);
@@ -164,27 +259,27 @@ void print_banner() {
 }
 
 int main(int argc, char ** argv) {
-    argparse::ArgumentParser program("forge");
+    argparse::ArgumentParser program("forge"); ///< argument parser object
 
-    program.add_argument("--log-level")
+    program.add_argument("--log-level") ///< argument for loglevel
       .default_value(std::string{"DEFAULT"})
       .help("Specify the Log-Level for Logging. Available Options: DEFAULT, INFO, DEBUG and ERROR");
 
-    program.add_argument("file", "-f", "--file")
+    program.add_argument("file", "-f", "--file") ///< file to be considered
       .default_value(std::string{"forgefile"})
       .help("Specify the file to be considered");
 
-    program.add_argument("target")
+    program.add_argument("target") ///< target to be built
       .default_value(std::string{""})
       .help("Specify the target. If not given, first target will be considered");
 
-    program.add_argument("-a", "--about")
+    program.add_argument("-a", "--about") ///< about forge
       .action([](const auto&){ print_banner(); exit(0);})
       .help("Show about information")
       .default_value(false)
       .implicit_value(true);
 
-    program.add_argument("-j", "--jobs")
+    program.add_argument("-j", "--jobs") ///< number of jobs (parallel threads)
         .default_value(1)
         .help("Specify the number of jobs to run in parallel. Default is 1")
         .scan<'i', int>();
@@ -224,30 +319,14 @@ int main(int argc, char ** argv) {
         }
     }
 
-    // std::cout << "\nMaster Variable Table:\n";
-    // for (const auto& [var, value] : master_var_tab) {
-    //     std::cout << var << " = " << value << "\n";
-    // }
-
-    // std::cout << "\nMaster Target Table:\n";
-    // for (const auto& [target, data] : master_targ_tab) {
-    //     std::cout << target << " : " << data << "\n";
-    // }
-
-    // for (const auto& [targ, act_targ]: act_targs) {
-    //     std::cout << "Target: " << targ << " -> Actual Target: " << act_targ << "\n";
-    // }
-
-    Graph<Node> targ_graph, rev_targ_graph;
-    // Add Nodes
+    Graph<Node> targ_graph; ///< DAG of the forgefile based on the target and dependencies
 
     for (const auto& [target, data] : master_targ_tab) {
         Node node{target, data};
         targ_graph.addNode(node);
-        rev_targ_graph.addNode(node);
     }
 
-    for (const auto& [target, data] : master_targ_tab) {
+    for (const auto& [target, data] : master_targ_tab) { ///< building the target graph
         for (const auto& dep : data.dependencies) {
             Node node1{target, data};
             if ((master_targ_tab.find(all_import_prefixes[target] + dep) == master_targ_tab.end()) && (master_targ_tab.find(dep) == master_targ_tab.end())) continue;
@@ -260,13 +339,10 @@ int main(int argc, char ** argv) {
             }
             Node node2{prefix + dep, master_targ_tab[prefix + dep]};
             targ_graph.addEdge(node2, node1);
-            rev_targ_graph.addEdge(node1, node2);
         }
     }
 
-    rev_targ_graph.visualize("rev_graph.dot", "rev_graph");
-
-    auto is_cycle = targ_graph.hasCycle();
+    auto is_cycle = targ_graph.hasCycle(); ///< return if the graph has cycle by printing a cycle as well
     if (is_cycle.has_value()) {
         std::string cycle_message = "Cycle detected: ";
         for (const auto& node : is_cycle.value()) {
@@ -278,14 +354,41 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
-    targ_graph.visualize("graph.dot", "graph");
+    targ_graph.visualize("graph.dot", "graph"); ///< visualises the graph as a png file
 
-    auto topoSort = targ_graph.topologicalSort();
+    auto topoSort = targ_graph.topologicalSort(); ///< toposort of the graph
 
-    std::vector<Node> compilable_nodes;
-    Cache cache;
+    std::vector<Node> compilable_nodes; ///< all nodes which are to be compiled
+    Cache cache; ///< a cache to store the files which are already compiled
     std::unordered_map<std::string, bool> to_compile;
 
+
+    /**
+     * @brief Determines which nodes in the dependency graph need to be compiled.
+     *
+     * This loop iterates over the topologically sorted nodes (`topoSort`) and evaluates
+     * whether each node requires compilation based on its dependencies and cache status.
+     *
+     * @details
+     * - For each node:
+     *   - Retrieves its dependencies.
+     *   - Initializes the `to_compile` status for the node as `false`.
+     *   - Iterates over the dependencies:
+     *     - Checks if the dependency is a target (`act_targs` or `all_targs`).
+     *       - If the dependency is a target and marked for compilation, marks the current
+     *         node for compilation and adds it to `compilable_nodes`.
+     *     - If the dependency is not a target:
+     *       - Constructs the full file path and checks the cache.
+     *       - If the file is not in the cache, adds it to the cache, marks the current node
+     *         for compilation, and adds it to `compilable_nodes`.
+     *   - If the node is still not marked for compilation:
+     *     - Constructs the full target path and checks if it exists in the filesystem.
+     *     - If the target does not exist, marks the node for compilation and adds it to
+     *       `compilable_nodes`.
+     *
+     * @note This logic ensures that only nodes with unmet dependencies or missing targets
+     *       are marked for compilation, optimizing the build process.
+     */
     for (const auto& node: topoSort) {
         auto deps = node.targ_data.dependencies;
         to_compile[node.name] = false;
@@ -323,7 +426,7 @@ int main(int argc, char ** argv) {
         }
     }
 
-    if (is_par) {
+    if (is_par) { ///< configure the targets that are to be compiled in parallel
         std::vector<std::vector<std::string>> parallelizable_labels;
         while (!topoSort.empty()) {
             std::vector<std::string> labels;
@@ -354,7 +457,7 @@ int main(int argc, char ** argv) {
             parallelizable_commands.push_back(commands_for_labels);
         }
 
-        std::string output = run_commands_parallel(parallelizable_commands, njobs);
+        std::string output = run_commands_parallel(parallelizable_commands, njobs); ///< running jobs in parallel
         std::ofstream out("forge_output.html");
         out << output;
         out.close();
@@ -365,7 +468,7 @@ int main(int argc, char ** argv) {
                 commands.push_back(cmd);
             }
         }
-        std::string output = run_commands(commands);
+        std::string output = run_commands(commands); ///< running jobs in serial
         std::ofstream out("forge_output.html");
         out << output;
         out.close();

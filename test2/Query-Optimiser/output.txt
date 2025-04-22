@@ -1,0 +1,31 @@
+flex test.l
+
+bison -dty test.y
+test.y: warning: 31 shift/reduce conflicts [-Wconflicts-sr]
+test.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+
+g++ -c test_target_translator.cxx
+
+g++ -c test_translator.cxx
+
+g++ -c y.tab.c
+[01m[Ky.tab.c:[m[K In function ‘[01m[Kint[01;32m[K yyparse[m[K()[m[K’:
+[01m[Ky.tab.c:1362:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wwrite-strings-Wwrite-strings]8;;[m[K]
+ 1362 |       yyerror (YY_([01;35m[K"syntax error"[m[K));
+      |                    [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[Ky.tab.c:340:22:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KYY_[m[K’
+  340 | #  define YY_(Msgid) [01;36m[KMsgid[m[K
+      |                      [01;36m[K^~~~~[m[K
+[01m[Ky.tab.c:1473:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids converting a string constant to ‘[01m[Kchar*[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wwrite-strings-Wwrite-strings]8;;[m[K]
+ 1473 |   yyerror (YY_([01;35m[K"memory exhausted"[m[K));
+      |                [01;35m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[Ky.tab.c:340:22:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KYY_[m[K’
+  340 | #  define YY_(Msgid) [01;36m[KMsgid[m[K
+      |                      [01;36m[K^~~~~[m[K
+
+g++ -c lex.yy.c
+
+g++ lex.yy.o y.tab.o test_translator.o test_target_translator.o -o test_res
+
+./test_res inp.txt > res.txt
+

@@ -26,6 +26,13 @@ namespace py = pybind11;
 
 std::mutex py_mutex, stdout_mutex;
 
+/**
+ * @brief Extracts the exit code from the last line of a file.
+ * 
+ * @param file_path The path to the file containing the exit code.
+ * @return The extracted exit code as an integer.
+ * @throws std::runtime_error If the file cannot be opened or the exit code is not found.
+ */
 int get_exit_code(const std::string& file_path) {
     std::ifstream file(file_path);
     if (!file.is_open()) {
@@ -50,6 +57,12 @@ int get_exit_code(const std::string& file_path) {
     }
 }
 
+/**
+ * @brief Converts ANSI text to HTML using the Python `ansi2html` library.
+ * 
+ * @param ansi_text The ANSI-formatted text to be converted.
+ * @return The converted HTML string.
+ */
 std::string ansi_to_html(const std::string& ansi_text) {
     std::lock_guard<std::mutex> lock(py_mutex);
     py::scoped_interpreter guard{};
@@ -80,6 +93,12 @@ def convert_ansi_to_html(ansi_text):
     }
 } 
 
+/**
+ * @brief Extracts the content inside `<pre>` tags from an HTML string.
+ * 
+ * @param html The HTML string to process.
+ * @return The extracted content inside `<pre>` tags, or an empty string if no content is found.
+ */
 std::string extract_pre_content(const std::string& html) {
     std::vector<std::string> lines;
     std::istringstream stream(html);
@@ -113,6 +132,13 @@ std::string extract_pre_content(const std::string& html) {
     return output;
 }
 
+/**
+ * @brief Creates an HTML document containing build results and a Gantt chart.
+ * 
+ * @param output The HTML content for the build results.
+ * @param commands The commands and their execution details for the Gantt chart.
+ * @return The complete HTML document as a string.
+ */
 std::string create_html(const std::string& output, std::string& commands) {
     std::string html = R"(<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -305,8 +331,15 @@ html += R"(];
     return html;
 }
 
+
 auto base = std::chrono::system_clock::from_time_t(0);
 
+/**
+ * @brief Formats a `std::chrono::system_clock::time_point` into a JavaScript `Date` object string.
+ * 
+ * @param tp The time point to format.
+ * @return A string representing the JavaScript `Date` object.
+ */
 std::string formatDateTime(const std::chrono::system_clock::time_point& tp) {
     using namespace std::chrono;
 
@@ -333,6 +366,15 @@ std::string formatDateTime(const std::chrono::system_clock::time_point& tp) {
 
 int counter = 0;
 
+/**
+ * @brief Executes a list of commands sequentially and captures their output.
+ * 
+ * @param commands A vector of commands to execute.
+ * @return A tuple containing:
+ * - The HTML-formatted output of the commands.
+ * - The timeline data for the Gantt chart.
+ * - A boolean indicating if any command failed.
+ */
 std::tuple<std::string, std::string, bool> run_command(const std::vector<std::string>& commands) {
 
     timer::time_point<std::chrono::system_clock> start, end;
@@ -398,6 +440,12 @@ std::tuple<std::string, std::string, bool> run_command(const std::vector<std::st
     return {final_result, time, err};
 }
 
+/**
+ * @brief Executes a list of commands sequentially and generates an HTML report.
+ * 
+ * @param commands A vector of commands to execute.
+ * @return The HTML report as a string.
+ */
 std::string run_commands(const std::vector<std::string>& commands){
     std::string time;
     std::string final_result;
@@ -425,6 +473,15 @@ std::string run_commands(const std::vector<std::string>& commands){
     return create_html(final_result, time);
 }
 
+/**
+ * @brief Executes a list of commands sequentially in parallel and captures their output.
+ * 
+ * @param commands A vector of commands to execute.
+ * @return A tuple containing:
+ * - The HTML-formatted output of the commands.
+ * - The timeline data for the Gantt chart.
+ * - A boolean indicating if any command failed.
+ */
 std::tuple<std::string, std::string, bool> run_command_par(const std::vector<std::string>& commands) {
 
     timer::time_point<std::chrono::system_clock> start, end;
@@ -493,6 +550,13 @@ std::tuple<std::string, std::string, bool> run_command_par(const std::vector<std
     return {final_result, time, err};
 }
 
+/**
+ * @brief Executes batches of commands in parallel using multiple threads and generates an HTML report.
+ * 
+ * @param command_batches A vector of command batches, where each batch is a vector of command groups.
+ * @param num_threads The maximum number of threads to use for parallel execution.
+ * @return The HTML report as a string.
+ */
 std::string run_commands_parallel(const std::vector<std::vector<std::vector<std::string>>>& command_batches, size_t num_threads) {
     std::string final_result, total_time;
     std::mutex result_mutex;

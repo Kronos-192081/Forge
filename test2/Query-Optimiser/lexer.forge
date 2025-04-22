@@ -1,0 +1,11 @@
+lex.yy.o: lex.yy.c
+	g++ -c lex.yy.c
+
+y.tab.o: y.tab.c
+	g++ -c y.tab.c
+
+lex.yy.c: test.l test_translator.h
+	flex test.l
+
+y.tab.c: test.y
+	bison -dty test.y

@@ -9,11 +9,24 @@
 #include <iomanip>
 #include <openssl/sha.h>
 
+/**
+ * @brief A class to manage a file cache using an SQLite database.
+ *
+ * The Cache class provides functionality to store file hashes in an SQLite database,
+ * compute file hashes using SHA256, and check if a file's hash matches the stored hash.
+ */
 class Cache {
 private:
-    sqlite3* db;
-    std::string db_path;
+    sqlite3* db; ///< Pointer to the SQLite database connection.
+    std::string db_path; ///< Path to the SQLite database file.
 
+    /**
+     * @brief Computes the SHA256 hash of a file.
+     *
+     * @param file_path The path to the file whose hash is to be computed.
+     * @return The computed SHA256 hash as a hexadecimal string.
+     * @throws std::runtime_error If the file cannot be opened.
+     */
     std::string computeHash(const std::string& file_path) {
         std::ifstream file(file_path, std::ios::binary);
         if (!file.is_open()) {
@@ -39,6 +52,11 @@ private:
         return oss.str();
     }
 
+    /**
+     * @brief Initializes the SQLite database and creates the required table if it does not exist.
+     *
+     * @throws std::runtime_error If the table creation fails.
+     */
     void initializeDB() {
         const char* create_table_query = R"(
             CREATE TABLE IF NOT EXISTS cache (
@@ -57,6 +75,13 @@ private:
     }
 
 public:
+    /**
+     * @brief Constructs a Cache object and initializes the SQLite database.
+     *
+     * The database is created in the user's home directory as `.forgecache` if it does not already exist.
+     *
+     * @throws std::runtime_error If the HOME environment variable is not set or the database cannot be opened.
+     */
     Cache() {
         const char* home = std::getenv("HOME");
         if (!home) {
@@ -72,12 +97,21 @@ public:
         initializeDB();
     }
 
+    /**
+     * @brief Destroys the Cache object and closes the SQLite database connection.
+     */
     ~Cache() {
         if (db) {
             sqlite3_close(db);
         }
     }
 
+    /**
+     * @brief Adds or updates a file's hash in the cache.
+     *
+     * @param file_addr The path to the file to be added or updated in the cache.
+     * @throws std::runtime_error If the insert operation fails.
+     */
     void add(const std::string& file_addr) {
         std::string file_hash = computeHash(file_addr);
 
@@ -102,6 +136,13 @@ public:
         sqlite3_finalize(stmt);
     }
 
+    /**
+     * @brief Finds the hash of a file in the cache.
+     *
+     * @param file_addr The path to the file whose hash is to be retrieved.
+     * @return The hash of the file as a string, or an empty string if the file is not in the cache.
+     * @throws std::runtime_error If the select operation fails.
+     */
     std::string find(const std::string& file_addr) {
         const char* select_query = R"(
             SELECT file_hash FROM cache WHERE file_addr = ?;
@@ -123,6 +164,12 @@ public:
         return file_hash;
     }
 
+    /**
+     * @brief Checks if a file's current hash matches the hash stored in the cache.
+     *
+     * @param file_addr The path to the file to be checked.
+     * @return True if the file's current hash matches the stored hash, false otherwise.
+     */
     bool check(const std::string& file_addr) {
         std::string file_hash = find(file_addr);
         if (file_hash.empty()) {
