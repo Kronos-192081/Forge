@@ -1,9 +1,6 @@
 <div align="center">
-  <img src="forge_logo.png" alt="Forge Logo" width="400">
+  <img src="forge.png" alt="Forge Logo" width="400">
 </div>
-## Version: 1.0.0
-
----
 
 ## Overview
 
@@ -66,6 +63,101 @@ Built with **C++20**, Forge leverages the latest advancements in the language to
 
 ---
 
+## Directory Structure
+Directory structure:
+└── kronos-192081-forge/
+    ├── README.md
+    ├── argparse.hpp
+    ├── cache.hpp
+    ├── coderunner.hpp
+    ├── configure
+    ├── Doxyfile
+    ├── graph.hpp
+    ├── main.cpp
+    ├── Makefile
+    ├── parser.cpp
+    ├── parser.hpp
+    ├── tabulate.hpp
+    ├── doxygen-awesome-css/
+    │   ├── README.md
+    │   ├── Doxyfile
+    │   ├── doxygen-awesome-darkmode-toggle.js
+    │   ├── doxygen-awesome-fragment-copy-button.js
+    │   ├── doxygen-awesome-interactive-toc.js
+    │   ├── doxygen-awesome-paragraph-link.js
+    │   ├── doxygen-awesome-sidebar-only-darkmode-toggle.css
+    │   ├── doxygen-awesome-sidebar-only.css
+    │   ├── doxygen-awesome-tabs.js
+    │   ├── doxygen-awesome.css
+    │   ├── LICENSE
+    │   ├── Makefile
+    │   ├── package.json
+    │   ├── .gitignore
+    │   ├── .npmignore
+    │   ├── docs/
+    │   │   ├── customization.md
+    │   │   ├── extensions.md
+    │   │   ├── tricks.md
+    │   │   └── img/
+    │   ├── doxygen-custom/
+    │   │   ├── custom-alternative.css
+    │   │   ├── custom.css
+    │   │   ├── header.html
+    │   │   └── toggle-alternative-theme.js
+    │   ├── img/
+    │   ├── include/
+    │   │   └── MyLibrary/
+    │   │       ├── example.hpp
+    │   │       └── subclass-example.hpp
+    │   └── .github/
+    │       └── workflows/
+    │           └── publish.yaml
+    ├── test/
+    │   ├── 2>&1
+    │   ├── array.txt
+    │   ├── array_gen
+    │   ├── cd.py
+    │   ├── forgefile
+    │   ├── output.html
+    │   ├── output2.html
+    │   ├── output3.html
+    │   ├── sample.c
+    │   └── sample_dep.c
+    ├── test2/
+    │   └── Query-Optimiser/
+    │       ├── README.md
+    │       ├── call.py
+    │       ├── clean.forge
+    │       ├── deploy.py
+    │       ├── forge_output.html
+    │       ├── forgefile
+    │       ├── inp.txt
+    │       ├── lexer.forge
+    │       ├── Makefile
+    │       ├── output.txt
+    │       ├── output2.html
+    │       ├── output3.html
+    │       ├── requirements.txt
+    │       ├── res.txt
+    │       ├── test.l
+    │       ├── test.y
+    │       ├── test_res
+    │       ├── test_target_translator.cxx
+    │       ├── test_translator.cxx
+    │       ├── test_translator.h
+    │       ├── translator.forge
+    │       ├── .gitignore
+    │       ├── tmp/
+    │       │   ├── in.txt
+    │       │   └── out.txt
+    │       └── .streamlit/
+    │           └── config.toml
+    └── test_files/
+        ├── sample.mk
+        ├── sample2.mk
+        └── sample3.mk
+
+
 ## Installation
 
 ### Prerequisites
@@ -77,7 +169,7 @@ Built with **C++20**, Forge leverages the latest advancements in the language to
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Kronos-192081/forge.git
+   git clone https://github.com/Kronos-192081/Forge.git
    cd forge
    ```
 2. Install Pre-requisites:

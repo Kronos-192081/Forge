@@ -232,7 +232,7 @@ void print_banner() {
   readme.add_row(Row_t{"Forge - an easy and user-friendly build-system"});
   readme[0].format().font_style({tabulate::FontStyle::underline, tabulate::FontStyle::bold, tabulate::FontStyle::italic}).font_align(tabulate::FontAlign::center).font_color(tabulate::Color::yellow);
 
-  readme.add_row(Row_t{"https://github.com/Kronos-192081/forge"});
+  readme.add_row(Row_t{"https://github.com/Kronos-192081/Forge"});
   readme[1]
       .format()
       .font_align(tabulate::FontAlign::center)
