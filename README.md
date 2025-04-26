@@ -80,40 +80,6 @@ Directory structure:
     ├── parser.cpp
     ├── parser.hpp
     ├── tabulate.hpp
-    ├── doxygen-awesome-css/
-    │   ├── README.md
-    │   ├── Doxyfile
-    │   ├── doxygen-awesome-darkmode-toggle.js
-    │   ├── doxygen-awesome-fragment-copy-button.js
-    │   ├── doxygen-awesome-interactive-toc.js
-    │   ├── doxygen-awesome-paragraph-link.js
-    │   ├── doxygen-awesome-sidebar-only-darkmode-toggle.css
-    │   ├── doxygen-awesome-sidebar-only.css
-    │   ├── doxygen-awesome-tabs.js
-    │   ├── doxygen-awesome.css
-    │   ├── LICENSE
-    │   ├── Makefile
-    │   ├── package.json
-    │   ├── .gitignore
-    │   ├── .npmignore
-    │   ├── docs/
-    │   │   ├── customization.md
-    │   │   ├── extensions.md
-    │   │   ├── tricks.md
-    │   │   └── img/
-    │   ├── doxygen-custom/
-    │   │   ├── custom-alternative.css
-    │   │   ├── custom.css
-    │   │   ├── header.html
-    │   │   └── toggle-alternative-theme.js
-    │   ├── img/
-    │   ├── include/
-    │   │   └── MyLibrary/
-    │   │       ├── example.hpp
-    │   │       └── subclass-example.hpp
-    │   └── .github/
-    │       └── workflows/
-    │           └── publish.yaml
     ├── test/
     │   ├── 2>&1
     │   ├── array.txt
