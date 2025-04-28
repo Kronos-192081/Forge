@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="forge.png" alt="Forge Logo" width="400">
+  <img src="assets/forge.png" alt="Forge Logo" width="400">
 </div>
 
 
@@ -66,64 +66,71 @@ Built with **C++20**, Forge leverages the latest advancements in the language to
 
 ## Directory Structure
 ```
-Directory structure:
-└── kronos-192081-forge/
-    ├── README.md
+├── assets
+│   └── forge.png
+├── docs
+│   ├── html
+│   └── latex
+├── Doxyfile
+├── examples
+│   ├── example-1
+│   │   ├── array_gen
+│   │   ├── array.txt
+│   │   ├── forgefile
+│   │   ├── graph.png
+│   │   ├── output2.html
+│   │   ├── output3.html
+│   │   ├── output.html
+│   │   ├── sample.c
+│   │   └── sample_dep.c
+│   ├── example-2
+│   │   ├── graph.png
+│   │   ├── sample2.mk
+│   │   ├── sample3.mk
+│   │   └── sample.mk
+│   └── example-3
+│       └── Query-Optimiser
+│           ├── call.py
+│           ├── clean.forge
+│           ├── DBMS Term Project.pdf
+│           ├── deploy.py
+│           ├── forgefile
+│           ├── forge_output.html
+│           ├── graph.png
+│           ├── inp.txt
+│           ├── lexer.forge
+│           ├── Makefile
+│           ├── output2.html
+│           ├── output3.html
+│           ├── output.txt
+│           ├── README.md
+│           ├── requirements.txt
+│           ├── res.txt
+│           ├── rev_graph.png
+│           ├── test.l
+│           ├── test_res
+│           ├── test_target_translator.cxx
+│           ├── test_translator.cxx
+│           ├── test_translator.h
+│           ├── test.y
+│           ├── tmp
+│           │   ├── in.txt
+│           │   └── out.txt
+│           └── translator.forge
+├── Forge-Code-Documentation.pdf
+├── README.md
+└── src
     ├── argparse.hpp
     ├── cache.hpp
     ├── coderunner.hpp
     ├── configure
-    ├── Doxyfile
     ├── graph.hpp
     ├── main.cpp
     ├── Makefile
     ├── parser.cpp
     ├── parser.hpp
-    ├── tabulate.hpp
-    ├── test/
-    │   ├── 2>&1
-    │   ├── array.txt
-    │   ├── array_gen
-    │   ├── cd.py
-    │   ├── forgefile
-    │   ├── output.html
-    │   ├── output2.html
-    │   ├── output3.html
-    │   ├── sample.c
-    │   └── sample_dep.c
-    ├── test2/
-    │   └── Query-Optimiser/
-    │       ├── README.md
-    │       ├── call.py
-    │       ├── clean.forge
-    │       ├── deploy.py
-    │       ├── forge_output.html
-    │       ├── forgefile
-    │       ├── inp.txt
-    │       ├── lexer.forge
-    │       ├── Makefile
-    │       ├── output.txt
-    │       ├── output2.html
-    │       ├── output3.html
-    │       ├── requirements.txt
-    │       ├── res.txt
-    │       ├── test.l
-    │       ├── test.y
-    │       ├── test_res
-    │       ├── test_target_translator.cxx
-    │       ├── test_translator.cxx
-    │       ├── test_translator.h
-    │       ├── translator.forge
-    │       ├── .gitignore
-    │       ├── tmp/
-    │       │   ├── in.txt
-    │       │   └── out.txt
-    │       └── .streamlit/
-    │           └── config.toml
-    └── test_files/
-        ├── sample.mk
-        ├── sample2.mk
-        └── sample3.mk
+    └── tabulate.hpp
+
 ```
 
 
@@ -139,7 +146,7 @@ Directory structure:
 1. Clone the repository:
    ```bash
    git clone https://github.com/Kronos-192081/Forge.git
-   cd forge
+   cd Forge/src
    ```
 2. Install Pre-requisites:
     ```sh
@@ -155,7 +162,19 @@ Directory structure:
     sudo make install
     ```
 
-
+### Examples
+```bash
+$ cd examples
+$ cd example-1
+$ forge # for single threaded build
+$ forge -j <nproc> # for multithreaded build
+```
+For a more rigorous example, go to example-2:
+```bash
+$ cd example-2
+$ forge # for single threaded build
+$ forge -j <nproc> # for multithreaded build
+```
 
 ## Contributing
 
